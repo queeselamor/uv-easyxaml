@@ -7,4 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kropka.EasyXaml.Client.Infrastructure\Kropka.EasyXaml.Client.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>
