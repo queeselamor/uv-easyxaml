@@ -5,12 +5,18 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kropka.EasyXaml.Client", "Kropka.EasyXaml.Client\Kropka.EasyXaml.Client.csproj", "{6C0323F6-79CA-436A-9891-8C7B8507D47A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kropka.EasyXaml.Client.Infrastructure", "Kropka.EasyXaml.Client.Infrastructure\Kropka.EasyXaml.Client.Infrastructure.csproj", "{124D86B9-3377-43FA-91BD-1C43942467ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kropka.EasyXaml.Client.Infrastructure", "Kropka.EasyXaml.Client.Infrastructure\Kropka.EasyXaml.Client.Infrastructure.csproj", "{124D86B9-3377-43FA-91BD-1C43942467ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1DF8DBFC-C617-4DF4-AD77-A5A1030C4960}"
 	ProjectSection(SolutionItems) = preProject
 		Settings.XamlStyler = Settings.XamlStyler
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kropka.EasyXaml.Client.Views", "Kropka.EasyXaml.Client.Views\Kropka.EasyXaml.Client.Views.csproj", "{F7F51F1E-9E8A-4003-94D9-BAB584999CF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kropka.EasyXaml.Client.ViewModels", "Kropka.EasyXaml.Client.ViewModels\Kropka.EasyXaml.Client.ViewModels.csproj", "{210FCA9F-9CCA-4679-B225-706FFFC9D957}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kropka.EasyXaml.Client.Services", "Kropka.EasyXaml.Client.Services\Kropka.EasyXaml.Client.Services.csproj", "{439AD85C-630A-48CB-B2C0-62BAB4ACFB76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +32,18 @@ Global
 		{124D86B9-3377-43FA-91BD-1C43942467ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{124D86B9-3377-43FA-91BD-1C43942467ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{124D86B9-3377-43FA-91BD-1C43942467ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F51F1E-9E8A-4003-94D9-BAB584999CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F51F1E-9E8A-4003-94D9-BAB584999CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F51F1E-9E8A-4003-94D9-BAB584999CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F51F1E-9E8A-4003-94D9-BAB584999CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{210FCA9F-9CCA-4679-B225-706FFFC9D957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{210FCA9F-9CCA-4679-B225-706FFFC9D957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{210FCA9F-9CCA-4679-B225-706FFFC9D957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{210FCA9F-9CCA-4679-B225-706FFFC9D957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{439AD85C-630A-48CB-B2C0-62BAB4ACFB76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{439AD85C-630A-48CB-B2C0-62BAB4ACFB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{439AD85C-630A-48CB-B2C0-62BAB4ACFB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{439AD85C-630A-48CB-B2C0-62BAB4ACFB76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

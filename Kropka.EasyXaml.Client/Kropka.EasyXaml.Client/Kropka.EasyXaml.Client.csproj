@@ -9,5 +9,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kropka.EasyXaml.Client.Infrastructure\Kropka.EasyXaml.Client.Infrastructure.csproj" />
+    <ProjectReference Include="..\Kropka.EasyXaml.Client.Services\Kropka.EasyXaml.Client.Services.csproj" />
+    <ProjectReference Include="..\Kropka.EasyXaml.Client.ViewModels\Kropka.EasyXaml.Client.ViewModels.csproj" />
+    <ProjectReference Include="..\Kropka.EasyXaml.Client.Views\Kropka.EasyXaml.Client.Views.csproj" />
   </ItemGroup>
 </Project>

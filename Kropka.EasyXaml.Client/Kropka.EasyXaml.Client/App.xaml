@@ -1,6 +1,13 @@
 ﻿<prism:PrismApplication x:Class="Kropka.EasyXaml.Client.App"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                        xmlns:prism="http://prismlibrary.com/">
-    <Application.Resources />
+                        xmlns:prism="http://prismlibrary.com/"
+                        DispatcherUnhandledException="OnDispatcherUnhandledException">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/StylesDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </prism:PrismApplication>
