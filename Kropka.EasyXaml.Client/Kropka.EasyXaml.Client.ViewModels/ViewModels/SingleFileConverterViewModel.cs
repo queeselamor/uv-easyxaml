@@ -51,15 +51,18 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         {
             var converterItem = new ConverterItemViewModel(ConverterType.SvgToXaml, filePath);
 
-            var transformContent = await _imageTransformationService.Transform(converterItem.ConverterType, converterItem.SourcePath);
-            var resultContent = await _imageTransformationService.PrepareContent(ConverterType.SvgToXaml, transformContent);
-
-            converterItem.ResultContent = resultContent;
-
             CurrentConverterItem = converterItem;
         }
 
-        //TODO: Replace to Convert method
+        await Convert();
+    }
+
+    private async Task Convert()
+    {
+        var transformContent = await _imageTransformationService.Transform(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
+        var resultContent = await _imageTransformationService.PrepareContent(ConverterType.SvgToXaml, transformContent);
+
+        CurrentConverterItem.ResultContent = resultContent;
     }
     #endregion
 }
