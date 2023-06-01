@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="Interfaces\Services\" />
     <Folder Include="Interfaces\ViewModels\Base\" />
     <Folder Include="Interfaces\ViewModels\Model\" />
     <Folder Include="Interfaces\Views\Base\" />

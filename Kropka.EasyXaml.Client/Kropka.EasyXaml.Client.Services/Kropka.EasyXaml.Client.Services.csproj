@@ -10,6 +10,6 @@
     <ProjectReference Include="..\Kropka.EasyXaml.Client.Infrastructure\Kropka.EasyXaml.Client.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Folder Include="Services\Transformation\" />
   </ItemGroup>
 </Project>
