@@ -8,7 +8,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\Base\" />
-    <Folder Include="ViewModels\Model\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kropka.EasyXaml.Client.Infrastructure\Kropka.EasyXaml.Client.Infrastructure.csproj" />

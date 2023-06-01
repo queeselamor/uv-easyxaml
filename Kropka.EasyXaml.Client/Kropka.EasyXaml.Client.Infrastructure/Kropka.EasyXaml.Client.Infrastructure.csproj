@@ -12,6 +12,7 @@
     <Folder Include="Interfaces\ViewModels\Base\" />
     <Folder Include="Interfaces\ViewModels\Model\" />
     <Folder Include="Interfaces\Views\Base\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>
