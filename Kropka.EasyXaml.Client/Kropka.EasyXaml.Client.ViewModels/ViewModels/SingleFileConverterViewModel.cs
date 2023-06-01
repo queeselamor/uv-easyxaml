@@ -3,7 +3,9 @@ using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
+using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
 
@@ -12,7 +14,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #region Fields
     private readonly IFileService _fileService;
     private readonly IImageTransformationService _imageTransformationService;
-    private string _sourceFilePath;
+    private IConverterItemViewModel _currentConverterItem;
     #endregion
 
     #region Constructors
@@ -29,10 +31,10 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #endregion
 
     #region Properties
-    public string SourceFilePath
+    public IConverterItemViewModel CurrentConverterItem
     {
-        get => _sourceFilePath;
-        set => SetProperty(ref _sourceFilePath, value);
+        get => _currentConverterItem;
+        set => SetProperty(ref _currentConverterItem, value);
     }
     #endregion
 
@@ -47,12 +49,17 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
         if (filePath != string.Empty)
         {
-            SourceFilePath = filePath;
+            var converterItem = new ConverterItemViewModel(ConverterType.SvgToXaml, filePath);
+
+            var transformContent = await _imageTransformationService.Transform(converterItem.ConverterType, converterItem.SourcePath);
+            var resultContent = await _imageTransformationService.PrepareContent(ConverterType.SvgToXaml, transformContent);
+
+            converterItem.ResultContent = resultContent;
+
+            CurrentConverterItem = converterItem;
         }
 
-        //TODO: Test logic
-        var content = await _imageTransformationService.Transform(ConverterType.SvgToXaml, SourceFilePath);
-        var preparedContent = await _imageTransformationService.PrepareContent(ConverterType.SvgToXaml, content);
+        //TODO: Replace to Convert method
     }
     #endregion
 }

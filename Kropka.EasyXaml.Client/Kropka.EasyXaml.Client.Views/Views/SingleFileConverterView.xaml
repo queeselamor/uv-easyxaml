@@ -9,7 +9,7 @@
              mc:Ignorable="d">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="{Binding SourceFilePath, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="{Binding CurrentConverterItem.SourcePath, UpdateSourceTrigger=PropertyChanged}" />
             <Button Width="190"
                     Height="30"
                     Command="{Binding PickFileCommand}"
