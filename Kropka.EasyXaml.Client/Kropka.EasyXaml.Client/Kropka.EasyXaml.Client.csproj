@@ -5,6 +5,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Transformations\svg_to_xaml.xsl" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
@@ -12,5 +15,10 @@
     <ProjectReference Include="..\Kropka.EasyXaml.Client.Services\Kropka.EasyXaml.Client.Services.csproj" />
     <ProjectReference Include="..\Kropka.EasyXaml.Client.ViewModels\Kropka.EasyXaml.Client.ViewModels.csproj" />
     <ProjectReference Include="..\Kropka.EasyXaml.Client.Views\Kropka.EasyXaml.Client.Views.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Transformations\svg_to_xaml.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
