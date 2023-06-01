@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
@@ -21,6 +22,8 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     public SingleFileConverterViewModel()
     {
         PickFileCommand = new AsyncRelayCommand(PickFile);
+        CopyContentCommand = new RelayCommand(CopyContent);
+        SaveFileCommand = new AsyncRelayCommand(SaveFile);
     }
 
     public SingleFileConverterViewModel(IFileService fileService, IImageTransformationService imageTransformationService) : this()
@@ -40,6 +43,8 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     #region Commands
     public IAsyncRelayCommand PickFileCommand { get; set; }
+    public IRelayCommand CopyContentCommand { get; set; }
+    public IAsyncRelayCommand SaveFileCommand { get; set; }
     #endregion
 
     #region Methods
@@ -63,6 +68,25 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         var resultContent = await _imageTransformationService.PrepareContent(ConverterType.SvgToXaml, transformContent);
 
         CurrentConverterItem.ResultContent = resultContent;
+
+        RaisePropertyChanged(nameof(CurrentConverterItem.ResultContent));
+    }
+
+    private void CopyContent()
+    {
+        if (string.IsNullOrEmpty(CurrentConverterItem.ResultContent))
+        {
+            return;
+        }
+
+        Clipboard.SetText(CurrentConverterItem.ResultContent);
+    }
+
+    private async Task SaveFile()
+    {
+        var filePath = await _fileService.SaveFile(CurrentConverterItem.ResultContent, CurrentConverterItem.SourcePath);
+
+        CurrentConverterItem.ResultPath = filePath;
     }
     #endregion
 }

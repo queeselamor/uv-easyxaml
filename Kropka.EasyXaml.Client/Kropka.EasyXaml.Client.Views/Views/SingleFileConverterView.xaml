@@ -15,7 +15,14 @@
                     Command="{Binding PickFileCommand}"
                     Content="Select" />
             <TextBox Text="{Binding CurrentConverterItem.ResultContent, UpdateSourceTrigger=PropertyChanged}" />
-
+            <Button Width="190"
+                    Height="30"
+                    Command="{Binding CopyContentCommand}"
+                    Content="Copy" />
+            <Button Width="190"
+                    Height="30"
+                    Command="{Binding SaveFileCommand}"
+                    Content="Save" />
         </StackPanel>
     </Grid>
 </UserControl>
