@@ -7,6 +7,6 @@
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
+    <ProjectReference Include="..\Kropka.EasyXaml.Client.Infrastructure\Kropka.EasyXaml.Client.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
