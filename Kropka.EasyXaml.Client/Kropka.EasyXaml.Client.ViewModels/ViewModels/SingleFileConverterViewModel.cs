@@ -68,8 +68,6 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         var resultContent = await _imageTransformationService.PrepareContent(ConverterType.SvgToXaml, transformContent);
 
         CurrentConverterItem.ResultContent = resultContent;
-
-        RaisePropertyChanged(nameof(CurrentConverterItem.ResultContent));
     }
 
     private void CopyContent()

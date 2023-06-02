@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
+using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Microsoft.Win32;
 
@@ -12,7 +13,7 @@ public class FileService : IFileService
     {
         var openFileDialog = new OpenFileDialog
         {
-            Filter = "SVG Files (*.svg)|*.svg"
+            Filter = ExtensionFilterConstants.SvgFilter
         };
 
         var result = openFileDialog.ShowDialog();
@@ -30,7 +31,7 @@ public class FileService : IFileService
 
         var saveFileDialog = new SaveFileDialog
         {
-            Filter = "XAML files (*.xaml)|*.xaml",
+            Filter = ExtensionFilterConstants.XamlFilter,
             FileName = fileName
         };
 
@@ -43,5 +44,4 @@ public class FileService : IFileService
         return filePath;
     }
     #endregion
-
 }
