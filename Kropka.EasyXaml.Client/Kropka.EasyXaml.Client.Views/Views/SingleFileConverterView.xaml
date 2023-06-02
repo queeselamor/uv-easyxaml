@@ -17,7 +17,6 @@
                     Content="Select" />
             <controls:ScriptEditor Width="600"
                                    Height="400"
-                                   Margin="12"
                                    Padding="0,8,8,8"
                                    BorderBrush="#DADFE0"
                                    BorderThickness="1"
