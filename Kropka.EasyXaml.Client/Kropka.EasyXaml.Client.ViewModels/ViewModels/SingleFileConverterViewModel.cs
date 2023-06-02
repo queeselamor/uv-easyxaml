@@ -74,6 +74,11 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     private void CopyContent()
     {
+        if (CurrentConverterItem is null)
+        {
+            return;
+        }
+
         if (string.IsNullOrEmpty(CurrentConverterItem.ResultContent))
         {
             return;
@@ -84,6 +89,16 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     private async Task SaveFile()
     {
+        if (CurrentConverterItem is null)
+        {
+            return;
+        }
+
+        if (string.IsNullOrEmpty(CurrentConverterItem.ResultContent))
+        {
+            return;
+        }
+
         var filePath = await _fileService.SaveFile(CurrentConverterItem.ResultContent, CurrentConverterItem.SourcePath);
 
         CurrentConverterItem.ResultPath = filePath;
