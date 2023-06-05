@@ -2,6 +2,7 @@
 using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
@@ -14,7 +15,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 {
     #region Fields
     private readonly IFileService _fileService;
-    private readonly IImageTransformationService _imageTransformationService;
+    private readonly IImageTransformationManager _imageTransformationManager;
     private IConverterItemViewModel _currentConverterItem;
     #endregion
 
@@ -26,10 +27,10 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         SaveFileCommand = new AsyncRelayCommand(SaveFile);
     }
 
-    public SingleFileConverterViewModel(IFileService fileService, IImageTransformationService imageTransformationService) : this()
+    public SingleFileConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager) : this()
     {
         _fileService = fileService;
-        _imageTransformationService = imageTransformationService;
+        _imageTransformationManager = imageTransformationManager;
     }
     #endregion
 
@@ -64,8 +65,8 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     private async Task Convert()
     {
-        var transformContent = await _imageTransformationService.Transform(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
-        var resultContent = await _imageTransformationService.PrepareContent(ConverterType.SvgToXaml, transformContent);
+        var transformContent = await _imageTransformationManager.Transform(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
+        var resultContent = await _imageTransformationManager.PrepareContent(ConverterType.SvgToXaml, transformContent);
 
         CurrentConverterItem.ResultContent = resultContent;
     }

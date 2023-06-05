@@ -1,8 +1,8 @@
 ﻿using Kropka.EasyXaml.Client.Infrastructure.Enums;
 
-namespace Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
+namespace Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 
-public interface IImageTransformationService : IService
+public interface IImageTransformationManager
 {
     #region MyRegion
     Task<string> Transform(ConverterType converterType, string filePath);

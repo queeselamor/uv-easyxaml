@@ -1,5 +1,7 @@
-﻿using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
+﻿using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services.Transformation;
+using Kropka.EasyXaml.Client.Services.Managers;
 using Kropka.EasyXaml.Client.Services.Services;
 using Kropka.EasyXaml.Client.Services.Services.Transformation;
 using Prism.Ioc;
@@ -17,6 +19,6 @@ public class ServicesModule : IModule
     {
         containerRegistry.RegisterSingleton<IFileService, FileService>();
         containerRegistry.RegisterSingleton<ISvgToXamlTransformationService, SvgToXamlTransformationService>();
-        containerRegistry.RegisterSingleton<IImageTransformationService, ImageTransformationService>();
+        containerRegistry.RegisterSingleton<IImageTransformationManager, ImageTransformationManager>();
     }
 }
