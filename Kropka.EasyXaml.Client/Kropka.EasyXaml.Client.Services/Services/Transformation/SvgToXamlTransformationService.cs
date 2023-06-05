@@ -13,7 +13,14 @@ namespace Kropka.EasyXaml.Client.Services.Services.Transformation;
 public class SvgToXamlTransformationService : ISvgToXamlTransformationService
 {
     #region Methods
-    public Task<string> TransformSvgToXaml(string sourceFile)
+    public async Task<string> TransformSvgToXaml(string sourceFile)
+    {
+        var xamlContent = await GetXamlContent(sourceFile);
+
+        return await Task.FromResult(ClearXamlContent(xamlContent));
+    }
+
+    private static Task<string> GetXamlContent(string sourceFile)
     {
         const string xslTransformFile = TransformationFilePathConstants.SvgToXamlTransformationFilePath;
 
@@ -30,7 +37,7 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         xslTransform.Transform(svgReader, null, stringWriter);
         var xamlContent = stringWriter.ToString();
 
-        return Task.FromResult(ClearXamlContent(xamlContent));
+        return Task.FromResult(xamlContent);
     }
 
     public Task<string> PrepareContent(string content)
