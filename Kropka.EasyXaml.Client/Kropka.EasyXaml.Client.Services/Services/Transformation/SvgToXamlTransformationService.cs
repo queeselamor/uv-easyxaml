@@ -15,7 +15,7 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
     #region Constructors
     public SvgToXamlTransformationService()
     {
-        AppContext.SetSwitch("Switch.System.Xml.AllowDefaultResolver", true);
+        AppContext.SetSwitch(ResolverConstants.AllowDefaultResolver, true);
     }
     #endregion
 
