@@ -15,8 +15,8 @@
                     Height="30"
                     Command="{Binding PickFileCommand}"
                     Content="Select" />
-            <svgc:SvgViewbox Width="32"
-                             Height="32"
+            <svgc:SvgViewbox Width="64"
+                             Height="64"
                              Source="{Binding CurrentConverterItem.SourcePath}" />
             <controls:ScriptEditor Width="600"
                                    Height="400"

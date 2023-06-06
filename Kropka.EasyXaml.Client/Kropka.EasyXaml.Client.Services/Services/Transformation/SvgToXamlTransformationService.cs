@@ -20,25 +20,47 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         return await Task.FromResult(ClearXamlContent(xamlContent));
     }
 
+    //private static Task<string> GetXamlContent(string sourceFile)
+    //{
+    //    const string xslTransformFile = TransformationFilePathConstants.SvgToXamlTransformationFilePath;
+
+    //    var settings = new XmlReaderSettings
+    //    {
+    //        DtdProcessing = DtdProcessing.Parse
+    //    };
+
+    //    var xslTransform = new XslCompiledTransform();
+    //    xslTransform.Load(xslTransformFile);
+
+    //    using var svgReader = XmlReader.Create(sourceFile, settings);
+    //    using var stringWriter = new StringWriter();
+    //    xslTransform.Transform(svgReader, null, stringWriter);
+    //    var xamlContent = stringWriter.ToString();
+
+    //    return Task.FromResult(xamlContent);
+    //}
+
     private static Task<string> GetXamlContent(string sourceFile)
     {
         const string xslTransformFile = TransformationFilePathConstants.SvgToXamlTransformationFilePath;
 
         var settings = new XmlReaderSettings
         {
-            DtdProcessing = DtdProcessing.Parse
+            DtdProcessing = DtdProcessing.Parse,
+            XmlResolver = new XmlUrlResolver()
         };
 
         var xslTransform = new XslCompiledTransform();
-        xslTransform.Load(xslTransformFile);
+        xslTransform.Load(xslTransformFile, XsltSettings.TrustedXslt, new XmlUrlResolver());
 
         using var svgReader = XmlReader.Create(sourceFile, settings);
         using var stringWriter = new StringWriter();
-        xslTransform.Transform(svgReader, null, stringWriter);
+        xslTransform.Transform(svgReader, new XsltArgumentList(), stringWriter);
         var xamlContent = stringWriter.ToString();
 
         return Task.FromResult(xamlContent);
     }
+
 
     public Task<string> PrepareContent(string content)
     {
