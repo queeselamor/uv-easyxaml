@@ -12,6 +12,13 @@ namespace Kropka.EasyXaml.Client.Services.Services.Transformation;
 
 public class SvgToXamlTransformationService : ISvgToXamlTransformationService
 {
+    #region Constructors
+    public SvgToXamlTransformationService()
+    {
+        AppContext.SetSwitch("Switch.System.Xml.AllowDefaultResolver", true);
+    }
+    #endregion
+
     #region Methods
     public async Task<string> TransformSvgToXaml(string sourceFile)
     {
