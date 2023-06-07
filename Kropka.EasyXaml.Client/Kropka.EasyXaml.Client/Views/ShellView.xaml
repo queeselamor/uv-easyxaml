@@ -8,7 +8,19 @@
         Height="800"
         prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <ContentControl HorizontalAlignment="Stretch"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+                Height="50"
+                Background="Red">
+            <Border.InputBindings>
+                <MouseBinding Command="{Binding DragWindowCommand}" Gesture="LeftClick" />
+            </Border.InputBindings>
+        </Border>
+        <ContentControl Grid.Row="1"
+                        HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         prism:RegionManager.RegionName="{x:Static inf:RegionNameConstants.ContentRegion}" />
     </Grid>
