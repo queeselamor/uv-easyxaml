@@ -43,9 +43,9 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #endregion
 
     #region Commands
-    public IAsyncRelayCommand PickFileCommand { get; set; }
-    public IRelayCommand CopyContentCommand { get; set; }
-    public IAsyncRelayCommand SaveFileCommand { get; set; }
+    public IAsyncRelayCommand PickFileCommand { get; }
+    public IRelayCommand CopyContentCommand { get; }
+    public IAsyncRelayCommand SaveFileCommand { get; }
     #endregion
 
     #region Methods
