@@ -6,7 +6,9 @@
         Title="{Binding Title}"
         Width="1200"
         Height="800"
-        prism:ViewModelLocator.AutoWireViewModel="True">
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        ResizeMode="NoResize"
+        WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -18,6 +20,19 @@
             <Border.InputBindings>
                 <MouseBinding Command="{Binding DragWindowCommand}" Gesture="LeftClick" />
             </Border.InputBindings>
+            <StackPanel Margin="0,0,16,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Button Width="90"
+                        Height="30"
+                        Margin="0,0,8,0"
+                        Command="{Binding MinimizeWindowCommand}"
+                        Content="Minimize" />
+                <Button Width="90"
+                        Height="30"
+                        Command="{Binding CloseWindowCommand}"
+                        Content="Close" />
+            </StackPanel>
         </Border>
         <ContentControl Grid.Row="1"
                         HorizontalAlignment="Stretch"

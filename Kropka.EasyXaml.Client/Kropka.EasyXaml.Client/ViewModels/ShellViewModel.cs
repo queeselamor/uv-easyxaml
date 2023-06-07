@@ -16,6 +16,8 @@ public class ShellViewModel : IShellViewModel
     public ShellViewModel()
     {
         DragWindowCommand = new RelayCommand(DragWindow);
+        CloseWindowCommand = new RelayCommand(CloseWindow);
+        MinimizeWindowCommand = new RelayCommand(MinimizeWindow);
     }
 
     public ShellViewModel(IContainerProvider containerProvider) : this()
@@ -30,6 +32,8 @@ public class ShellViewModel : IShellViewModel
 
     #region Commands
     public IRelayCommand DragWindowCommand { get; }
+    public IRelayCommand CloseWindowCommand { get; }
+    public IRelayCommand MinimizeWindowCommand { get; }
     #endregion
 
     #region Methods
@@ -37,6 +41,17 @@ public class ShellViewModel : IShellViewModel
     {
         var shell = (Window)_containerProvider.Resolve<IShellView>();
         shell.DragMove();
+    }
+
+    private void CloseWindow()
+    {
+        Application.Current.Shutdown();
+    }
+
+    private void MinimizeWindow()
+    {
+        var shell = (Window)_containerProvider.Resolve<IShellView>();
+        shell.WindowState = WindowState.Minimized;
     }
     #endregion
 }
