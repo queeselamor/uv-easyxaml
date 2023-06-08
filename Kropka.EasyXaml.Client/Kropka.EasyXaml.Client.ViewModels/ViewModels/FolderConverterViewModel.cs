@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
@@ -26,6 +27,8 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     public FolderConverterViewModel()
     {
         ConverterItems = new ObservableCollection<IConverterItemViewModel>();
+
+        SaveFilesCommand = new AsyncRelayCommand(SaveFilesAsync);
     }
 
     public FolderConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager) : this()
@@ -43,7 +46,32 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     }
     #endregion
 
+    #region Commands
+    public IAsyncRelayCommand SaveFilesCommand { get; }
+    #endregion
+
     #region Methods
+    private async Task SaveFilesAsync()
+    {
+        if (ConverterItems.Count == 0)
+        {
+            return;
+        }
+
+        var folderPath = await _fileService.PickFolderAsync();
+
+        if (folderPath == string.Empty)
+        {
+            return;
+        }
+
+        foreach (var converterItemViewModel in ConverterItems)
+        {
+            var filePath = await _fileService.SaveFileAsync(converterItemViewModel.ResultContent, converterItemViewModel.SourcePath, folderPath);
+
+            converterItemViewModel.ResultPath = filePath;
+        }
+    }
 
     private async Task ConvertFolderAsync(string folderPath)
     {

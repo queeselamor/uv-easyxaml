@@ -48,6 +48,21 @@ public class FileService : IFileService
         return filePath;
     }
 
+    public async Task<string> SaveFileAsync(string content, string sourceFilePath, string folderPath)
+    {
+        var fileName = string.Empty;
+        if (!string.IsNullOrEmpty(sourceFilePath))
+        {
+            fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+        }
+
+        var savePath = Path.Combine(folderPath, $"{fileName}.xaml");
+
+        await File.WriteAllTextAsync(savePath, content);
+
+        return savePath;
+    }
+
     public Task<string> PickFolderAsync()
     {
         var folderDialog = new FolderBrowserDialog();

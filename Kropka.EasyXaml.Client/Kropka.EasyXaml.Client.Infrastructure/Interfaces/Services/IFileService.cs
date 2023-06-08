@@ -5,6 +5,7 @@ public interface IFileService : IService
     #region Methods
     Task<string> PickFilePathAsync();
     Task<string> SaveFileAsync(string content, string sourceFilePath);
+    Task<string> SaveFileAsync(string content, string sourceFilePath, string folderPath);
     Task<string> PickFolderAsync();
     Task<IEnumerable<string>> GetFilePathsAsync(string folderPath);
     #endregion
