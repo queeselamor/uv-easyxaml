@@ -12,6 +12,7 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     private string _sourceContent;
     private string _resultPath;
     private string _resultContent;
+    private bool _isSelected;
     #endregion
 
     #region Constructors
@@ -51,6 +52,12 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     {
         get => _resultContent;
         set => SetProperty(ref _resultContent, value);
+    }
+
+    public bool IsSelected
+    {
+        get => _isSelected;
+        set => SetProperty(ref _isSelected, value);
     }
     #endregion
 

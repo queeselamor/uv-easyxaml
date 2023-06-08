@@ -11,5 +11,6 @@ public interface IConverterItemViewModel : IViewModel
     public string SourceContent { get; set; }
     public string ResultPath { get; set; }
     public string ResultContent { get; set; }
+    public bool IsSelected { get; set; }
     #endregion
 }

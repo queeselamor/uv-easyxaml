@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
@@ -65,7 +66,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
             return;
         }
 
-        foreach (var converterItemViewModel in ConverterItems)
+        foreach (var converterItemViewModel in ConverterItems.Where(x => x.IsSelected))
         {
             var filePath = await _fileService.SaveFileAsync(converterItemViewModel.ResultContent, converterItemViewModel.SourcePath, folderPath);
 
