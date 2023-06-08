@@ -15,6 +15,7 @@
     <Style x:Key="{x:Type Button}" TargetType="Button">
         <Setter Property="FontFamily" Value="{StaticResource DelaGothicOneRegular}" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Foreground" Value="{StaticResource BlackBrush}" />
         <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -27,13 +28,15 @@
                                 Background="{StaticResource BlackBrush}"
                                 BorderThickness="0"
                                 Visibility="Collapsed" />
-                        <Border Width="{TemplateBinding Width}"
+                        <Border x:Name="MainBorder"
+                                Width="{TemplateBinding Width}"
                                 Height="{TemplateBinding Height}"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{StaticResource BlackBrush}"
                                 BorderThickness="3">
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
                                        Text="{TemplateBinding Content}"
                                        TextAlignment="Center" />
                         </Border>
@@ -42,10 +45,16 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{StaticResource PrimaryHoveredBrush}" />
                             <Setter TargetName="ShadowBorder" Property="Visibility" Value="Visible" />
+
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
                             <Setter TargetName="ShadowBorder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{StaticResource DisabledLightGrayBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledDarkGrayBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -274,6 +283,86 @@
                         </Path.Data>
                     </Path>
                 </Canvas>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region TabControl-->
+    <Style x:Key="{x:Type TabControl}" TargetType="TabControl">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TabPanel x:Name="HeaderPanel"
+                                  Grid.Row="0"
+                                  Background="{StaticResource TransparentBrush}"
+                                  Focusable="False"
+                                  IsItemsHost="True" />
+                        <Border x:Name="Border" Grid.Row="1">
+                            <ContentPresenter x:Name="PART_SelectedContentHost"
+                                              Margin="4"
+                                              ContentSource="SelectedContent" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type TabItem}" TargetType="TabItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Grid>
+                        <Border x:Name="ShadowBorder"
+                                Grid.Row="0"
+                                Width="296"
+                                Height="50"
+                                Margin="0,0,-10,-10"
+                                Background="{StaticResource BlackBrush}"
+                                Visibility="Collapsed" />
+                        <Border x:Name="ContentBorder"
+                                Width="296"
+                                Height="50"
+                                Background="{StaticResource WhiteBrush}"
+                                BorderBrush="{StaticResource BlackBrush}"
+                                BorderThickness="2">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              ContentSource="Header" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="ContentBorder" Property="Background" Value="{StaticResource SecondaryBrush}" />
+                            <Setter TargetName="ContentBorder" Property="BorderThickness" Value="3" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="ContentBorder" Property="Background" Value="{StaticResource WhiteBrush}" />
+                            <Setter TargetName="ContentBorder" Property="BorderThickness" Value="2" />
+                        </Trigger>
+                        <Trigger SourceName="ContentBorder" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ContentBorder" Property="Background" Value="{StaticResource SecondaryHoveredBrush}" />
+                            <Setter TargetName="ShadowBorder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="ContentBorder" Property="IsMouseOver" Value="True" />
+                                <Condition Property="TabIndex" Value="0" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="ShadowBorder" Property="Margin" Value="-10,0,0,-10" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

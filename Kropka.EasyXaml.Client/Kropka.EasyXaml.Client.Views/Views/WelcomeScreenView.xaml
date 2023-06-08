@@ -12,14 +12,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ContentControl Grid.Row="0"
                         Margin="0,81,0,71"
                         Style="{StaticResource ScreenIconStyle}" />
         <StackPanel Grid.Row="1"
                     HorizontalAlignment="Center"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    Visibility="Collapsed">
             <Border Width="296"
                     Height="50"
                     Background="#48B8AC"
@@ -41,14 +41,31 @@
                            TextAlignment="Center" />
             </Border>
         </StackPanel>
-        <Button Grid.Row="2"
-                Width="282"
-                Height="50"
-                Margin="0,46,0,52"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Command="{Binding PickFileCommand}"
-                Content="Choose file" />
-        <ContentControl Grid.Row="3" Style="{StaticResource KropkaFooterIconStyle}" />
+        <TabControl Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    BorderThickness="0"
+                    TabStripPlacement="Top">
+            <TabItem Header="Single file" TabIndex="0">
+                <Button Width="282"
+                        Height="50"
+                        Margin="0,46,0,40"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Command="{Binding PickFileCommand}"
+                        Content="Choose file" />
+            </TabItem>
+            <TabItem Header="Folder" TabIndex="1">
+                <Button Width="282"
+                        Height="50"
+                        Margin="0,46,0,40"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="Choose folder"
+                        IsEnabled="False" />
+            </TabItem>
+        </TabControl>
+        <ContentControl Grid.Row="2"
+                        Margin="0,0,0,12"
+                        Style="{StaticResource KropkaFooterIconStyle}" />
     </Grid>
 </UserControl>

@@ -7,4 +7,6 @@
     <Color x:Key="SecondaryHoveredColor">#96CEC8</Color>
     <Color x:Key="DangerousColor">#F16393</Color>
     <Color x:Key="DangerousHoveredColor">#EAA3BB</Color>
+    <Color x:Key="DisabledLightGrayColor">#D4D4D4</Color>
+    <Color x:Key="DisabledDarkGrayColor">#676767</Color>
 </ResourceDictionary>

@@ -12,4 +12,6 @@
     <SolidColorBrush x:Key="SecondaryHoveredBrush" Color="{StaticResource SecondaryHoveredColor}" />
     <SolidColorBrush x:Key="DangerousBrush" Color="{StaticResource DangerousColor}" />
     <SolidColorBrush x:Key="DangerousHoveredBrush" Color="{StaticResource DangerousHoveredColor}" />
+    <SolidColorBrush x:Key="DisabledLightGrayBrush" Color="{StaticResource DisabledLightGrayColor}" />
+    <SolidColorBrush x:Key="DisabledDarkGrayBrush" Color="{StaticResource DisabledDarkGrayColor}" />
 </ResourceDictionary>
