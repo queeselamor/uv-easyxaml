@@ -4,39 +4,45 @@
         xmlns:inf="clr-namespace:Kropka.EasyXaml.Client.Infrastructure.Constants;assembly=Kropka.EasyXaml.Client.Infrastructure"
         xmlns:prism="http://prismlibrary.com/"
         Title="{Binding Title}"
-        Width="1200"
-        Height="800"
+        Width="1024"
+        Height="640"
         prism:ViewModelLocator.AutoWireViewModel="True"
         ResizeMode="NoResize"
         WindowStyle="None">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Border Grid.Row="0"
-                Height="50"
-                Background="Red">
-            <Border.InputBindings>
-                <MouseBinding Command="{Binding DragWindowCommand}" Gesture="LeftClick" />
-            </Border.InputBindings>
-            <StackPanel Margin="0,0,16,0"
-                        HorizontalAlignment="Right"
-                        Orientation="Horizontal">
-                <Button Width="90"
-                        Height="30"
-                        Margin="0,0,8,0"
-                        Command="{Binding MinimizeWindowCommand}"
-                        Content="Minimize" />
-                <Button Width="90"
-                        Height="30"
-                        Command="{Binding CloseWindowCommand}"
-                        Content="Close" />
-            </StackPanel>
-        </Border>
-        <ContentControl Grid.Row="1"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        prism:RegionManager.RegionName="{x:Static inf:RegionNameConstants.ContentRegion}" />
-    </Grid>
+    <Border Background="{StaticResource WhiteBrush}"
+            BorderBrush="{StaticResource BlackBrush}"
+            BorderThickness="3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"
+                    Height="55"
+                    Background="{StaticResource SecondaryBrush}"
+                    BorderBrush="{StaticResource BlackBrush}"
+                    BorderThickness="0,0,0,3">
+                <Border.InputBindings>
+                    <MouseBinding Command="{Binding DragWindowCommand}" Gesture="LeftClick" />
+                </Border.InputBindings>
+                <StackPanel Margin="0,0,16,0"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Width="90"
+                            Height="30"
+                            Margin="0,0,8,0"
+                            Command="{Binding MinimizeWindowCommand}"
+                            Content="Minimize" />
+                    <Button Width="90"
+                            Height="30"
+                            Command="{Binding CloseWindowCommand}"
+                            Content="Close" />
+                </StackPanel>
+            </Border>
+            <ContentControl Grid.Row="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            prism:RegionManager.RegionName="{x:Static inf:RegionNameConstants.ContentRegion}" />
+        </Grid>
+    </Border>
 </Window>

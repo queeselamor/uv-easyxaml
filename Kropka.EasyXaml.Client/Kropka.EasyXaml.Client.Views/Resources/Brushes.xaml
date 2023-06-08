@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+    <SolidColorBrush x:Key="PrimaryHoveredBrush" Color="{StaticResource PrimaryHoveredColor}" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}" />
+    <SolidColorBrush x:Key="SecondaryHoveredBrush" Color="{StaticResource SecondaryHoveredColor}" />
+    <SolidColorBrush x:Key="DangerousBrush" Color="{StaticResource DangerousColor}" />
+    <SolidColorBrush x:Key="DangerousHoveredBrush" Color="{StaticResource DangerousHoveredColor}" />
+</ResourceDictionary>
