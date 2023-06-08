@@ -3,6 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Transformations\colors.xml" />
@@ -18,6 +19,7 @@
     <ProjectReference Include="..\Kropka.EasyXaml.Client.Views\Kropka.EasyXaml.Client.Views.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Logo.ico" />
     <Content Include="Transformations\colors.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
