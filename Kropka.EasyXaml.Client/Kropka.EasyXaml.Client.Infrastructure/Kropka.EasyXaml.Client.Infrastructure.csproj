@@ -12,6 +12,11 @@
     <Folder Include="Interfaces\ViewModels\Model\" />
     <Folder Include="Interfaces\Views\Base\" />
     <Folder Include="Enums\" />
+    <Folder Include="Managers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
   </ItemGroup>
 
 </Project>

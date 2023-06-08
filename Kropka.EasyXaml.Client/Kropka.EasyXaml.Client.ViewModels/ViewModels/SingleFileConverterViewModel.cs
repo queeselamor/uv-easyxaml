@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using CommunityToolkit.Mvvm.Input;
+using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
@@ -8,6 +9,7 @@ using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model;
+using Prism.Regions;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
 
@@ -55,16 +57,26 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
         if (filePath != string.Empty)
         {
-            var converterItem = new ConverterItemViewModel(ConverterType.SvgToXaml, filePath);
-
-            CurrentConverterItem = converterItem;
+            CreateConverterItem(filePath);
 
             await Convert();
         }
     }
 
+    private void CreateConverterItem(string filePath)
+    {
+        var converterItem = new ConverterItemViewModel(ConverterType.SvgToXaml, filePath);
+
+        CurrentConverterItem = converterItem;
+    }
+
     private async Task Convert()
     {
+        if (CurrentConverterItem is null)
+        {
+            return;
+        }
+
         var transformContent = await _imageTransformationManager.Transform(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
         var resultContent = await _imageTransformationManager.PrepareContent(ConverterType.SvgToXaml, transformContent);
 
@@ -101,6 +113,32 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         var filePath = await _fileService.SaveFile(CurrentConverterItem.ResultContent, CurrentConverterItem.SourcePath);
 
         CurrentConverterItem.ResultPath = filePath;
+    }
+    #endregion
+
+    #region Navigation
+    public void OnNavigatedTo(NavigationContext navigationContext)
+    {
+        if (navigationContext.Parameters.Count == 0)
+        {
+            return;
+        }
+
+        var filePath = navigationContext.Parameters[NavigationParameterConstants.FilePath] as string;
+
+        CreateConverterItem(filePath);
+
+        Task.Run(Convert);
+    }
+
+    public bool IsNavigationTarget(NavigationContext navigationContext)
+    {
+        return true;
+    }
+
+    public void OnNavigatedFrom(NavigationContext navigationContext)
+    {
+        CurrentConverterItem = null;
     }
     #endregion
 }
