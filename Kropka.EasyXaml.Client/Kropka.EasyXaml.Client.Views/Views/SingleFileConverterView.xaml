@@ -14,7 +14,7 @@
             <Button Width="190"
                     Height="30"
                     Command="{Binding PickFileCommand}"
-                    Content="Select" />
+                    Content="Choose file" />
             <svgc:SvgViewbox Width="64"
                              Height="64"
                              Source="{Binding CurrentConverterItem.SourcePath}" />

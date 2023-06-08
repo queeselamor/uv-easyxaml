@@ -8,11 +8,47 @@
              d:DesignWidth="800"
              mc:Ignorable="d">
     <Grid>
-        <Button Width="190"
-                Height="30"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0"
+                        Margin="0,81,0,71"
+                        Style="{StaticResource ScreenIconStyle}" />
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <Border Width="296"
+                    Height="50"
+                    Background="#48B8AC"
+                    BorderBrush="#000000"
+                    BorderThickness="3">
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="Single file"
+                           TextAlignment="Center" />
+            </Border>
+            <Border Width="296"
+                    Height="50"
+                    Background="#FFFFFF"
+                    BorderBrush="#000000"
+                    BorderThickness="2">
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="Folder"
+                           TextAlignment="Center" />
+            </Border>
+        </StackPanel>
+        <Button Grid.Row="2"
+                Width="282"
+                Height="50"
+                Margin="0,46,0,52"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Command="{Binding PickFileCommand}"
-                Content="Select" />
+                Content="Choose file" />
+        <ContentControl Grid.Row="3" Style="{StaticResource KropkaFooterIconStyle}" />
     </Grid>
 </UserControl>
