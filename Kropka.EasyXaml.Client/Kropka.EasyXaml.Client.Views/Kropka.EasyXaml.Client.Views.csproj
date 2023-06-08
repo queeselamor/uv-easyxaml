@@ -4,6 +4,7 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Fonts\DelaGothicOne\DelaGothicOne-Regular.ttf" />
     <None Remove="Resources\Fonts\Montserrat-Black.ttf" />
     <None Remove="Resources\Fonts\Montserrat\Montserrat-Bold.ttf" />
     <None Remove="Resources\Fonts\Montserrat\Montserrat-ExtraLight.ttf" />
@@ -25,6 +26,7 @@
     <Folder Include="Resources\Controls\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Fonts\DelaGothicOne\DelaGothicOne-Regular.ttf" />
     <Resource Include="Resources\Fonts\Montserrat\Montserrat-Bold.ttf" />
     <Resource Include="Resources\Fonts\Montserrat\Montserrat-ExtraLight.ttf" />
     <Resource Include="Resources\Fonts\Montserrat\Montserrat-Light.ttf" />

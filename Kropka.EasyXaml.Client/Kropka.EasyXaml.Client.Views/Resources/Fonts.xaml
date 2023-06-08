@@ -7,4 +7,5 @@
     <FontFamily x:Key="MontserratRegular">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-Regular.ttf#Montserrat Regular</FontFamily>
     <FontFamily x:Key="MontserratSemiBold">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-SemiBold.ttf#Montserrat SemiBold</FontFamily>
     <FontFamily x:Key="MontserratThin">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-Thin.ttf#Montserrat Thin</FontFamily>
+    <FontFamily x:Key="DelaGothicOneRegular">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/DelaGothicOne/DelaGothicOne-Regular.ttf#Dela Gothic One</FontFamily>
 </ResourceDictionary>
