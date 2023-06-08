@@ -26,18 +26,13 @@
                 <Border.InputBindings>
                     <MouseBinding Command="{Binding DragWindowCommand}" Gesture="LeftClick" />
                 </Border.InputBindings>
-                <StackPanel Margin="0,0,16,0"
+                <StackPanel Margin="0,0,10,0"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
-                    <Button Width="90"
-                            Height="30"
-                            Margin="0,0,8,0"
+                    <Button Margin="0,0,26,0"
                             Command="{Binding MinimizeWindowCommand}"
-                            Content="Minimize" />
-                    <Button Width="90"
-                            Height="30"
-                            Command="{Binding CloseWindowCommand}"
-                            Content="Close" />
+                            Style="{StaticResource MinimizeButtonStyle}" />
+                    <Button Command="{Binding CloseWindowCommand}" Style="{StaticResource CloseButtonStyle}" />
                 </StackPanel>
             </Border>
             <ContentControl Grid.Row="1"
