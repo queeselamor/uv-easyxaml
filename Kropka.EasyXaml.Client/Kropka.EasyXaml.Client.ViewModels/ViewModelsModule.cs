@@ -16,6 +16,7 @@ public class ViewModelsModule : IModule
     {
         containerRegistry.RegisterSingleton<IMainViewModel, MainViewModel>();
         containerRegistry.RegisterSingleton<ISingleFileConverterViewModel, SingleFileConverterViewModel>();
+        containerRegistry.RegisterSingleton<IWelcomeScreenViewModel, WelcomeScreenViewModel>();
     }
     #endregion
 }

@@ -13,7 +13,7 @@ public class ViewsModule : IModule
     public void OnInitialized(IContainerProvider containerProvider)
     {
         containerProvider.Resolve<IRegionManager>().RegisterViewWithRegion(RegionNameConstants.ContentRegion, typeof(IMainView));
-        containerProvider.Resolve<IRegionManager>().RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(ISingleFileConverterView));
+        containerProvider.Resolve<IRegionManager>().RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IWelcomeScreenView));
     }
 
     public void RegisterTypes(IContainerRegistry containerRegistry)
@@ -25,6 +25,7 @@ public class ViewsModule : IModule
     {
         containerRegistry.RegisterSingleton<IMainView, MainView>();
         containerRegistry.RegisterSingleton<ISingleFileConverterView, SingleFileConverterView>();
+        containerRegistry.RegisterSingleton<IWelcomeScreenView, WelcomeScreenView>();
     }
     #endregion
 }
