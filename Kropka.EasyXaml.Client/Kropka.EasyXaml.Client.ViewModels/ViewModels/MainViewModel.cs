@@ -5,5 +5,4 @@ namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
 
 public class MainViewModel : BaseViewModel, IMainViewModel
 {
-    
 }

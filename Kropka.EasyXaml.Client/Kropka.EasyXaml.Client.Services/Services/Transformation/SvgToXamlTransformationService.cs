@@ -20,14 +20,14 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
     #endregion
 
     #region Methods
-    public async Task<string> TransformSvgToXaml(string sourceFile)
+    public async Task<string> TransformSvgToXamlAsync(string sourceFile)
     {
-        var xamlContent = await GetXamlContent(sourceFile);
+        var xamlContent = await GetXamlContentAsync(sourceFile);
 
         return await Task.FromResult(ClearXamlContent(xamlContent));
     }
 
-    private static Task<string> GetXamlContent(string sourceFile)
+    private static Task<string> GetXamlContentAsync(string sourceFile)
     {
         const string xslTransformFile = TransformationFilePathConstants.SvgToXamlTransformationFilePath;
 
@@ -49,7 +49,7 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
     }
 
 
-    public Task<string> PrepareContent(string content)
+    public Task<string> PrepareContentAsync(string content)
     {
         char[] charsToTrim = { '\r', '\n' };
 

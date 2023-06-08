@@ -24,9 +24,9 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #region Constructors
     public SingleFileConverterViewModel()
     {
-        PickFileCommand = new AsyncRelayCommand(PickFile);
+        PickFileCommand = new AsyncRelayCommand(PickFileAsync);
         CopyContentCommand = new RelayCommand(CopyContent);
-        SaveFileCommand = new AsyncRelayCommand(SaveFile);
+        SaveFileCommand = new AsyncRelayCommand(SaveFileAsync);
     }
 
     public SingleFileConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager) : this()
@@ -51,15 +51,15 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #endregion
 
     #region Methods
-    private async Task PickFile()
+    private async Task PickFileAsync()
     {
-        var filePath = await _fileService.PickFilePath();
+        var filePath = await _fileService.PickFilePathAsync();
 
         if (filePath != string.Empty)
         {
             CreateConverterItem(filePath);
 
-            await Convert();
+            await ConvertAsync();
         }
     }
 
@@ -70,15 +70,15 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         CurrentConverterItem = converterItem;
     }
 
-    private async Task Convert()
+    private async Task ConvertAsync()
     {
         if (CurrentConverterItem is null)
         {
             return;
         }
 
-        var transformContent = await _imageTransformationManager.Transform(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
-        var resultContent = await _imageTransformationManager.PrepareContent(ConverterType.SvgToXaml, transformContent);
+        var transformContent = await _imageTransformationManager.TransformAsync(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
+        var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
 
         CurrentConverterItem.ResultContent = resultContent;
     }
@@ -98,7 +98,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         Clipboard.SetText(CurrentConverterItem.ResultContent);
     }
 
-    private async Task SaveFile()
+    private async Task SaveFileAsync()
     {
         if (CurrentConverterItem is null)
         {
@@ -110,7 +110,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
             return;
         }
 
-        var filePath = await _fileService.SaveFile(CurrentConverterItem.ResultContent, CurrentConverterItem.SourcePath);
+        var filePath = await _fileService.SaveFileAsync(CurrentConverterItem.ResultContent, CurrentConverterItem.SourcePath);
 
         CurrentConverterItem.ResultPath = filePath;
     }
@@ -128,7 +128,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
         CreateConverterItem(filePath);
 
-        Task.Run(Convert);
+        Task.Run(ConvertAsync);
     }
 
     public bool IsNavigationTarget(NavigationContext navigationContext)

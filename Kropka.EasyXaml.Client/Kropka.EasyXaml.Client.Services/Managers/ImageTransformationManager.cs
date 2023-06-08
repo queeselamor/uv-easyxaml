@@ -21,20 +21,20 @@ public class ImageTransformationManager : IImageTransformationManager
     #endregion
 
     #region Methods
-    public Task<string> Transform(ConverterType converterType, string filePath)
+    public Task<string> TransformAsync(ConverterType converterType, string filePath)
     {
         return converterType switch
         {
-            ConverterType.SvgToXaml => _svgToXamlTransformationService.TransformSvgToXaml(filePath),
+            ConverterType.SvgToXaml => _svgToXamlTransformationService.TransformSvgToXamlAsync(filePath),
             _ => throw new ArgumentOutOfRangeException(nameof(converterType), converterType, MessageConstants.ConverterNotFoundErrorMessage)
         };
     }
 
-    public Task<string> PrepareContent(ConverterType converterType, string content)
+    public Task<string> PrepareContentAsync(ConverterType converterType, string content)
     {
         return converterType switch
         {
-            ConverterType.SvgToXaml => _svgToXamlTransformationService.PrepareContent(content),
+            ConverterType.SvgToXaml => _svgToXamlTransformationService.PrepareContentAsync(content),
             _ => throw new ArgumentOutOfRangeException(nameof(converterType), converterType, MessageConstants.ConverterNotFoundErrorMessage)
         };
     }

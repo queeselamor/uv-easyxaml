@@ -9,7 +9,7 @@ namespace Kropka.EasyXaml.Client.Services.Services;
 public class FileService : IFileService
 {
     #region Methods
-    public Task<string> PickFilePath()
+    public Task<string> PickFilePathAsync()
     {
         var openFileDialog = new OpenFileDialog
         {
@@ -21,7 +21,7 @@ public class FileService : IFileService
         return Task.FromResult(result == true ? openFileDialog.FileName : string.Empty);
     }
 
-    public async Task<string> SaveFile(string content, string sourceFilePath)
+    public async Task<string> SaveFileAsync(string content, string sourceFilePath)
     {
         var fileName = string.Empty;
         if (!string.IsNullOrEmpty(sourceFilePath))

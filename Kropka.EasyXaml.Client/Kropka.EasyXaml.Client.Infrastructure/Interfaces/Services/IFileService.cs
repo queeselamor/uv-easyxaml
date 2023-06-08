@@ -3,7 +3,7 @@
 public interface IFileService : IService
 {
     #region Methods
-    Task<string> PickFilePath();
-    Task<string> SaveFile(string content, string sourceFilePath);
+    Task<string> PickFilePathAsync();
+    Task<string> SaveFileAsync(string content, string sourceFilePath);
     #endregion
 }

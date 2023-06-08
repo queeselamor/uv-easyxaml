@@ -20,7 +20,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
     #region Constructors
     public WelcomeScreenViewModel()
     {
-        PickFileCommand = new AsyncRelayCommand(PickFile);
+        PickFileCommand = new AsyncRelayCommand(PickFileAsync);
     }
 
     public WelcomeScreenViewModel(IFileService fileService, IRegionManager regionManager) : this()
@@ -35,9 +35,9 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
     #endregion
 
     #region Methods
-    private async Task PickFile()
+    private async Task PickFileAsync()
     {
-        var filePath = await _fileService.PickFilePath();
+        var filePath = await _fileService.PickFilePathAsync();
 
         if (filePath != string.Empty)
         {

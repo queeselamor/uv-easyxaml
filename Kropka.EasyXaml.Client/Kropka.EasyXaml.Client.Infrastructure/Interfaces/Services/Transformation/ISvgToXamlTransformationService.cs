@@ -3,7 +3,7 @@
 public interface ISvgToXamlTransformationService : IService
 {
     #region Methods
-    Task<string> TransformSvgToXaml(string sourceFile);
-    Task<string> PrepareContent(string content);
+    Task<string> TransformSvgToXamlAsync(string sourceFile);
+    Task<string> PrepareContentAsync(string content);
     #endregion
 }
