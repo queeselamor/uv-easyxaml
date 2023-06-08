@@ -21,6 +21,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
     public WelcomeScreenViewModel()
     {
         PickFileCommand = new AsyncRelayCommand(PickFileAsync);
+        PickFolderCommand = new AsyncRelayCommand(PickFolderAsync);
     }
 
     public WelcomeScreenViewModel(IFileService fileService, IRegionManager regionManager) : this()
@@ -32,6 +33,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
 
     #region Commands
     public IAsyncRelayCommand PickFileCommand { get; }
+    public IAsyncRelayCommand PickFolderCommand { get; }
     #endregion
 
     #region Methods
@@ -52,6 +54,13 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
 
             RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.SingleFileConverterView, parameters);
         }
+    }
+
+    private async Task PickFolderAsync()
+    {
+        var folderPath = await _fileService.PickFolderAsync();
+
+        var filePaths = await _fileService.GetFilePathsAsync(folderPath);
     }
     #endregion
 }

@@ -1,8 +1,12 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
-using Microsoft.Win32;
+using System.Windows.Forms;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace Kropka.EasyXaml.Client.Services.Services;
 
@@ -42,6 +46,22 @@ public class FileService : IFileService
         await File.WriteAllTextAsync(filePath, content);
 
         return filePath;
+    }
+
+    public Task<string> PickFolderAsync()
+    {
+        var folderDialog = new FolderBrowserDialog();
+
+        var result = folderDialog.ShowDialog();
+
+        return Task.FromResult(result == DialogResult.OK ? folderDialog.SelectedPath : string.Empty);
+    }
+
+    public Task<IEnumerable<string>> GetFilePathsAsync(string folderPath)
+    {
+        var filePaths = Directory.GetFiles(folderPath).Where(path => path.EndsWith(ExtensionFilterConstants.SvgExtensionFilter));
+
+        return Task.FromResult(filePaths.AsEnumerable());
     }
     #endregion
 }

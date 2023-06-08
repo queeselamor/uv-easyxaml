@@ -18,8 +18,8 @@
             <svgc:SvgViewbox Width="64"
                              Height="64"
                              Source="{Binding CurrentConverterItem.SourcePath}" />
-            <controls:ScriptEditor Width="600"
-                                   Height="400"
+            <controls:ScriptEditor Width="623"
+                                   Height="280"
                                    Padding="0,8,8,8"
                                    BorderBrush="#DADFE0"
                                    BorderThickness="1"
