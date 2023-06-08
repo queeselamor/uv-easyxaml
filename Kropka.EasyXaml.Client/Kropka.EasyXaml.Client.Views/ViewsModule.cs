@@ -26,6 +26,7 @@ public class ViewsModule : IModule
         containerRegistry.RegisterSingleton<IMainView, MainView>();
         containerRegistry.RegisterSingleton<ISingleFileConverterView, SingleFileConverterView>();
         containerRegistry.RegisterSingleton<IWelcomeScreenView, WelcomeScreenView>();
+        containerRegistry.RegisterSingleton<IFolderConverterView, FolderConverterView>();
     }
     #endregion
 }

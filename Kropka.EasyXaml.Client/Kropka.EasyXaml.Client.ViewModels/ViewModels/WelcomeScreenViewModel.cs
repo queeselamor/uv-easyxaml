@@ -60,7 +60,19 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
     {
         var folderPath = await _fileService.PickFolderAsync();
 
-        var filePaths = await _fileService.GetFilePathsAsync(folderPath);
+        if (folderPath != string.Empty)
+        {
+            _regionManager.RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IFolderConverterView));
+
+            var parameters = new NavigationParameters
+            {
+                {
+                    NavigationParameterConstants.FolderPath, folderPath
+                }
+            };
+
+            RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.FolderConverterView, parameters);
+        }
     }
     #endregion
 }
