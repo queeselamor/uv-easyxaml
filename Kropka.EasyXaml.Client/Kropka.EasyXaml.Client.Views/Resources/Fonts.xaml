@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontFamily x:Key="MontserratBold">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-Bold.ttf#Montserrat Bold</FontFamily>
+    <FontFamily x:Key="MontserratExtraBold">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-ExtraBold.ttf#Montserrat ExtraBold</FontFamily>
+    <FontFamily x:Key="MontserratExtraLight">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-ExtraLight.ttf#Montserrat ExtraLight</FontFamily>
+    <FontFamily x:Key="MontserratLight">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-Light.ttf#Montserrat Light</FontFamily>
+    <FontFamily x:Key="MontserratMedium">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-Medium.ttf#Montserrat Medium</FontFamily>
+    <FontFamily x:Key="MontserratRegular">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-Regular.ttf#Montserrat Regular</FontFamily>
+    <FontFamily x:Key="MontserratSemiBold">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-SemiBold.ttf#Montserrat SemiBold</FontFamily>
+    <FontFamily x:Key="MontserratThin">pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts/Montserrat/Montserrat-Thin.ttf#Montserrat Thin</FontFamily>
+</ResourceDictionary>

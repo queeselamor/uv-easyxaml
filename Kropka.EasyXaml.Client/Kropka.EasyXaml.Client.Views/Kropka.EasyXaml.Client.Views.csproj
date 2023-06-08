@@ -4,6 +4,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Fonts\Montserrat-Black.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Bold.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-ExtraLight.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Light.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Medium.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Regular.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Thin.ttf" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
     <PackageReference Include="SharpVectors.Wpf" Version="1.8.1" />
@@ -13,5 +23,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-ExtraLight.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Light.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Thin.ttf" />
   </ItemGroup>
 </Project>

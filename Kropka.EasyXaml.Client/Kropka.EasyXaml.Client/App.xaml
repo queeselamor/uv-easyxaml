@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/StylesDictionary.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Brushes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Kropka.EasyXaml.Client.Views;component/Resources/Fonts.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
