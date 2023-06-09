@@ -17,7 +17,7 @@
                         </Grid.RowDefinitions>
                         <TabPanel x:Name="HeaderPanel"
                                   Grid.Row="0"
-                                  Margin="216,21,0,20"
+                                  Margin="216,21,0,0"
                                   Background="{StaticResource TransparentBrush}"
                                   Focusable="False"
                                   IsItemsHost="True" />

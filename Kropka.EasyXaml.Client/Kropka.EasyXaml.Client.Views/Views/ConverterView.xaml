@@ -13,6 +13,7 @@
              mc:Ignorable="d">
     <TabControl HorizontalAlignment="Center"
                 BorderThickness="0"
+                SelectedIndex="{Binding SelectedTabIndex}"
                 Style="{StaticResource ConverterTabControlStyle}"
                 TabStripPlacement="Top">
         <TabItem regions:RegionManager.RegionName="{x:Static inf:RegionNameConstants.SingleFileConverterRegion}"

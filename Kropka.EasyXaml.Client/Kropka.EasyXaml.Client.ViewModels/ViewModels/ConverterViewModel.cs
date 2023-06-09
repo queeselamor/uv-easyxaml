@@ -1,7 +1,9 @@
-﻿using Kropka.EasyXaml.Client.Infrastructure.Constants;
+﻿using System.Linq;
+using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Extensions;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Views;
+using Kropka.EasyXaml.Client.Infrastructure.Managers;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Prism.Regions;
 
@@ -9,10 +11,28 @@ namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
 
 public class ConverterViewModel : BaseViewModel, IConverterViewModel
 {
+    #region Fields
+    private readonly IRegionManager _regionManager;
+    private int _selectedTabIndex;
+    #endregion
+
     #region Constructors
     public ConverterViewModel()
     {
         Initialize();
+    }
+
+    public ConverterViewModel(IRegionManager regionManager) :this()
+    {
+        _regionManager = regionManager;
+    }
+    #endregion
+
+    #region Properties
+    public int SelectedTabIndex
+    {
+        get => _selectedTabIndex;
+        set => SetProperty(ref _selectedTabIndex, value);
     }
     #endregion
 
@@ -34,12 +54,30 @@ public class ConverterViewModel : BaseViewModel, IConverterViewModel
 
         if (navigationContext.Parameters[NavigationParameterConstants.FilePath] is string filePath)
         {
-            //logic
+            SelectedTabIndex = 0;
+
+            var parameters = new NavigationParameters
+            {
+                {
+                    NavigationParameterConstants.FilePath, filePath
+                }
+            };
+
+            RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.SingleFileConverterRegion, ViewNameConstants.SingleFileConverterView, parameters);
         }
 
         if (navigationContext.Parameters[NavigationParameterConstants.FolderPath] is string folderPath)
         {
-            //logic
+            var parameters = new NavigationParameters
+            {
+                {
+                    NavigationParameterConstants.FolderPath, folderPath
+                }
+            };
+
+            SelectedTabIndex = 1;
+
+            RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.FolderConverterRegion, ViewNameConstants.FolderConverterView, parameters);
         }
     }
 

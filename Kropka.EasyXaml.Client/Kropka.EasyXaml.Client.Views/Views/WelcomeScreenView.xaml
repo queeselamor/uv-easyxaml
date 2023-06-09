@@ -62,7 +62,7 @@
                         VerticalAlignment="Center"
                         Command="{Binding PickFolderCommand}"
                         Content="Choose folder"
-                        IsEnabled="True" />
+                        IsEnabled="False" />
             </TabItem>
         </TabControl>
         <ContentControl Grid.Row="2"

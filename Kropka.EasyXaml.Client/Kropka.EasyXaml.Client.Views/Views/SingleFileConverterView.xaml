@@ -39,14 +39,16 @@
                     </Style>
                 </controls:ScriptEditor.Resources>
             </controls:ScriptEditor>
-            <Button Width="190"
-                    Height="30"
-                    Command="{Binding CopyContentCommand}"
-                    Content="Copy" />
-            <Button Width="190"
-                    Height="30"
-                    Command="{Binding SaveFileCommand}"
-                    Content="Save" />
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Width="190"
+                        Height="30"
+                        Command="{Binding CopyContentCommand}"
+                        Content="Copy" />
+                <Button Width="190"
+                        Height="30"
+                        Command="{Binding SaveFileCommand}"
+                        Content="Save" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
