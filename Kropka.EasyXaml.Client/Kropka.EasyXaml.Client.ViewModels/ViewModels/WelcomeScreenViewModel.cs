@@ -43,7 +43,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
 
         if (filePath != string.Empty)
         {
-            _regionManager.RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(ISingleFileConverterView));
+            _regionManager.RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IConverterView));
 
             var parameters = new NavigationParameters
             {
@@ -52,7 +52,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
                 }
             };
 
-            RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.SingleFileConverterView, parameters);
+            RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.ConverterView, parameters);
         }
     }
 
@@ -62,7 +62,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
 
         if (folderPath != string.Empty)
         {
-            _regionManager.RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IFolderConverterView));
+            _regionManager.RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IConverterView));
 
             var parameters = new NavigationParameters
             {
@@ -71,7 +71,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
                 }
             };
 
-            RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.FolderConverterView, parameters);
+            RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.ConverterView, parameters);
         }
     }
     #endregion

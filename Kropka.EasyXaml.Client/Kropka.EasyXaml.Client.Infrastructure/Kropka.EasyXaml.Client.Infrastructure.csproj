@@ -13,6 +13,7 @@
     <Folder Include="Interfaces\Views\Base\" />
     <Folder Include="Enums\" />
     <Folder Include="Managers\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>

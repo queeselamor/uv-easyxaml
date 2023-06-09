@@ -18,6 +18,7 @@ public class ViewModelsModule : IModule
         containerRegistry.RegisterSingleton<ISingleFileConverterViewModel, SingleFileConverterViewModel>();
         containerRegistry.RegisterSingleton<IWelcomeScreenViewModel, WelcomeScreenViewModel>();
         containerRegistry.RegisterSingleton<IFolderConverterViewModel, FolderConverterViewModel>();
+        containerRegistry.RegisterSingleton<IConverterViewModel, ConverterViewModel>();
     }
     #endregion
 }

@@ -6,5 +6,6 @@ public class ViewNameConstants
     public const string WelcomeScreenView = "WelcomeScreenView";
     public const string SingleFileConverterView = "SingleFileConverterView";
     public const string FolderConverterView = "FolderConverterView";
+    public const string ConverterView = "ConverterView";
     #endregion
 }
