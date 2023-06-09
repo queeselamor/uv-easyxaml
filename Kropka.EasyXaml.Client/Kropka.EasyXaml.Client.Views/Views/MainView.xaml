@@ -9,7 +9,17 @@
              d:DesignWidth="800"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d">
-    <ContentControl HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    prism:RegionManager.RegionName="{x:Static inf:RegionNameConstants.MainRegion}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        prism:RegionManager.RegionName="{x:Static inf:RegionNameConstants.MainRegion}" />
+        <ContentControl Grid.Row="1"
+                        Margin="0,0,0,12"
+                        Style="{StaticResource KropkaFooterIconStyle}" />
+    </Grid>
 </UserControl>

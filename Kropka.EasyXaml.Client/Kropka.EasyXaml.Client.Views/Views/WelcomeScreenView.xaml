@@ -11,7 +11,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ContentControl Grid.Row="0"
                         Margin="0,81,0,71"
@@ -65,8 +64,5 @@
                         IsEnabled="False" />
             </TabItem>
         </TabControl>
-        <ContentControl Grid.Row="2"
-                        Margin="0,0,0,12"
-                        Style="{StaticResource KropkaFooterIconStyle}" />
     </Grid>
 </UserControl>
