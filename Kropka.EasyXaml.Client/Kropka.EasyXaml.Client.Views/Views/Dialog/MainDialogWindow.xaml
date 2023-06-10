@@ -8,7 +8,7 @@
         Background="{StaticResource TransparentBrush}"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         WindowStyle="None"
         mc:Ignorable="d">
     <Grid />
