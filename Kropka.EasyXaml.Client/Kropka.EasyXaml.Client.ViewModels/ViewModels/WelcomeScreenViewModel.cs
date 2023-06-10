@@ -7,6 +7,8 @@ using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Views;
 using Prism.Regions;
 using Kropka.EasyXaml.Client.Infrastructure.Managers;
+using Kropka.EasyXaml.Client.Infrastructure.Enums;
+using Prism.Services.Dialogs;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
 
@@ -15,6 +17,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
     #region Fields
     private readonly IFileService _fileService;
     private readonly IRegionManager _regionManager;
+    private readonly IDialogService _dialogService;
     #endregion
 
     #region Constructors
@@ -24,10 +27,11 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
         PickFolderCommand = new AsyncRelayCommand(PickFolderAsync);
     }
 
-    public WelcomeScreenViewModel(IFileService fileService, IRegionManager regionManager) : this()
+    public WelcomeScreenViewModel(IFileService fileService, IRegionManager regionManager, IDialogService dialogService) : this()
     {
         _fileService = fileService;
         _regionManager = regionManager;
+        _dialogService = dialogService;
     }
     #endregion
 

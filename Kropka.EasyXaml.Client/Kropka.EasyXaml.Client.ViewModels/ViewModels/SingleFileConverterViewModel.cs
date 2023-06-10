@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
@@ -86,15 +87,24 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     private async Task ConvertAsync()
     {
-        if (CurrentConverterItem is null)
+        try
         {
-            return;
+            if (CurrentConverterItem is null)
+            {
+                return;
+            }
+
+            var transformContent = await _imageTransformationManager.TransformAsync(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
+            var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
+
+            CurrentConverterItem.ResultContent = resultContent;
         }
+        catch (Exception ex)
+        {
+            //TODO: Hide elements and clear content
 
-        var transformContent = await _imageTransformationManager.TransformAsync(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
-        var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
-
-        CurrentConverterItem.ResultContent = resultContent;
+            throw;
+        }
     }
 
     private void CopyContent()

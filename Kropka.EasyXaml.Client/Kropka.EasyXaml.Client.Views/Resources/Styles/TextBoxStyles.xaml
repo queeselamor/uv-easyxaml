@@ -10,13 +10,15 @@
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}"
-                            Padding="22,0,0,0"
+                            Padding="22,0,22,0"
                             BorderBrush="{StaticResource BlackBrush}"
                             BorderThickness="3">
                         <TextBlock HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Text="{TemplateBinding Text}"
-                                   TextAlignment="Left" />
+                                   TextAlignment="Left"
+                                   TextTrimming="CharacterEllipsis"
+                                   ToolTip="{TemplateBinding Text}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

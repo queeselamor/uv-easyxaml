@@ -54,6 +54,104 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ConfirmationButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource DelaGothicOneRegular}" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Foreground" Value="{StaticResource BlackBrush}" />
+        <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border x:Name="ShadowBorder"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}"
+                                Margin="0,0,-10,-10"
+                                Background="{StaticResource BlackBrush}"
+                                BorderThickness="0"
+                                Visibility="Collapsed" />
+                        <Border x:Name="MainBorder"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{StaticResource BlackBrush}"
+                                BorderThickness="3">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Text="{TemplateBinding Content}"
+                                       TextAlignment="Center" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource SecondaryHoveredBrush}" />
+                            <Setter TargetName="ShadowBorder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource SecondaryBrush}" />
+                            <Setter TargetName="ShadowBorder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{StaticResource DisabledLightGrayBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledDarkGrayBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DeclineButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource DelaGothicOneRegular}" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Foreground" Value="{StaticResource BlackBrush}" />
+        <Setter Property="Background" Value="{StaticResource DangerousBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border x:Name="ShadowBorder"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}"
+                                Margin="0,0,-10,-10"
+                                Background="{StaticResource BlackBrush}"
+                                BorderThickness="0"
+                                Visibility="Collapsed" />
+                        <Border x:Name="MainBorder"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{StaticResource BlackBrush}"
+                                BorderThickness="3">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Text="{TemplateBinding Content}"
+                                       TextAlignment="Center" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource DangerousHoveredBrush}" />
+                            <Setter TargetName="ShadowBorder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource DangerousBrush}" />
+                            <Setter TargetName="ShadowBorder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{StaticResource DisabledLightGrayBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledDarkGrayBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="CloseButtonStyle" TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource BlackBrush}" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />

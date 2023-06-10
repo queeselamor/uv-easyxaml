@@ -1,6 +1,9 @@
 ﻿using Kropka.EasyXaml.Client.Infrastructure.Constants;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Dialog;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Views;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Views.Dialog;
 using Kropka.EasyXaml.Client.Views.Views;
+using Kropka.EasyXaml.Client.Views.Views.Dialog;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -19,6 +22,7 @@ public class ViewsModule : IModule
     public void RegisterTypes(IContainerRegistry containerRegistry)
     {
         RegisterViews(containerRegistry);
+        RegisterDialogWindows(containerRegistry);
     }
 
     private static void RegisterViews(IContainerRegistry containerRegistry)
@@ -28,6 +32,13 @@ public class ViewsModule : IModule
         containerRegistry.RegisterSingleton<IWelcomeScreenView, WelcomeScreenView>();
         containerRegistry.RegisterSingleton<IFolderConverterView, FolderConverterView>();
         containerRegistry.RegisterSingleton<IConverterView, ConverterView>();
+        containerRegistry.RegisterSingleton<IMainMessageBoxDialogView, MainMessageBoxDialogView>();
+    }
+
+    private void RegisterDialogWindows(IContainerRegistry containerRegistry)
+    {
+        containerRegistry.RegisterDialog<MainMessageBoxDialogView, IMainMessageBoxDialogViewModel>(DialogViewNamesConstants.MainMessageBoxDialogView);
+        containerRegistry.RegisterDialogWindow<MainDialogWindow>(DialogViewNamesConstants.MainDialogWindow);
     }
     #endregion
 }

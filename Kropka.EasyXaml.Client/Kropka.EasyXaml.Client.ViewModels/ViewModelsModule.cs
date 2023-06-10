@@ -1,5 +1,7 @@
 ﻿using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Dialog;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels;
+using Kropka.EasyXaml.Client.ViewModels.ViewModels.Dialog;
 using Prism.Ioc;
 using Prism.Modularity;
 
@@ -19,6 +21,7 @@ public class ViewModelsModule : IModule
         containerRegistry.RegisterSingleton<IWelcomeScreenViewModel, WelcomeScreenViewModel>();
         containerRegistry.RegisterSingleton<IFolderConverterViewModel, FolderConverterViewModel>();
         containerRegistry.RegisterSingleton<IConverterViewModel, ConverterViewModel>();
+        containerRegistry.RegisterSingleton<IMainMessageBoxDialogViewModel, MainMessageBoxDialogViewModel>();
     }
     #endregion
 }

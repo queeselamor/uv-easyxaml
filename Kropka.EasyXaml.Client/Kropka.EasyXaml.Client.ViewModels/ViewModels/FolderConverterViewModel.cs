@@ -101,17 +101,26 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
     private async Task ConvertItemsAsync()
     {
-        if (ConverterItems is null)
+        try
         {
-            return;
+            if (ConverterItems is null)
+            {
+                return;
+            }
+
+            foreach (var converterItemViewModel in ConverterItems)
+            {
+                var transformContent = await _imageTransformationManager.TransformAsync(converterItemViewModel.ConverterType, converterItemViewModel.SourcePath);
+                var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
+
+                converterItemViewModel.ResultContent = resultContent;
+            }
         }
-
-        foreach (var converterItemViewModel in ConverterItems)
+        catch (Exception e)
         {
-            var transformContent = await _imageTransformationManager.TransformAsync(converterItemViewModel.ConverterType, converterItemViewModel.SourcePath);
-            var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
+            //TODO: Hide elements and clear content
 
-            converterItemViewModel.ResultContent = resultContent;
+            throw;
         }
     }
     #endregion

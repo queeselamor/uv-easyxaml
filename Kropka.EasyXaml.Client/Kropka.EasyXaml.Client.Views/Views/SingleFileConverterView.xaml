@@ -65,8 +65,8 @@
                                        WordWrap="True">
                     <controls:ScriptEditor.Resources>
                         <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="White" />
-                            <Setter Property="BorderBrush" Value="White" />
+                            <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
+                            <Setter Property="BorderBrush" Value="{StaticResource WhiteBrush}" />
                         </Style>
                     </controls:ScriptEditor.Resources>
                 </controls:ScriptEditor>

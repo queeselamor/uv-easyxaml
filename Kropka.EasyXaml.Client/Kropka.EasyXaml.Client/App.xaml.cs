@@ -9,6 +9,8 @@ using System;
 using System.Reflection;
 using Kropka.EasyXaml.Client.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
+using Kropka.EasyXaml.Client.Infrastructure.Enums;
+using Prism.Services.Dialogs;
 
 namespace Kropka.EasyXaml.Client;
 
@@ -54,11 +56,29 @@ public partial class App
 
     private void HandleException(Exception e)
     {
+        var message = e.InnerException != null ? e.InnerException.Message : e.Message;
+
         try
         {
-            var message = e.InnerException != null ? e.InnerException.Message : e.Message;
+            var dialogService = ContainerLocator.Container.Resolve<IDialogService>();
 
-            MessageBox.Show(message, ContentConstants.ErrorTitle);
+            if (dialogService != null)
+            {
+                var parameters = new DialogParameters
+                {
+                    { DialogParameterNameConstants.TitleParameter, ContentConstants.ErrorTitle },
+                    { DialogParameterNameConstants.MessageParameter, message },
+                    { DialogParameterNameConstants.DialogWindowTypeParameter, DialogWindowType.Information },
+                    { DialogParameterNameConstants.ConfirmButtonTitleParameter, ContentConstants.OkButtonTitle },
+                    { DialogParameterNameConstants.DeclineButtonTitleParameter, ContentConstants.CancelButtonTitle }
+                };
+
+                dialogService.ShowDialog(DialogViewNamesConstants.MainMessageBoxDialogView, parameters, null, DialogViewNamesConstants.MainDialogWindow);
+            }
+            else
+            {
+                MessageBox.Show(message, "Error");
+            }
         }
         catch
         {

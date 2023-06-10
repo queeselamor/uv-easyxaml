@@ -10,8 +10,10 @@
     <Folder Include="Constants\" />
     <Folder Include="Interfaces\ViewModels\Base\" />
     <Folder Include="Interfaces\ViewModels\Model\" />
+    <Folder Include="Interfaces\ViewModels\Dialog\" />
     <Folder Include="Interfaces\Views\Base\" />
     <Folder Include="Enums\" />
+    <Folder Include="Interfaces\Views\Dialog\" />
     <Folder Include="Managers\" />
     <Folder Include="Extensions\" />
   </ItemGroup>

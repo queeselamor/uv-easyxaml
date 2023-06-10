@@ -21,8 +21,8 @@
                     Visibility="Collapsed">
             <Border Width="296"
                     Height="50"
-                    Background="#48B8AC"
-                    BorderBrush="#000000"
+                    Background="{StaticResource SecondaryBrush}"
+                    BorderBrush="{StaticResource BlackBrush}"
                     BorderThickness="3">
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
@@ -31,8 +31,8 @@
             </Border>
             <Border Width="296"
                     Height="50"
-                    Background="#FFFFFF"
-                    BorderBrush="#000000"
+                    Background="{StaticResource WhiteBrush}"
+                    BorderBrush="{StaticResource BlackBrush}"
                     BorderThickness="2">
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
