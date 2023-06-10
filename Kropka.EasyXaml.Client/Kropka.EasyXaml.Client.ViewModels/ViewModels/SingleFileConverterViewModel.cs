@@ -19,6 +19,8 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     private readonly IFileService _fileService;
     private readonly IImageTransformationManager _imageTransformationManager;
     private IConverterItemViewModel _currentConverterItem;
+    private bool _showCopyNotification;
+    private bool _showSaveNotification;
     #endregion
 
     #region Constructors
@@ -41,6 +43,18 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     {
         get => _currentConverterItem;
         set => SetProperty(ref _currentConverterItem, value);
+    }
+
+    public bool ShowCopyNotification
+    {
+        get => _showCopyNotification;
+        set => SetProperty(ref _showCopyNotification, value);
+    }
+
+    public bool ShowSaveNotification
+    {
+        get => _showSaveNotification;
+        set => SetProperty(ref _showSaveNotification, value);
     }
     #endregion
 
@@ -96,6 +110,17 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         }
 
         Clipboard.SetText(CurrentConverterItem.ResultContent);
+
+        Task.Run(DisplayCopyNotification);
+    }
+
+    private async Task DisplayCopyNotification()
+    {
+        ShowCopyNotification = true;
+
+        await Task.Delay(2000);
+
+        ShowCopyNotification = false;
     }
 
     private async Task SaveFileAsync()
@@ -113,6 +138,17 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         var filePath = await _fileService.SaveFileAsync(CurrentConverterItem.ResultContent, CurrentConverterItem.SourcePath);
 
         CurrentConverterItem.ResultPath = filePath;
+
+        Task.Run(DisplaySaveNotification);
+    }
+
+    private async Task DisplaySaveNotification()
+    {
+        ShowSaveNotification = true;
+
+        await Task.Delay(2000);
+
+        ShowSaveNotification = false;
     }
     #endregion
 

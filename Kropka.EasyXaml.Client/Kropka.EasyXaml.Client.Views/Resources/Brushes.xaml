@@ -5,6 +5,9 @@
 
     <SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="BlackBrush50"
+                     Opacity="0.5"
+                     Color="{StaticResource BlackColor}" />
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource WhiteColor}" />
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
     <SolidColorBrush x:Key="PrimaryHoveredBrush" Color="{StaticResource PrimaryHoveredColor}" />

@@ -162,4 +162,23 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="ConverterArrowIconStyle" TargetType="ContentControl">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Canvas Width="75" Height="78">
+                    <Path Fill="{StaticResource BlackBrush}">
+                        <Path.Data>
+                            <PathGeometry Figures="M72.5355 44.5355C74.4882 42.5829 74.4882 39.4171 72.5355 37.4645L40.7157 5.64466C38.7631 3.69204 35.5973 3.69204 33.6447 5.64466C31.692 7.59728 31.692 10.7631 33.6447 12.7157L61.9289 41L33.6447 69.2843C31.692 71.2369 31.692 74.4027 33.6447 76.3553C35.5973 78.308 38.7631 78.308 40.7157 76.3553L72.5355 44.5355ZM0 46H69V36H0V46Z" FillRule="NonZero" />
+                        </Path.Data>
+                    </Path>
+                    <Path Fill="{StaticResource DangerousBrush}">
+                        <Path.Data>
+                            <PathGeometry Figures="M73.5355 40.5355C75.4882 38.5829 75.4882 35.4171 73.5355 33.4645L41.7157 1.64466C39.7631 -0.307961 36.5973 -0.307961 34.6447 1.64466C32.692 3.59728 32.692 6.76311 34.6447 8.71573L62.9289 37L34.6447 65.2843C32.692 67.2369 32.692 70.4027 34.6447 72.3553C36.5973 74.308 39.7631 74.308 41.7157 72.3553L73.5355 40.5355ZM1 42H70V32H1V42Z" FillRule="NonZero" />
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

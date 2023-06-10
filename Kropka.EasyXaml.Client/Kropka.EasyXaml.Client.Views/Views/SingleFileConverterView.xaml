@@ -9,46 +9,86 @@
              d:DesignWidth="800"
              mc:Ignorable="d">
     <Grid Width="1024" HorizontalAlignment="Center">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="{Binding CurrentConverterItem.SourcePath, UpdateSourceTrigger=PropertyChanged}" />
-            <Button Width="190"
-                    Height="30"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="308" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Margin="0,13,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <TextBox Width="593"
+                     Height="50"
+                     Margin="0,0,30,0"
+                     Style="{StaticResource FilePathTextBoxStyle}"
+                     Text="{Binding CurrentConverterItem.SourcePath, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Width="282"
+                    Height="50"
                     Command="{Binding PickFileCommand}"
-                    Content="Choose file" />
-            <svgc:SvgViewbox Width="64"
-                             Height="64"
-                             Source="{Binding CurrentConverterItem.SourcePath}" />
-            <controls:ScriptEditor Width="623"
-                                   Height="280"
-                                   Padding="0,8,8,8"
-                                   BorderBrush="{StaticResource BlackBrush}"
-                                   BorderThickness="3"
-                                   FontFamily="{StaticResource MontserratRegular}"
-                                   FontSize="12"
-                                   HorizontalScrollBarVisibility="Auto"
-                                   IsReadOnly="True"
-                                   Script="{Binding CurrentConverterItem.ResultContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                   ShowLineNumbers="True"
-                                   SyntaxHighlighting="XML"
-                                   VerticalScrollBarVisibility="Auto"
-                                   WordWrap="True">
-                <controls:ScriptEditor.Resources>
-                    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-                        <Setter Property="Background" Value="White" />
-                        <Setter Property="BorderBrush" Value="White" />
-                    </Style>
-                </controls:ScriptEditor.Resources>
-            </controls:ScriptEditor>
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Width="190"
-                        Height="30"
-                        Command="{Binding CopyContentCommand}"
-                        Content="Copy" />
-                <Button Width="190"
-                        Height="30"
-                        Command="{Binding SaveFileCommand}"
-                        Content="Save" />
-            </StackPanel>
+                    Content="Choose another file" />
+        </StackPanel>
+        <Grid Grid.Row="1"
+              Margin="0,28,60,0"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170" />
+                <ColumnDefinition Width="111" />
+                <ColumnDefinition Width="623" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0">
+                <svgc:SvgViewbox Width="170"
+                                 Height="170"
+                                 HorizontalAlignment="Left"
+                                 Source="{Binding CurrentConverterItem.SourcePath}" />
+            </Border>
+            <Border Grid.Column="1">
+                <ContentControl Margin="17,0,17,0"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource ConverterArrowIconStyle}" />
+            </Border>
+            <Border Grid.Column="2">
+                <controls:ScriptEditor Width="623"
+                                       Height="280"
+                                       Padding="0,8,8,8"
+                                       BorderBrush="{StaticResource BlackBrush}"
+                                       BorderThickness="3"
+                                       FontFamily="{StaticResource MontserratRegular}"
+                                       FontSize="12"
+                                       HorizontalScrollBarVisibility="Auto"
+                                       IsReadOnly="True"
+                                       Script="{Binding CurrentConverterItem.ResultContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       ShowLineNumbers="True"
+                                       SyntaxHighlighting="XML"
+                                       VerticalScrollBarVisibility="Auto"
+                                       WordWrap="True">
+                    <controls:ScriptEditor.Resources>
+                        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="BorderBrush" Value="White" />
+                        </Style>
+                    </controls:ScriptEditor.Resources>
+                </controls:ScriptEditor>
+            </Border>
+        </Grid>
+        <StackPanel Grid.Row="2"
+                    Margin="0,28,60,0"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <controls:NotificationButton Width="126"
+                                         Height="30"
+                                         Command="{Binding SaveFileCommand}"
+                                         Content="Save"
+                                         ShowNotification="{Binding ShowSaveNotification, UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{StaticResource SaveButtonStyle}" />
+            <controls:NotificationButton Width="126"
+                                         Height="30"
+                                         Margin="30,0,0,0"
+                                         Command="{Binding CopyContentCommand}"
+                                         Content="Copy"
+                                         ShowNotification="{Binding ShowCopyNotification, UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{StaticResource CopyButtonStyle}" />
         </StackPanel>
     </Grid>
 </UserControl>
