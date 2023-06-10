@@ -46,7 +46,7 @@
             <Border Grid.Column="1">
                 <ContentControl Margin="17,0,17,0"
                                 HorizontalAlignment="Left"
-                                Style="{StaticResource ConverterArrowIconStyle}" />
+                                Style="{StaticResource ConverterArrowSingleFileIconStyle}" />
             </Border>
             <Border Grid.Column="2">
                 <controls:ScriptEditor Width="623"

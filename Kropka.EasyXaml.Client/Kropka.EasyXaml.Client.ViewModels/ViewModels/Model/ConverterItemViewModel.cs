@@ -13,6 +13,7 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     private string _resultPath;
     private string _resultContent;
     private bool _isSelected;
+    private string _sourceFileName;
     #endregion
 
     #region Constructors
@@ -28,6 +29,12 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     {
         get => _converterType;
         set => SetProperty(ref _converterType, value);
+    }
+
+    public string SourceFileName
+    {
+        get => _sourceFileName;
+        set => SetProperty(ref _sourceFileName, value);
     }
 
     public string SourcePath
@@ -61,4 +68,10 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     }
     #endregion
 
+    #region Methods
+    public override string ToString()
+    {
+        return SourceFileName;
+    }
+    #endregion
 }

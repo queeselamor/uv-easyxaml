@@ -7,6 +7,7 @@ public interface IConverterItemViewModel : IViewModel
 {
     #region Properties
     public ConverterType ConverterType { get; set; }
+    public string SourceFileName { get; set; }
     public string SourcePath { get; set; }
     public string SourceContent { get; set; }
     public string ResultPath { get; set; }

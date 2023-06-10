@@ -78,9 +78,12 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         }
     }
 
-    private void CreateConverterItem(string filePath)
+    private async void CreateConverterItem(string filePath)
     {
-        var converterItem = new ConverterItemViewModel(ConverterType.SvgToXaml, filePath);
+        var converterItem = new ConverterItemViewModel(ConverterType.SvgToXaml, filePath)
+        {
+            SourceFileName = await _fileService.GetFileNameAsync(filePath)
+        };
 
         CurrentConverterItem = converterItem;
     }

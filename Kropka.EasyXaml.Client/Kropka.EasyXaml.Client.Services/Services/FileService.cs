@@ -78,5 +78,10 @@ public class FileService : IFileService
 
         return Task.FromResult(filePaths.AsEnumerable());
     }
+
+    public Task<string> GetFileNameAsync(string folderPath)
+    {
+        return Task.FromResult(!string.IsNullOrEmpty(folderPath) ? Path.GetFileNameWithoutExtension(folderPath) : string.Empty);
+    }
     #endregion
 }

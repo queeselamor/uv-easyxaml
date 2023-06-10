@@ -8,5 +8,6 @@ public interface IFileService : IService
     Task<string> SaveFileAsync(string content, string sourceFilePath, string folderPath);
     Task<string> PickFolderAsync();
     Task<IEnumerable<string>> GetFilePathsAsync(string folderPath);
+    Task<string> GetFileNameAsync(string folderPath);
     #endregion
 }
