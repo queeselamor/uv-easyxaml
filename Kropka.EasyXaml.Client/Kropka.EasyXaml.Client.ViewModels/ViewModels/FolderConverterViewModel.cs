@@ -126,7 +126,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     #endregion
 
     #region Navigation
-    public void OnNavigatedTo(NavigationContext navigationContext)
+    public async void OnNavigatedTo(NavigationContext navigationContext)
     {
         if (navigationContext.Parameters.Count == 0)
         {
@@ -138,7 +138,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
             return;
         }
 
-        Task.Run(() => ConvertFolderAsync(folderPath));
+        await ConvertFolderAsync(folderPath);
     }
 
     public bool IsNavigationTarget(NavigationContext navigationContext)

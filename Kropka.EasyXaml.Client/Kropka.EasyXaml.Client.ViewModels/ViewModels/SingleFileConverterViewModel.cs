@@ -163,7 +163,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #endregion
 
     #region Navigation
-    public void OnNavigatedTo(NavigationContext navigationContext)
+    public async void OnNavigatedTo(NavigationContext navigationContext)
     {
         if (navigationContext.Parameters.Count == 0)
         {
@@ -174,7 +174,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
         CreateConverterItem(filePath);
 
-        Task.Run(ConvertAsync);
+        await ConvertAsync();
     }
 
     public bool IsNavigationTarget(NavigationContext navigationContext)
