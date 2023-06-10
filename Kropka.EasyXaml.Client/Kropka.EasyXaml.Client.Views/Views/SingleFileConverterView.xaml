@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0"
-                    Margin="0,13,0,0"
+                    Margin="0,21,0,0"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
             <TextBox Width="593"
