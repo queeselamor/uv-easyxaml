@@ -18,6 +18,6 @@ The folder mode allows you to choose an entire folder containing multiple SVG im
 
 ## Getting Started
 
-To get started with EasyXAML, simply clone this repository and build it in your IDE.
+To get started with EasyXAML, simply clone this repository and follow the instructions provided in the README.
 
 Join the growing community of developers who trust EasyXAML for their SVG to XAML conversion needs. Give it a try, and enjoy a smoother, more efficient workflow!
