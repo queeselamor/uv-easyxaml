@@ -48,7 +48,6 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         return await Task.Run(() => xamlContent);
     }
 
-
     public async Task<string> PrepareContentAsync(string content)
     {
         char[] charsToTrim = { '\r', '\n' };

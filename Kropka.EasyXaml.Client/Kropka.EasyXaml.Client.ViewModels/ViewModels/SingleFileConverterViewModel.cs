@@ -73,17 +73,17 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #region Methods
     private async Task PickFileAsync()
     {
-        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
-        {
-            IsBusy = true,
-            Message = ContentConstants.ConvertingTitle
-        });
-
         var filePath = await _fileService.PickFilePathAsync();
 
         if (filePath != string.Empty)
         {
             CreateConverterItem(filePath);
+
+            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
+            {
+                IsBusy = true,
+                Message = ContentConstants.ConvertingTitle
+            });
 
             await ConvertAsync();
         }

@@ -74,14 +74,16 @@ public class FileService : IFileService
 
     public Task<IEnumerable<string>> GetFilePathsAsync(string folderPath)
     {
-        var filePaths = Directory.GetFiles(folderPath).Where(path => path.EndsWith(ExtensionFilterConstants.SvgExtensionFilter));
-
-        return Task.FromResult(filePaths.AsEnumerable());
+        return Task.Run(() =>
+        {
+            var filePaths = Directory.GetFiles(folderPath).Where(path => path.EndsWith(ExtensionFilterConstants.SvgExtensionFilter));
+            return filePaths.AsEnumerable();
+        });
     }
 
-    public Task<string> GetFileNameAsync(string folderPath)
+    public async Task<string> GetFileNameAsync(string folderPath)
     {
-        return Task.FromResult(!string.IsNullOrEmpty(folderPath) ? Path.GetFileNameWithoutExtension(folderPath) : string.Empty);
+        return await Task.FromResult(!string.IsNullOrEmpty(folderPath) ? Path.GetFileNameWithoutExtension(folderPath) : string.Empty);
     }
     #endregion
 }

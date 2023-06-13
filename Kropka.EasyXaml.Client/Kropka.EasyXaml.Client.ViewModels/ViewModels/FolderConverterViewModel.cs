@@ -109,15 +109,15 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
     private async Task PickFolderAsync()
     {
+        var folderPath = await _fileService.PickFolderAsync();
+
+        ChosenFolderPath = folderPath;
+
         _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
         {
             IsBusy = true,
             Message = ContentConstants.ConvertingTitle
         });
-
-        var folderPath = await _fileService.PickFolderAsync();
-
-        ChosenFolderPath = folderPath;
 
         await ConvertFolderAsync(folderPath);
     }
