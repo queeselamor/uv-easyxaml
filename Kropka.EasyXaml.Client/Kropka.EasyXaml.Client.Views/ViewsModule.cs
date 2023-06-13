@@ -17,6 +17,7 @@ public class ViewsModule : IModule
     {
         containerProvider.Resolve<IRegionManager>().RegisterViewWithRegion(RegionNameConstants.ContentRegion, typeof(IMainView));
         containerProvider.Resolve<IRegionManager>().RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IWelcomeScreenView));
+        containerProvider.Resolve<IRegionManager>().RegisterViewWithRegion(RegionNameConstants.BusyRegion, typeof(IBusyView));
     }
 
     public void RegisterTypes(IContainerRegistry containerRegistry)
@@ -32,6 +33,7 @@ public class ViewsModule : IModule
         containerRegistry.RegisterSingleton<IWelcomeScreenView, WelcomeScreenView>();
         containerRegistry.RegisterSingleton<IFolderConverterView, FolderConverterView>();
         containerRegistry.RegisterSingleton<IConverterView, ConverterView>();
+        containerRegistry.RegisterSingleton<IBusyView, BusyView>();
         containerRegistry.RegisterSingleton<IMainMessageBoxDialogView, MainMessageBoxDialogView>();
     }
 

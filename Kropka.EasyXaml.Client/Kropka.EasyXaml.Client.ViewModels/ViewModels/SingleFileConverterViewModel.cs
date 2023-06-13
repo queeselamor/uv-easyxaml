@@ -4,12 +4,15 @@ using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
+using Kropka.EasyXaml.Client.Infrastructure.Events;
+using Kropka.EasyXaml.Client.Infrastructure.Helpers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model;
+using Prism.Events;
 using Prism.Regions;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
@@ -19,6 +22,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #region Fields
     private readonly IFileService _fileService;
     private readonly IImageTransformationManager _imageTransformationManager;
+    private readonly IEventAggregator _eventAggregator;
     private IConverterItemViewModel _currentConverterItem;
     private bool _showCopyNotification;
     private bool _showSaveNotification;
@@ -32,10 +36,11 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         SaveFileCommand = new AsyncRelayCommand(SaveFileAsync);
     }
 
-    public SingleFileConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager) : this()
+    public SingleFileConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IEventAggregator eventAggregator) : this()
     {
         _fileService = fileService;
         _imageTransformationManager = imageTransformationManager;
+        _eventAggregator = eventAggregator;
     }
     #endregion
 
@@ -68,6 +73,12 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #region Methods
     private async Task PickFileAsync()
     {
+        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
+        {
+            IsBusy = true,
+            Message = ContentConstants.ConvertingTitle
+        });
+
         var filePath = await _fileService.PickFilePathAsync();
 
         if (filePath != string.Empty)
@@ -97,16 +108,20 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
                 return;
             }
 
-            var transformContent = await _imageTransformationManager.TransformAsync(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
-            var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
+            var transformContent = await _imageTransformationManager.TransformAsync(CurrentConverterItem.ConverterType,
+                CurrentConverterItem.SourcePath);
+            var resultContent =
+                await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
 
             CurrentConverterItem.ResultContent = resultContent;
         }
         catch (Exception ex)
         {
-            //TODO: Hide elements and clear content
-
             throw;
+        }
+        finally
+        {
+            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel());
         }
     }
 
@@ -172,6 +187,12 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         {
             return;
         }
+
+        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
+        {
+            IsBusy = true,
+            Message = ContentConstants.ConvertingTitle
+        });
 
         var filePath = navigationContext.Parameters[NavigationParameterConstants.FilePath] as string;
 

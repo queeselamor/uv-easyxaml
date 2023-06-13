@@ -9,5 +9,7 @@ public class ContentConstants
     public const string CancelButtonTitle = "Cancel";
     public const string YesButtonTitle = "Yes";
     public const string NoButtonTitle = "No";
+    public const string LoadingDefaultTitle = "Loading...";
+    public const string ConvertingTitle = "Converting...";
     #endregion
 }

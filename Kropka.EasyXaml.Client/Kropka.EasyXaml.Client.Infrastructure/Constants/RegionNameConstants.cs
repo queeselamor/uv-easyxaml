@@ -7,5 +7,6 @@ public class RegionNameConstants
     public const string ContentRegion = "ContentRegion";
     public const string SingleFileConverterRegion = "SingleFileConverterRegion";
     public const string FolderConverterRegion = "FolderConverterRegion";
+    public const string BusyRegion = "BusyRegion";
     #endregion
 }

@@ -7,12 +7,15 @@ using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
+using Kropka.EasyXaml.Client.Infrastructure.Events;
+using Kropka.EasyXaml.Client.Infrastructure.Helpers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model;
+using Prism.Events;
 using Prism.Regions;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
@@ -23,6 +26,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     private ObservableCollection<IConverterItemViewModel> _converterItems;
     private readonly IFileService _fileService;
     private readonly IImageTransformationManager _imageTransformationManager;
+    private readonly IEventAggregator _eventAggregator;
     private string _chosenFolderPath;
     private bool _showCopyNotification;
     private bool _showSaveNotification;
@@ -42,10 +46,11 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         SaveSelectedFileCommand = new AsyncRelayCommand(SaveSelectedFile);
     }
 
-    public FolderConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager) : this()
+    public FolderConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IEventAggregator eventAggregator) : this()
     {
         _fileService = fileService;
         _imageTransformationManager = imageTransformationManager;
+        _eventAggregator = eventAggregator;
     }
     #endregion
 
@@ -105,6 +110,12 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
     private async Task PickFolderAsync()
     {
+        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
+        {
+            IsBusy = true,
+            Message = ContentConstants.ConvertingTitle
+        });
+
         var folderPath = await _fileService.PickFolderAsync();
 
         ChosenFolderPath = folderPath;
@@ -229,17 +240,22 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
             foreach (var converterItemViewModel in ConverterItems)
             {
-                var transformContent = await _imageTransformationManager.TransformAsync(converterItemViewModel.ConverterType, converterItemViewModel.SourcePath);
-                var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
+                var transformContent =
+                    await _imageTransformationManager.TransformAsync(converterItemViewModel.ConverterType,
+                        converterItemViewModel.SourcePath);
+                var resultContent =
+                    await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
 
                 converterItemViewModel.ResultContent = resultContent;
             }
         }
         catch (Exception e)
         {
-            //TODO: Hide elements and clear content
-
             throw;
+        }
+        finally
+        {
+            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel());
         }
     }
     #endregion
@@ -256,6 +272,12 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         {
             return;
         }
+
+        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
+        {
+            IsBusy = true,
+            Message = ContentConstants.ConvertingTitle
+        });
 
         await ConvertFolderAsync(folderPath);
     }

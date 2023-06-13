@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Events;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
@@ -7,27 +8,27 @@ using Prism.Events;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
 
-public class MainViewModel : BaseViewModel, IMainViewModel
+public class BusyViewModel : BaseViewModel, IBusyViewModel
 {
     #region Fields
     private readonly IEventAggregator _eventAggregator;
-    private bool _isBusy;
+    private string _message;
     #endregion
 
-    #region Constructors
-    public MainViewModel(IEventAggregator eventAggregator)
+    public BusyViewModel(IEventAggregator eventAggregator)
     {
         _eventAggregator = eventAggregator;
 
+        Message = ContentConstants.LoadingDefaultTitle;
+
         SubscribeOnEvents();
     }
-    #endregion
 
     #region Properties
-    public bool IsBusy
+    public string Message
     {
-        get => _isBusy;
-        set => SetProperty(ref _isBusy, value);
+        get => _message;
+        set => SetProperty(ref _message, value);
     }
     #endregion
 
@@ -39,7 +40,7 @@ public class MainViewModel : BaseViewModel, IMainViewModel
 
     private void IsBusyChanged(IBusyMessageViewModel message)
     {
-        IsBusy = message.IsBusy;
+        Message = message.Message;
     }
     #endregion
 }

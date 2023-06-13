@@ -12,6 +12,7 @@
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
     <SolidColorBrush x:Key="PrimaryHoveredBrush" Color="{StaticResource PrimaryHoveredColor}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}" />
+    <SolidColorBrush x:Key="SecondaryDarkBrush" Color="{StaticResource SecondaryDarkColor}" />
     <SolidColorBrush x:Key="SecondaryHoveredBrush" Color="{StaticResource SecondaryHoveredColor}" />
     <SolidColorBrush x:Key="DangerousBrush" Color="{StaticResource DangerousColor}" />
     <SolidColorBrush x:Key="DangerousHoveredBrush" Color="{StaticResource DangerousHoveredColor}" />

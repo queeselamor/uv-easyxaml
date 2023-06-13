@@ -4,6 +4,7 @@
     <Color x:Key="PrimaryColor">#FFD600</Color>
     <Color x:Key="PrimaryHoveredColor">#F2DD72</Color>
     <Color x:Key="SecondaryColor">#48B8AC</Color>
+    <Color x:Key="SecondaryDarkColor">#23302E</Color>
     <Color x:Key="SecondaryHoveredColor">#96CEC8</Color>
     <Color x:Key="DangerousColor">#F16393</Color>
     <Color x:Key="DangerousHoveredColor">#EAA3BB</Color>

@@ -21,6 +21,7 @@ public class ViewModelsModule : IModule
         containerRegistry.RegisterSingleton<IWelcomeScreenViewModel, WelcomeScreenViewModel>();
         containerRegistry.RegisterSingleton<IFolderConverterViewModel, FolderConverterViewModel>();
         containerRegistry.RegisterSingleton<IConverterViewModel, ConverterViewModel>();
+        containerRegistry.RegisterSingleton<IBusyViewModel, BusyViewModel>();
         containerRegistry.RegisterSingleton<IMainMessageBoxDialogViewModel, MainMessageBoxDialogViewModel>();
     }
     #endregion
