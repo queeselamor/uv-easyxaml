@@ -27,7 +27,7 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         return await Task.Run(() => ClearXamlContent(xamlContent));
     }
 
-    private static Task<string> GetXamlContentAsync(string sourceFile)
+    private async Task<string> GetXamlContentAsync(string sourceFile)
     {
         const string xslTransformFile = TransformationFilePathConstants.SvgToXamlTransformationFilePath;
 
@@ -45,11 +45,11 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         xslTransform.Transform(svgReader, new XsltArgumentList(), stringWriter);
         var xamlContent = stringWriter.ToString();
 
-        return Task.Run(() => xamlContent);
+        return await Task.Run(() => xamlContent);
     }
 
 
-    public Task<string> PrepareContentAsync(string content)
+    public async Task<string> PrepareContentAsync(string content)
     {
         char[] charsToTrim = { '\r', '\n' };
 
@@ -71,7 +71,7 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
             }
         }
 
-        return Task.Run(() => string.Join("\r\n", lines));
+        return await Task.Run(() => string.Join("\r\n", lines));
     }
 
     private static string ClearXamlContent(string content)

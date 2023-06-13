@@ -8,7 +8,6 @@ using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Events;
-using Kropka.EasyXaml.Client.Infrastructure.Helpers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
@@ -240,11 +239,9 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
             foreach (var converterItemViewModel in ConverterItems)
             {
-                var transformContent =
-                    await _imageTransformationManager.TransformAsync(converterItemViewModel.ConverterType,
+                var transformContent = await _imageTransformationManager.TransformAsync(converterItemViewModel.ConverterType,
                         converterItemViewModel.SourcePath);
-                var resultContent =
-                    await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
+                var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
 
                 converterItemViewModel.ResultContent = resultContent;
             }
