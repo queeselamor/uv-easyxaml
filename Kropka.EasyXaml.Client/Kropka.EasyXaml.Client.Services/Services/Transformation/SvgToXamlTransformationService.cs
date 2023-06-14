@@ -7,8 +7,10 @@ using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services.Transformation;
 using System.Text.RegularExpressions;
 using System.Linq;
 using System;
+using Kropka.EasyXaml.Client.Abstracts.Models;
 using SharpVectors.Converters;
 using SharpVectors.Renderers.Wpf;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Models;
 
 namespace Kropka.EasyXaml.Client.Services.Services.Transformation;
 
@@ -22,11 +24,27 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
     #endregion
 
     #region Methods
-    public async Task<string> TransformSvgToXamlAsync(string sourceFile)
+    public async Task<IConverterResponse> TransformSvgToXamlAsync(string sourceFile)
     {
-        var xamlContent = await GetXamlCanvasContentAsync(sourceFile);
+        var response = new XamlConverterResponse();
 
-        return await Task.Run(() => ClearXamlContent(xamlContent));
+        var xamlCanvasContent = await GetXamlCanvasContentAsync(sourceFile);
+
+        if (xamlCanvasContent is not null)
+        {
+            response.IsSuccessConvertToCanvas = true;
+            response.CanvasContent = ClearXamlContent(xamlCanvasContent);
+        }
+
+        var xamlDrawingGroupContent = await GetXamlDrawingGroupContentAsync(sourceFile);
+
+        if (xamlDrawingGroupContent is not null)
+        {
+            response.IsSuccessConvertToDrawingGroup = true;
+            response.DrawingGroupContent = ClearXamlContent(xamlDrawingGroupContent);
+        }
+
+        return await Task.Run(() => response);
     }
 
     private async Task<string> GetXamlCanvasContentAsync(string sourceFile)
@@ -55,17 +73,24 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         }
         catch
         {
-            return await GetXamlDrawingGroupContentAsync(sourceFile);
+            return null;
         }
     }
 
     private async Task<string> GetXamlDrawingGroupContentAsync(string sourceFile)
     {
-        var converter = new FileSvgConverter(new WpfDrawingSettings { IncludeRuntime = false });
-        var obj = ConvertSvgFileToWpfObject(sourceFile, converter);
-        var xamlContent = ConvertWpfObjectToXaml(obj);
+        try
+        {
+            var converter = new FileSvgConverter(new WpfDrawingSettings { IncludeRuntime = false });
+            var obj = ConvertSvgFileToWpfObject(sourceFile, converter);
+            var xamlContent = ConvertWpfObjectToXaml(obj);
 
-        return await Task.Run(() => xamlContent);
+            return await Task.Run(() => xamlContent);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private object ConvertSvgFileToWpfObject(string sourceFile, FileSvgConverter converter)

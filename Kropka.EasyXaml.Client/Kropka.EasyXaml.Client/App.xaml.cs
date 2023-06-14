@@ -7,6 +7,7 @@ using Prism.Modularity;
 using Prism.Mvvm;
 using System;
 using System.Reflection;
+using Kropka.EasyXaml.Client.Abstracts;
 using Kropka.EasyXaml.Client.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
@@ -33,6 +34,7 @@ public partial class App
         moduleCatalog.AddModule<ViewsModule>();
         moduleCatalog.AddModule<ViewModelsModule>();
         moduleCatalog.AddModule<ServicesModule>();
+        moduleCatalog.AddModule<AbstractsModule>();
     }
 
     protected override void ConfigureViewModelLocator()

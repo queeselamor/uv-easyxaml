@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Models;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services.Transformation;
 
 namespace Kropka.EasyXaml.Client.Services.Managers;
@@ -21,7 +22,7 @@ public class ImageTransformationManager : IImageTransformationManager
     #endregion
 
     #region Methods
-    public async Task<string> TransformAsync(ConverterType converterType, string filePath)
+    public async Task<IConverterResponse> TransformAsync(ConverterType converterType, string filePath)
     {
         return converterType switch
         {

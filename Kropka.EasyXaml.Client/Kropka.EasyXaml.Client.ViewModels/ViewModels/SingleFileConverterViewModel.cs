@@ -6,6 +6,7 @@ using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Events;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Models;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
@@ -104,10 +105,18 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
                 return;
             }
 
-            var transformContent = await _imageTransformationManager.TransformAsync(CurrentConverterItem.ConverterType,
-                CurrentConverterItem.SourcePath);
-            var resultContent =
-                await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
+            var transformContentResponse = await _imageTransformationManager.TransformAsync(CurrentConverterItem.ConverterType, CurrentConverterItem.SourcePath);
+
+            if (transformContentResponse is not IXamlConverterResponse response)
+            {
+                CurrentConverterItem.ResultContent = string.Empty;
+
+                return;
+            }
+
+            var transformContent = response.IsSuccessConvertToCanvas ? response.CanvasContent : response.DrawingGroupContent;
+
+            var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
 
             CurrentConverterItem.ResultContent = resultContent;
         }
