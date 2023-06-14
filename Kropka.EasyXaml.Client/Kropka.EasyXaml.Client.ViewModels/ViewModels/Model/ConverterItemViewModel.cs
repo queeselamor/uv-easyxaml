@@ -14,6 +14,7 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     private string _resultContent;
     private bool _isSelected;
     private string _sourceFileName;
+    private string _alternativeResultContent;
     #endregion
 
     #region Constructors
@@ -21,6 +22,10 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     {
         ConverterType = converterType;
         SourcePath = sourcePath;
+
+        SourceContent = string.Empty;
+        ResultContent = string.Empty;
+        AlternativeResultContent = string.Empty;
     } 
     #endregion
 
@@ -59,6 +64,12 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     {
         get => _resultContent;
         set => SetProperty(ref _resultContent, value);
+    }
+
+    public string AlternativeResultContent
+    {
+        get => _alternativeResultContent;
+        set => SetProperty(ref _alternativeResultContent, value);
     }
 
     public bool IsSelected

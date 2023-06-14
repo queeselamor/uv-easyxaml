@@ -114,11 +114,25 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
                 return;
             }
 
-            var transformContent = response.IsSuccessConvertToCanvas ? response.CanvasContent : response.DrawingGroupContent;
+            if (response.IsSuccessConvertToCanvas)
+            {
+                var canvasContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, response.CanvasContent);
 
-            var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
+                CurrentConverterItem.ResultContent = canvasContent;
+            }
 
-            CurrentConverterItem.ResultContent = resultContent;
+            if (response.IsSuccessConvertToDrawingGroup)
+            {
+                var drawingGroupContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, response.DrawingGroupContent);
+
+                CurrentConverterItem.AlternativeResultContent = drawingGroupContent;
+
+                //TODO: Temp, need to replace
+                if (!response.IsSuccessConvertToCanvas)
+                {
+                    CurrentConverterItem.ResultContent = drawingGroupContent;
+                }
+            }
         }
         catch (Exception ex)
         {

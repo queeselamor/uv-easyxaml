@@ -249,11 +249,25 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
                     continue;
                 }
 
-                var transformContent = response.IsSuccessConvertToCanvas ? response.CanvasContent : response.DrawingGroupContent;
+                if (response.IsSuccessConvertToCanvas)
+                {
+                    var canvasContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, response.CanvasContent);
 
-                var resultContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, transformContent);
+                    converterItemViewModel.ResultContent = canvasContent;
+                }
 
-                converterItemViewModel.ResultContent = resultContent;
+                if (response.IsSuccessConvertToDrawingGroup)
+                {
+                    var drawingGroupContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, response.DrawingGroupContent);
+
+                    converterItemViewModel.AlternativeResultContent = drawingGroupContent;
+
+                    //TODO: Temp, need to replace
+                    if (!response.IsSuccessConvertToCanvas)
+                    {
+                        converterItemViewModel.ResultContent = drawingGroupContent;
+                    }
+                }
             }
         }
         catch (Exception e)
