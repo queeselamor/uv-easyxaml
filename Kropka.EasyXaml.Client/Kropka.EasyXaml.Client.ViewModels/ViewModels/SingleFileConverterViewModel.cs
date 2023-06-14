@@ -161,9 +161,12 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
         var filePath = await _fileService.SaveFileAsync(CurrentConverterItem.ResultContent, CurrentConverterItem.SourcePath);
 
-        CurrentConverterItem.ResultPath = filePath;
+        if (filePath != string.Empty)
+        {
+            CurrentConverterItem.ResultPath = filePath;
 
-        Task.Run(DisplaySaveNotification);
+            Task.Run(DisplaySaveNotification);
+        }
     }
 
     private async Task DisplaySaveNotification()

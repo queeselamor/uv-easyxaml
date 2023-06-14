@@ -159,9 +159,12 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
         var filePath = await _fileService.SaveFileAsync(SelectedConverterItem.ResultContent, SelectedConverterItem.SourcePath);
 
-        SelectedConverterItem.ResultPath = filePath;
+        if (filePath != string.Empty)
+        {
+            SelectedConverterItem.ResultPath = filePath;
 
-        Task.Run(DisplaySaveNotification);
+            Task.Run(DisplaySaveNotification);
+        }
     }
 
     private async Task DisplaySaveNotification()
