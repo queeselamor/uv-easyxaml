@@ -79,11 +79,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         {
             CreateConverterItem(filePath);
 
-            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
-            {
-                IsBusy = true,
-                Message = ContentConstants.ConvertingTitle
-            });
+            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(true, ContentConstants.ConvertingTitle));
 
             await ConvertAsync();
         }
@@ -121,7 +117,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         }
         finally
         {
-            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel());
+            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(false, string.Empty));
         }
     }
 
@@ -188,11 +184,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
             return;
         }
 
-        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
-        {
-            IsBusy = true,
-            Message = ContentConstants.ConvertingTitle
-        });
+        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(true, ContentConstants.ConvertingTitle));
 
         var filePath = navigationContext.Parameters[NavigationParameterConstants.FilePath] as string;
 

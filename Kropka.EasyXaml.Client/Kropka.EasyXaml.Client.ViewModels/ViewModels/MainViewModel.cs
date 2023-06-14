@@ -1,7 +1,6 @@
-﻿using System.Windows;
-using Kropka.EasyXaml.Client.Infrastructure.Events;
+﻿using Kropka.EasyXaml.Client.Infrastructure.Events;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Records;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
-using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Prism.Events;
 
@@ -37,7 +36,7 @@ public class MainViewModel : BaseViewModel, IMainViewModel
         _eventAggregator.GetEvent<IsBusyChangedEvent>().Subscribe(IsBusyChanged);
     }
 
-    private void IsBusyChanged(IBusyMessageViewModel message)
+    private void IsBusyChanged(IBusyMessage message)
     {
         IsBusy = message.IsBusy;
     }

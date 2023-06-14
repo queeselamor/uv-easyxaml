@@ -113,11 +113,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
         ChosenFolderPath = folderPath;
 
-        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
-        {
-            IsBusy = true,
-            Message = ContentConstants.ConvertingTitle
-        });
+        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(true, ContentConstants.ConvertingTitle));
 
         await ConvertFolderAsync(folderPath);
     }
@@ -252,7 +248,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         }
         finally
         {
-            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel());
+            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(false, string.Empty));
         }
     }
     #endregion
@@ -270,11 +266,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
             return;
         }
 
-        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessageViewModel
-        {
-            IsBusy = true,
-            Message = ContentConstants.ConvertingTitle
-        });
+        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(true, ContentConstants.ConvertingTitle));
 
         await ConvertFolderAsync(folderPath);
     }
