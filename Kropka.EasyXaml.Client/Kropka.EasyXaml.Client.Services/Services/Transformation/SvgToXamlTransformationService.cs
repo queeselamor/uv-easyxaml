@@ -124,8 +124,16 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         RemoveCanvasResources(ref content);
         RemoveClipAttribute(ref content);
         RemoveNameAttributes(ref content);
+        RemoveEmptyWhitespace(ref content);
 
         return content;
+    }
+
+    private static void RemoveEmptyWhitespace(ref string content)
+    {
+        var regex = new Regex(@"\s+(?=>)");
+
+        RemoveRegexValue(regex, ref content);
     }
 
     private static void RemoveXlmnsProperties(ref string content)
