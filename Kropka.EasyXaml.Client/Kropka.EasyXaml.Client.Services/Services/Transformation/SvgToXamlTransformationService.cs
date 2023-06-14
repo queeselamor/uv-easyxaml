@@ -29,6 +29,8 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
 
     private async Task<string> GetXamlContentAsync(string sourceFile)
     {
+        var svgContent = ClearSvg(sourceFile);
+
         const string xslTransformFile = TransformationFilePathConstants.SvgToXamlTransformationFilePath;
 
         var settings = new XmlReaderSettings
@@ -40,12 +42,22 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         var xslTransform = new XslCompiledTransform();
         xslTransform.Load(xslTransformFile, XsltSettings.TrustedXslt, new XmlUrlResolver());
 
-        using var svgReader = XmlReader.Create(sourceFile, settings);
+        using var svgReader = XmlReader.Create(new StringReader(svgContent), settings);
         using var stringWriter = new StringWriter();
         xslTransform.Transform(svgReader, new XsltArgumentList(), stringWriter);
         var xamlContent = stringWriter.ToString();
 
         return await Task.Run(() => xamlContent);
+    }
+
+    private string ClearSvg(string sourceFile)
+    {
+        var svgContent = File.ReadAllText(sourceFile);
+
+        svgContent = Regex.Replace(svgContent, @"<!DOCTYPE[^>]+>", "");
+        svgContent = Regex.Replace(svgContent, @"<!--[\s\S]*?-->", "");
+
+        return svgContent;
     }
 
     public async Task<string> PrepareContentAsync(string content)
