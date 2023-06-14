@@ -23,6 +23,6 @@ To get started with EasyXAML, you can either clone this repository and follow th
 Join the growing community of developers who trust EasyXAML for their SVG to XAML conversion needs. Give it a try, and enjoy a smoother, more efficient workflow!
 
 ##
-If you like this, give it a * please.
+If you like this, give it a * please. 😊
 
 <a href="https://bmc.link/6fkccpyxt8y" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Beer" style="height: 60px !important;width: 217px !important;" ></a>
