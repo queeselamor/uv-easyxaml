@@ -7,6 +7,8 @@ using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services.Transformation;
 using System.Text.RegularExpressions;
 using System.Linq;
 using System;
+using SharpVectors.Converters;
+using SharpVectors.Renderers.Wpf;
 
 namespace Kropka.EasyXaml.Client.Services.Services.Transformation;
 
@@ -29,25 +31,51 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
 
     private async Task<string> GetXamlContentAsync(string sourceFile)
     {
-        var svgContent = ClearSvg(sourceFile);
-
-        const string xslTransformFile = TransformationFilePathConstants.SvgToXamlTransformationFilePath;
-
-        var settings = new XmlReaderSettings
+        try
         {
-            DtdProcessing = DtdProcessing.Parse,
-            XmlResolver = new XmlUrlResolver()
-        };
+            var svgContent = ClearSvg(sourceFile);
 
-        var xslTransform = new XslCompiledTransform();
-        xslTransform.Load(xslTransformFile, XsltSettings.TrustedXslt, new XmlUrlResolver());
+            const string xslTransformFile = TransformationFilePathConstants.SvgToXamlTransformationFilePath;
 
-        using var svgReader = XmlReader.Create(new StringReader(svgContent), settings);
-        using var stringWriter = new StringWriter();
-        xslTransform.Transform(svgReader, new XsltArgumentList(), stringWriter);
-        var xamlContent = stringWriter.ToString();
+            var settings = new XmlReaderSettings
+            {
+                DtdProcessing = DtdProcessing.Parse,
+                XmlResolver = new XmlUrlResolver()
+            };
 
-        return await Task.Run(() => xamlContent);
+            var xslTransform = new XslCompiledTransform();
+            xslTransform.Load(xslTransformFile, XsltSettings.TrustedXslt, new XmlUrlResolver());
+
+            using var svgReader = XmlReader.Create(new StringReader(svgContent), settings);
+            using var stringWriter = new StringWriter();
+            xslTransform.Transform(svgReader, new XsltArgumentList(), stringWriter);
+            var xamlContent = stringWriter.ToString();
+
+            return await Task.Run(() => xamlContent);
+        }
+        catch
+        {
+            var converter = new FileSvgConverter(new WpfDrawingSettings { IncludeRuntime = false });
+            var obj = ConvertSvgFileToWpfObject(sourceFile, converter);
+            var xamlContent = ConvertWpfObjectToXaml(obj);
+
+            return await Task.Run(() => xamlContent);
+        }
+    }
+
+    private object ConvertSvgFileToWpfObject(string sourceFile, FileSvgConverter converter)
+    {
+        converter.Convert(sourceFile);
+
+        return converter.Drawing;
+    }
+
+    private string ConvertWpfObjectToXaml(object wpfObject)
+    {
+        var writer = new XmlXamlWriter(new WpfDrawingSettings { IncludeRuntime = false });
+        var xaml = writer.Save(wpfObject);
+
+        return xaml;
     }
 
     private string ClearSvg(string sourceFile)
@@ -90,6 +118,7 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
     {
         RemoveXmlHeader(ref content);
         RemoveSilverlightCompatibility(ref content);
+        RemoveXlmnsProperties(ref content);
         RemoveViewboxTags(ref content);
         RemoveCanvasRenderTransform(ref content);
         RemoveCanvasResources(ref content);
@@ -97,6 +126,13 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         RemoveNameAttributes(ref content);
 
         return content;
+    }
+
+    private static void RemoveXlmnsProperties(ref string content)
+    {
+        var regex = new Regex(@"xmlns(:\w+)?=""([^""]+)""");
+
+        RemoveRegexValue(regex, ref content);
     }
 
     private static void RemoveXmlHeader(ref string content)
