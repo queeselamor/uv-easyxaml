@@ -56,6 +56,7 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
 
         svgContent = Regex.Replace(svgContent, @"<!DOCTYPE[^>]+>", "");
         svgContent = Regex.Replace(svgContent, @"<!--[\s\S]*?-->", "");
+        svgContent = Regex.Replace(svgContent, @"<metadata>[^<]*<\/metadata>", "");
 
         return svgContent;
     }
