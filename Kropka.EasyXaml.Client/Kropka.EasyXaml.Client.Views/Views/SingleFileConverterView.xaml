@@ -37,10 +37,14 @@
                 <ColumnDefinition Width="111" />
                 <ColumnDefinition Width="623" />
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0">
-                <svgc:SvgViewbox Width="170"
-                                 Height="170"
-                                 HorizontalAlignment="Left"
+            <Border Grid.Column="0"
+                    Background="{StaticResource DarkGrayBrush}"
+                    BorderBrush="{StaticResource BlackBrush}"
+                    BorderThickness="3">
+                <svgc:SvgViewbox Width="150"
+                                 Height="150"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
                                  Source="{Binding CurrentConverterItem.SourcePath}" />
             </Border>
             <Border Grid.Column="1">
