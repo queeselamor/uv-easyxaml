@@ -12,6 +12,7 @@ using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
+using Kropka.EasyXaml.Client.ViewModels.Records;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model;
 using Prism.Events;
