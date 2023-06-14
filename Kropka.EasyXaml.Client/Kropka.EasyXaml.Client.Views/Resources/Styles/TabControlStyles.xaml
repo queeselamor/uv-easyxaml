@@ -104,6 +104,10 @@
                                 <Setter TargetName="ShadowBorder" Property="Margin" Value="-10,0,0,-10" />
                             </MultiTrigger.Setters>
                         </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="ContentBorder" Property="Background" Value="{StaticResource WhiteBrush}" />
+                            <Setter TargetName="ContentBorder" Property="BorderBrush" Value="{StaticResource DisabledLightGrayBrush}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
