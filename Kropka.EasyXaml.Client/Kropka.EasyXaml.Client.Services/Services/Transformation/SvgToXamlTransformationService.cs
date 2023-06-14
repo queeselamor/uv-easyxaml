@@ -24,12 +24,12 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
     #region Methods
     public async Task<string> TransformSvgToXamlAsync(string sourceFile)
     {
-        var xamlContent = await GetXamlContentAsync(sourceFile);
+        var xamlContent = await GetXamlCanvasContentAsync(sourceFile);
 
         return await Task.Run(() => ClearXamlContent(xamlContent));
     }
 
-    private async Task<string> GetXamlContentAsync(string sourceFile)
+    private async Task<string> GetXamlCanvasContentAsync(string sourceFile)
     {
         try
         {
@@ -55,12 +55,17 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         }
         catch
         {
-            var converter = new FileSvgConverter(new WpfDrawingSettings { IncludeRuntime = false });
-            var obj = ConvertSvgFileToWpfObject(sourceFile, converter);
-            var xamlContent = ConvertWpfObjectToXaml(obj);
-
-            return await Task.Run(() => xamlContent);
+            return await GetXamlDrawingGroupContentAsync(sourceFile);
         }
+    }
+
+    private async Task<string> GetXamlDrawingGroupContentAsync(string sourceFile)
+    {
+        var converter = new FileSvgConverter(new WpfDrawingSettings { IncludeRuntime = false });
+        var obj = ConvertSvgFileToWpfObject(sourceFile, converter);
+        var xamlContent = ConvertWpfObjectToXaml(obj);
+
+        return await Task.Run(() => xamlContent);
     }
 
     private object ConvertSvgFileToWpfObject(string sourceFile, FileSvgConverter converter)
