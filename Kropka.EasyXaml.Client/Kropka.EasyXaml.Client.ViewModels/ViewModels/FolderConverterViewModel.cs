@@ -32,7 +32,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     private bool _showCopyNotification;
     private bool _showSaveNotification;
     private IConverterItemViewModel _selectedConverterItem;
-
+    private bool _isSelectedAll;
     #endregion
 
     #region Constructors
@@ -43,6 +43,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         SaveFilesCommand = new AsyncRelayCommand(SaveFilesAsync);
         PickFolderCommand = new AsyncRelayCommand(PickFolderAsync);
 
+        SelectAllCommand = new RelayCommand(SelectAll);
         CopySelectedContentCommand = new RelayCommand(CopySelectedContent);
         SaveSelectedFileCommand = new AsyncRelayCommand(SaveSelectedFile);
     }
@@ -91,6 +92,12 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         get => _showSaveNotification;
         set => SetProperty(ref _showSaveNotification, value);
     }
+
+    public bool IsSelectedAll
+    {
+        get => _isSelectedAll;
+        set => SetProperty(ref _isSelectedAll, value);
+    }
     #endregion
 
     #region Commands
@@ -98,9 +105,18 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     public IAsyncRelayCommand PickFolderCommand { get; }
     public IRelayCommand CopySelectedContentCommand { get; }
     public IAsyncRelayCommand SaveSelectedFileCommand { get; }
+    public IRelayCommand SelectAllCommand { get; }
     #endregion
 
     #region Methods
+    private void SelectAll()
+    {
+        foreach (var converterItemViewModel in ConverterItems)
+        {
+            converterItemViewModel.IsSelectedForSave = IsSelectedAll;
+        }
+    }
+
     private void SelectConverterItem()
     {
         if (ConverterItems.Count > 0)
@@ -118,6 +134,8 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(true, ContentConstants.ConvertingTitle));
 
         await ConvertFolderAsync(folderPath);
+
+        IsSelectedAll = false;
     }
 
     private void CopySelectedContent()
@@ -201,6 +219,13 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
     private async Task ConvertFolderAsync(string folderPath)
     {
+        if (string.IsNullOrEmpty(folderPath))
+        {
+            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(false, string.Empty));
+
+            return;
+        }
+
         await GetFilePathsAsync(folderPath);
         await ConvertItemsAsync();
 

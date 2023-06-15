@@ -138,9 +138,41 @@
                             BorderBrush="{StaticResource BlackBrush}"
                             BorderThickness="3"
                             CornerRadius="0">
-                        <ScrollViewer Focusable="False">
-                            <StackPanel IsItemsHost="True" />
-                        </ScrollViewer>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="36" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border Width="170"
+                                    Height="36"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Background="{StaticResource WhiteBrush}"
+                                    BorderBrush="Black"
+                                    BorderThickness="0,0,0,3">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Width="18"
+                                              Height="18"
+                                              Margin="9,0,0,0"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                              Command="{Binding SelectAllCommand}"
+                                              IsChecked="{Binding IsSelectedAll, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    <TextBlock Margin="5,0,5,0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               FontFamily="{StaticResource MontserratBold}"
+                                               FontSize="14"
+                                               Text="Select all"
+                                               TextAlignment="Left" />
+                                </StackPanel>
+                            </Border>
+                            <ScrollViewer Grid.Row="1" Focusable="False">
+                                <Grid>
+                                    <StackPanel IsItemsHost="True" />
+                                </Grid>
+                            </ScrollViewer>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
