@@ -81,11 +81,10 @@
                                       Height="18"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Center"
-                                      IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                      IsChecked="{Binding IsSelectedForSave, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                             <TextBlock Grid.Column="1"
                                        MaxWidth="60"
                                        Margin="5,0,5,0"
-                                       Padding="0,0,0,2"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource MontserratRegular}"

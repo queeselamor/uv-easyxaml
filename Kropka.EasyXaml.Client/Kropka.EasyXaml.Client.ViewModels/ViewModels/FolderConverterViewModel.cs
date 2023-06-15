@@ -191,7 +191,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
             return;
         }
 
-        foreach (var converterItemViewModel in ConverterItems.Where(x => x.IsSelected))
+        foreach (var converterItemViewModel in ConverterItems.Where(x => x.IsSelectedForSave))
         {
             var filePath = await _fileService.SaveFileAsync(converterItemViewModel.ResultContent, converterItemViewModel.SourcePath, folderPath);
 

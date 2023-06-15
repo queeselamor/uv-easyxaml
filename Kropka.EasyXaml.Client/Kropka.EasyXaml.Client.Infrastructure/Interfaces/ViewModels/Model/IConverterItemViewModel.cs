@@ -13,6 +13,6 @@ public interface IConverterItemViewModel : IViewModel
     public string ResultPath { get; set; }
     public string ResultContent { get; set; }
     public string AlternativeResultContent { get; set; }
-    public bool IsSelected { get; set; }
+    public bool IsSelectedForSave { get; set; }
     #endregion
 }

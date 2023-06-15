@@ -12,7 +12,7 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     private string _sourceContent;
     private string _resultPath;
     private string _resultContent;
-    private bool _isSelected;
+    private bool _isSelectedForSave;
     private string _sourceFileName;
     private string _alternativeResultContent;
     #endregion
@@ -72,10 +72,10 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
         set => SetProperty(ref _alternativeResultContent, value);
     }
 
-    public bool IsSelected
+    public bool IsSelectedForSave
     {
-        get => _isSelected;
-        set => SetProperty(ref _isSelected, value);
+        get => _isSelectedForSave;
+        set => SetProperty(ref _isSelectedForSave, value);
     }
     #endregion
 

@@ -10,5 +10,6 @@
         <ResourceDictionary Source="Styles/TextBoxStyles.xaml" />
         <ResourceDictionary Source="Styles/NotificationButtonStyles.xaml" />
         <ResourceDictionary Source="Styles/ListBoxStyles.xaml" />
+        <ResourceDictionary Source="Styles/CheckBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
