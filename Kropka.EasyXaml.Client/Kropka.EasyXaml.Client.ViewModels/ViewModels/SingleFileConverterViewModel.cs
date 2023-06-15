@@ -177,17 +177,12 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     private void CopyContent()
     {
-        if (CurrentConverterItem is null)
+        if (string.IsNullOrEmpty(ShowingContent))
         {
             return;
         }
 
-        if (string.IsNullOrEmpty(CurrentConverterItem.ResultContent))
-        {
-            return;
-        }
-
-        Clipboard.SetText(CurrentConverterItem.ResultContent);
+        Clipboard.SetText(ShowingContent);
 
         Task.Run(DisplayCopyNotification);
     }
@@ -203,17 +198,12 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     private async Task SaveFileAsync()
     {
-        if (CurrentConverterItem is null)
+        if (string.IsNullOrEmpty(ShowingContent))
         {
             return;
         }
 
-        if (string.IsNullOrEmpty(CurrentConverterItem.ResultContent))
-        {
-            return;
-        }
-
-        var filePath = await _fileService.SaveFileAsync(CurrentConverterItem.ResultContent, CurrentConverterItem.SourcePath);
+        var filePath = await _fileService.SaveFileAsync(ShowingContent, CurrentConverterItem.SourcePath);
 
         if (filePath != string.Empty)
         {
