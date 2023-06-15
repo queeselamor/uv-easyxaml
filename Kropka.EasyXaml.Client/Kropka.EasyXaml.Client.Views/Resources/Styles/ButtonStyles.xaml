@@ -17,7 +17,7 @@
                         <Border x:Name="ShadowBorder"
                                 Width="{TemplateBinding Width}"
                                 Height="{TemplateBinding Height}"
-                                Margin="0,0,-10,-10"
+                                Margin="0,0,-7,-7"
                                 Background="{StaticResource BlackBrush}"
                                 BorderThickness="0"
                                 Visibility="Collapsed" />
@@ -66,7 +66,7 @@
                         <Border x:Name="ShadowBorder"
                                 Width="{TemplateBinding Width}"
                                 Height="{TemplateBinding Height}"
-                                Margin="0,0,-10,-10"
+                                Margin="0,0,-5,-5"
                                 Background="{StaticResource BlackBrush}"
                                 BorderThickness="0"
                                 Visibility="Collapsed" />
@@ -115,7 +115,7 @@
                         <Border x:Name="ShadowBorder"
                                 Width="{TemplateBinding Width}"
                                 Height="{TemplateBinding Height}"
-                                Margin="0,0,-10,-10"
+                                Margin="0,0,-5,-5"
                                 Background="{StaticResource BlackBrush}"
                                 BorderThickness="0"
                                 Visibility="Collapsed" />

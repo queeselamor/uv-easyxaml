@@ -286,12 +286,11 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
                     var drawingGroupContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, response.DrawingGroupContent);
 
                     converterItemViewModel.AlternativeResultContent = drawingGroupContent;
+                }
 
-                    //TODO: Temp, need to replace
-                    if (!response.IsSuccessConvertToCanvas)
-                    {
-                        converterItemViewModel.ResultContent = drawingGroupContent;
-                    }
+                if (response.IsSuccessConvertToCanvas && response.IsSuccessConvertToDrawingGroup)
+                {
+                    converterItemViewModel.HasTwoContentVariants = true;
                 }
             }
         }

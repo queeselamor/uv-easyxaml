@@ -68,7 +68,7 @@
                                 Grid.Row="0"
                                 Width="296"
                                 Height="50"
-                                Margin="0,0,-10,-10"
+                                Margin="0,0,-7,-7"
                                 Background="{StaticResource BlackBrush}"
                                 Visibility="Collapsed" />
                         <Border x:Name="ContentBorder"
@@ -101,7 +101,7 @@
                                 <Condition Property="TabIndex" Value="0" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.Setters>
-                                <Setter TargetName="ShadowBorder" Property="Margin" Value="-10,0,0,-10" />
+                                <Setter TargetName="ShadowBorder" Property="Margin" Value="-7,0,0,-7" />
                             </MultiTrigger.Setters>
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="False">

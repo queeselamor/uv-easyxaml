@@ -14,5 +14,8 @@ public interface IConverterItemViewModel : IViewModel
     public string ResultContent { get; set; }
     public string AlternativeResultContent { get; set; }
     public bool IsSelectedForSave { get; set; }
+    public bool HasTwoContentVariants { get; set; }
+    public string ShowingContent { get; set; }
+    public bool IsShowingDrawingContent { get; set; }
     #endregion
 }

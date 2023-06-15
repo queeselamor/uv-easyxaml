@@ -147,7 +147,7 @@
                                     Height="36"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
-                                    Background="{StaticResource WhiteBrush}"
+                                    Background="{StaticResource SecondaryBrush}"
                                     BorderBrush="Black"
                                     BorderThickness="0,0,0,3">
                                 <StackPanel Orientation="Horizontal">

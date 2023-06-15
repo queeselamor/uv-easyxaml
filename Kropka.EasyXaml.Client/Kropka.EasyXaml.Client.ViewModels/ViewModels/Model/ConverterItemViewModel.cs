@@ -15,6 +15,9 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     private bool _isSelectedForSave;
     private string _sourceFileName;
     private string _alternativeResultContent;
+    private bool _hasTwoContentVariants;
+    private string _showingContent;
+    private bool _isShowingDrawingContent;
     #endregion
 
     #region Constructors
@@ -76,6 +79,24 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     {
         get => _isSelectedForSave;
         set => SetProperty(ref _isSelectedForSave, value);
+    }
+
+    public bool HasTwoContentVariants
+    {
+        get => _hasTwoContentVariants;
+        set => SetProperty(ref _hasTwoContentVariants, value);
+    }
+
+    public string ShowingContent
+    {
+        get => _showingContent;
+        set => SetProperty(ref _showingContent, value);
+    }
+
+    public bool IsShowingDrawingContent
+    {
+        get => _isShowingDrawingContent;
+        set => SetProperty(ref _isShowingDrawingContent, value);
     }
     #endregion
 

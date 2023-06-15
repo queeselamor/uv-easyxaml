@@ -27,8 +27,6 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     private IConverterItemViewModel _currentConverterItem;
     private bool _showCopyNotification;
     private bool _showSaveNotification;
-    private string _showingContent;
-    private bool _isShowingDrawingContent;
     #endregion
 
     #region Constructors
@@ -66,19 +64,6 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         get => _showSaveNotification;
         set => SetProperty(ref _showSaveNotification, value);
     }
-
-    public string ShowingContent
-    {
-        get => _showingContent;
-        set => SetProperty(ref _showingContent, value);
-    }
-
-    //TODO: Replace to enum and custom control
-    public bool IsShowingDrawingContent
-    {
-        get => _isShowingDrawingContent;
-        set => SetProperty(ref _isShowingDrawingContent, value);
-    }
     #endregion
 
     #region Commands
@@ -91,14 +76,19 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #region Methods
     private void ChangeShowingContent()
     {
-        if (IsShowingDrawingContent)
+        if (CurrentConverterItem is null)
         {
-            ShowingContent = CurrentConverterItem.AlternativeResultContent;
+            return;
+        }
+
+        if (CurrentConverterItem.IsShowingDrawingContent)
+        {
+            CurrentConverterItem.ShowingContent = CurrentConverterItem.AlternativeResultContent;
 
             return;
         }
 
-        ShowingContent = CurrentConverterItem.ResultContent;
+        CurrentConverterItem.ShowingContent = CurrentConverterItem.ResultContent;
     }
 
     private async Task PickFileAsync()
@@ -148,6 +138,11 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
                 var canvasContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, response.CanvasContent);
 
                 CurrentConverterItem.ResultContent = canvasContent;
+                CurrentConverterItem.IsShowingDrawingContent = false;
+            }
+            else
+            {
+                CurrentConverterItem.IsShowingDrawingContent = true;
             }
 
             if (response.IsSuccessConvertToDrawingGroup)
@@ -155,12 +150,15 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
                 var drawingGroupContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, response.DrawingGroupContent);
 
                 CurrentConverterItem.AlternativeResultContent = drawingGroupContent;
+            }
+            else
+            {
+                CurrentConverterItem.IsShowingDrawingContent = false;
+            }
 
-                //TODO: Temp, need to replace
-                if (!response.IsSuccessConvertToCanvas)
-                {
-                    CurrentConverterItem.ResultContent = drawingGroupContent;
-                }
+            if (response.IsSuccessConvertToCanvas && response.IsSuccessConvertToDrawingGroup)
+            {
+                CurrentConverterItem.HasTwoContentVariants = true;
             }
 
             ChangeShowingContent();
@@ -177,12 +175,17 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     private void CopyContent()
     {
-        if (string.IsNullOrEmpty(ShowingContent))
+        if (CurrentConverterItem is null)
         {
             return;
         }
 
-        Clipboard.SetText(ShowingContent);
+        if (string.IsNullOrEmpty(CurrentConverterItem.ShowingContent))
+        {
+            return;
+        }
+
+        Clipboard.SetText(CurrentConverterItem.ShowingContent);
 
         Task.Run(DisplayCopyNotification);
     }
@@ -198,12 +201,17 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     private async Task SaveFileAsync()
     {
-        if (string.IsNullOrEmpty(ShowingContent))
+        if (CurrentConverterItem is null)
         {
             return;
         }
 
-        var filePath = await _fileService.SaveFileAsync(ShowingContent, CurrentConverterItem.SourcePath);
+        if (string.IsNullOrEmpty(CurrentConverterItem.ShowingContent))
+        {
+            return;
+        }
+
+        var filePath = await _fileService.SaveFileAsync(CurrentConverterItem.ShowingContent, CurrentConverterItem.SourcePath);
 
         if (filePath != string.Empty)
         {
