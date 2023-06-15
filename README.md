@@ -1,12 +1,13 @@
 # EasyXAML: SVG to XAML Converter
 
-EasyXAML is a convenient and user-friendly application that allows you to convert SVG images to XAML format with ease. This powerful tool is designed to help developers seamlessly integrate vector images into their XAML-based projects.
+EasyXAML is a convenient and user-friendly application that allows you to convert SVG images to XAML format with ease. This powerful tool is designed to help developers seamlessly integrate vector images into their XAML-based projects. It supports two types of XAML output: Canvas and DrawingGroup.
 
 ## Features
 
 - Convert single SVG files to XAML format
 - Batch conversion of SVG files within a folder
 - Intuitive user interface for smooth user experience
+- Two XAML output types: Canvas and DrawingGroup
 
 ## Single File Mode
 
