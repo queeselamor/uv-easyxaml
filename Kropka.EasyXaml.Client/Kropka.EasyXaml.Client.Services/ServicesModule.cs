@@ -20,5 +20,6 @@ public class ServicesModule : IModule
         containerRegistry.RegisterSingleton<IFileService, FileService>();
         containerRegistry.RegisterSingleton<ISvgToXamlTransformationService, SvgToXamlTransformationService>();
         containerRegistry.RegisterSingleton<IImageTransformationManager, ImageTransformationManager>();
+        containerRegistry.RegisterSingleton<IBusyService, BusyService>();
     }
 }

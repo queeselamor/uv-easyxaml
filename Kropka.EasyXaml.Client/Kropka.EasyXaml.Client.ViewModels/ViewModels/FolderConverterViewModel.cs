@@ -7,16 +7,13 @@ using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
-using Kropka.EasyXaml.Client.Infrastructure.Events;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Models;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
-using Kropka.EasyXaml.Client.ViewModels.Records;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model;
-using Prism.Events;
 using Prism.Regions;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
@@ -27,7 +24,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     private ObservableCollection<IConverterItemViewModel> _converterItems;
     private readonly IFileService _fileService;
     private readonly IImageTransformationManager _imageTransformationManager;
-    private readonly IEventAggregator _eventAggregator;
+    private readonly IBusyService _busyService;
     private string _chosenFolderPath;
     private bool _showCopyNotification;
     private bool _showSaveNotification;
@@ -49,11 +46,11 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         ChangeShowingContentCommand = new RelayCommand(ChangeShowingContent);
     }
 
-    public FolderConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IEventAggregator eventAggregator) : this()
+    public FolderConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IBusyService busyService) : this()
     {
         _fileService = fileService;
         _imageTransformationManager = imageTransformationManager;
-        _eventAggregator = eventAggregator;
+        _busyService = busyService;
     }
     #endregion
 
@@ -150,7 +147,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
         ChosenFolderPath = folderPath;
 
-        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(true, ContentConstants.ConvertingTitle));
+        _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
 
         await ConvertFolderAsync(folderPath);
 
@@ -240,7 +237,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     {
         if (string.IsNullOrEmpty(folderPath))
         {
-            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(false, string.Empty));
+            _busyService.ChangeBusyState(false, string.Empty);
 
             return;
         }
@@ -337,7 +334,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         }
         finally
         {
-            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(false, string.Empty));
+            _busyService.ChangeBusyState(false, string.Empty);
         }
     }
     #endregion
@@ -355,7 +352,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
             return;
         }
 
-        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(true, ContentConstants.ConvertingTitle));
+        _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
 
         await ConvertFolderAsync(folderPath);
     }

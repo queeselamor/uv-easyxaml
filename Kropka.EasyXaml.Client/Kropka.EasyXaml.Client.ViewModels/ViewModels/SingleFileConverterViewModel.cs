@@ -4,16 +4,13 @@ using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
-using Kropka.EasyXaml.Client.Infrastructure.Events;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Models;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
-using Kropka.EasyXaml.Client.ViewModels.Records;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model;
-using Prism.Events;
 using Prism.Regions;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
@@ -23,7 +20,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #region Fields
     private readonly IFileService _fileService;
     private readonly IImageTransformationManager _imageTransformationManager;
-    private readonly IEventAggregator _eventAggregator;
+    private readonly IBusyService _busyService;
     private IConverterItemViewModel _currentConverterItem;
     private bool _showCopyNotification;
     private bool _showSaveNotification;
@@ -38,11 +35,11 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         ChangeShowingContentCommand = new RelayCommand(ChangeShowingContent);
     }
 
-    public SingleFileConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IEventAggregator eventAggregator) : this()
+    public SingleFileConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IBusyService busyService) : this()
     {
         _fileService = fileService;
         _imageTransformationManager = imageTransformationManager;
-        _eventAggregator = eventAggregator;
+        _busyService = busyService;
     }
     #endregion
 
@@ -99,7 +96,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         {
             CreateConverterItem(filePath);
 
-            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(true, ContentConstants.ConvertingTitle));
+            _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
 
             await ConvertAsync();
         }
@@ -169,7 +166,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         }
         finally
         {
-            _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(false, string.Empty));
+            _busyService.ChangeBusyState(false, string.Empty);
         }
     }
 
@@ -239,7 +236,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
             return;
         }
 
-        _eventAggregator.GetEvent<IsBusyChangedEvent>().Publish(new BusyMessage(true, ContentConstants.ConvertingTitle));
+        _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
 
         var filePath = navigationContext.Parameters[NavigationParameterConstants.FilePath] as string;
 
