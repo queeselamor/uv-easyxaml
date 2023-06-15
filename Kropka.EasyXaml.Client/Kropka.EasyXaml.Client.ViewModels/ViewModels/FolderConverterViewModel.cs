@@ -46,6 +46,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         SelectAllCommand = new RelayCommand(SelectAll);
         CopySelectedContentCommand = new RelayCommand(CopySelectedContent);
         SaveSelectedFileCommand = new AsyncRelayCommand(SaveSelectedFile);
+        ChangeShowingContentCommand = new RelayCommand(ChangeShowingContent);
     }
 
     public FolderConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IEventAggregator eventAggregator) : this()
@@ -106,9 +107,27 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     public IRelayCommand CopySelectedContentCommand { get; }
     public IAsyncRelayCommand SaveSelectedFileCommand { get; }
     public IRelayCommand SelectAllCommand { get; }
+    public IRelayCommand ChangeShowingContentCommand { get; }
     #endregion
 
     #region Methods
+    private void ChangeShowingContent()
+    {
+        if (SelectedConverterItem is null)
+        {
+            return;
+        }
+
+        if (SelectedConverterItem.IsShowingDrawingContent)
+        {
+            SelectedConverterItem.ShowingContent = SelectedConverterItem.AlternativeResultContent;
+
+            return;
+        }
+
+        SelectedConverterItem.ShowingContent = SelectedConverterItem.ResultContent;
+    }
+
     private void SelectAll()
     {
         foreach (var converterItemViewModel in ConverterItems)
@@ -279,6 +298,11 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
                     var canvasContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, response.CanvasContent);
 
                     converterItemViewModel.ResultContent = canvasContent;
+                    converterItemViewModel.IsShowingDrawingContent = false;
+                }
+                else
+                {
+                    converterItemViewModel.IsShowingDrawingContent = true;
                 }
 
                 if (response.IsSuccessConvertToDrawingGroup)
@@ -287,11 +311,24 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
                     converterItemViewModel.AlternativeResultContent = drawingGroupContent;
                 }
+                else
+                {
+                    converterItemViewModel.IsShowingDrawingContent = false;
+                }
 
                 if (response.IsSuccessConvertToCanvas && response.IsSuccessConvertToDrawingGroup)
                 {
                     converterItemViewModel.HasTwoContentVariants = true;
                 }
+
+                if (converterItemViewModel.IsShowingDrawingContent)
+                {
+                    converterItemViewModel.ShowingContent = converterItemViewModel.AlternativeResultContent;
+
+                    continue;
+                }
+
+                converterItemViewModel.ShowingContent = converterItemViewModel.ResultContent;
             }
         }
         catch (Exception e)
