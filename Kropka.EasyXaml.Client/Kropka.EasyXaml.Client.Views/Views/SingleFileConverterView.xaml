@@ -62,7 +62,7 @@
                                        FontSize="12"
                                        HorizontalScrollBarVisibility="Auto"
                                        IsReadOnly="True"
-                                       Script="{Binding CurrentConverterItem.ResultContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Script="{Binding ShowingContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                        ShowLineNumbers="True"
                                        SyntaxHighlighting="XML"
                                        VerticalScrollBarVisibility="Auto"
@@ -76,23 +76,37 @@
                 </controls:ScriptEditor>
             </Border>
         </Grid>
-        <StackPanel Grid.Row="2"
-                    Margin="0,28,60,0"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal">
-            <controls:NotificationButton Width="126"
-                                         Height="30"
-                                         Command="{Binding SaveFileCommand}"
-                                         Content="Save"
-                                         ShowNotification="{Binding ShowSaveNotification, UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource SaveButtonStyle}" />
-            <controls:NotificationButton Width="126"
-                                         Height="30"
-                                         Margin="30,0,0,0"
-                                         Command="{Binding CopyContentCommand}"
-                                         Content="Copy"
-                                         ShowNotification="{Binding ShowCopyNotification, UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource CopyButtonStyle}" />
-        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!--  Test button  -->
+            <ToggleButton Grid.Column="0"
+                          Width="150"
+                          Height="30"
+                          Margin="340,28,0,0"
+                          Command="{Binding ChangeShowingContentCommand}"
+                          Content="DrawingGroup"
+                          IsChecked="{Binding IsShowingDrawingContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            <StackPanel Grid.Column="1"
+                        Margin="0,28,60,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <controls:NotificationButton Width="126"
+                                             Height="30"
+                                             Command="{Binding SaveFileCommand}"
+                                             Content="Save"
+                                             ShowNotification="{Binding ShowSaveNotification, UpdateSourceTrigger=PropertyChanged}"
+                                             Style="{StaticResource SaveButtonStyle}" />
+                <controls:NotificationButton Width="126"
+                                             Height="30"
+                                             Margin="30,0,0,0"
+                                             Command="{Binding CopyContentCommand}"
+                                             Content="Copy"
+                                             ShowNotification="{Binding ShowCopyNotification, UpdateSourceTrigger=PropertyChanged}"
+                                             Style="{StaticResource CopyButtonStyle}" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

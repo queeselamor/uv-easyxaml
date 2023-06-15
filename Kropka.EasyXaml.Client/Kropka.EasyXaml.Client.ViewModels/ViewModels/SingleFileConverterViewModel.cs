@@ -27,6 +27,8 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     private IConverterItemViewModel _currentConverterItem;
     private bool _showCopyNotification;
     private bool _showSaveNotification;
+    private string _showingContent;
+    private bool _isShowingDrawingContent;
     #endregion
 
     #region Constructors
@@ -35,6 +37,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         PickFileCommand = new AsyncRelayCommand(PickFileAsync);
         CopyContentCommand = new RelayCommand(CopyContent);
         SaveFileCommand = new AsyncRelayCommand(SaveFileAsync);
+        ChangeShowingContentCommand = new RelayCommand(ChangeShowingContent);
     }
 
     public SingleFileConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IEventAggregator eventAggregator) : this()
@@ -63,15 +66,41 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         get => _showSaveNotification;
         set => SetProperty(ref _showSaveNotification, value);
     }
+
+    public string ShowingContent
+    {
+        get => _showingContent;
+        set => SetProperty(ref _showingContent, value);
+    }
+
+    //TODO: Replace to enum and custom control
+    public bool IsShowingDrawingContent
+    {
+        get => _isShowingDrawingContent;
+        set => SetProperty(ref _isShowingDrawingContent, value);
+    }
     #endregion
 
     #region Commands
     public IAsyncRelayCommand PickFileCommand { get; }
     public IRelayCommand CopyContentCommand { get; }
     public IAsyncRelayCommand SaveFileCommand { get; }
+    public IRelayCommand ChangeShowingContentCommand { get; }
     #endregion
 
     #region Methods
+    private void ChangeShowingContent()
+    {
+        if (IsShowingDrawingContent)
+        {
+            ShowingContent = CurrentConverterItem.AlternativeResultContent;
+
+            return;
+        }
+
+        ShowingContent = CurrentConverterItem.ResultContent;
+    }
+
     private async Task PickFileAsync()
     {
         var filePath = await _fileService.PickFilePathAsync();
@@ -133,6 +162,8 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
                     CurrentConverterItem.ResultContent = drawingGroupContent;
                 }
             }
+
+            ChangeShowingContent();
         }
         catch (Exception ex)
         {
