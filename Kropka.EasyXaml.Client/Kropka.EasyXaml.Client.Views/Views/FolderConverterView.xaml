@@ -39,11 +39,11 @@
                 <ColumnDefinition Width="623" />
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0">
-                <ListView Width="170"
-                          Height="280"
-                          HorizontalAlignment="Left"
-                          ItemsSource="{Binding ConverterItems}"
-                          SelectedItem="{Binding SelectedConverterItem, UpdateSourceTrigger=PropertyChanged}" />
+                <ListBox Width="170"
+                         Height="280"
+                         HorizontalAlignment="Left"
+                         ItemsSource="{Binding ConverterItems}"
+                         SelectedItem="{Binding SelectedConverterItem, UpdateSourceTrigger=PropertyChanged}" />
             </Border>
             <Border Grid.Column="1">
                 <ContentControl Margin="17,0,17,0"

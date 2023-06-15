@@ -9,5 +9,6 @@
         <ResourceDictionary Source="Styles/ScrollBarStyles.xaml" />
         <ResourceDictionary Source="Styles/TextBoxStyles.xaml" />
         <ResourceDictionary Source="Styles/NotificationButtonStyles.xaml" />
+        <ResourceDictionary Source="Styles/ListBoxStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
