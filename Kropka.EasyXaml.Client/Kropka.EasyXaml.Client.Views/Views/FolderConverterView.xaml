@@ -43,7 +43,8 @@
                          Height="280"
                          HorizontalAlignment="Left"
                          ItemsSource="{Binding ConverterItems}"
-                         SelectedItem="{Binding SelectedConverterItem, UpdateSourceTrigger=PropertyChanged}" />
+                         SelectedItem="{Binding SelectedConverterItem, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource FolderListBoxStyle}" />
             </Border>
             <Border Grid.Column="1">
                 <ContentControl Margin="17,0,17,0"
