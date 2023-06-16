@@ -12,5 +12,6 @@
         <ResourceDictionary Source="Styles/ListBoxStyles.xaml" />
         <ResourceDictionary Source="Styles/CheckBox.xaml" />
         <ResourceDictionary Source="Styles/ToggleButtonStyles.xaml" />
+        <ResourceDictionary Source="Styles/ToolTipStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
