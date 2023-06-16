@@ -185,12 +185,12 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
             return;
         }
 
-        if (string.IsNullOrEmpty(SelectedConverterItem.ResultContent))
+        if (string.IsNullOrEmpty(SelectedConverterItem.ShowingContent))
         {
             return;
         }
 
-        Clipboard.SetText(SelectedConverterItem.ResultContent);
+        Clipboard.SetText(SelectedConverterItem.ShowingContent);
 
         Task.Run(DisplayCopyNotification);
     }
@@ -211,12 +211,12 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
             return;
         }
 
-        if (string.IsNullOrEmpty(SelectedConverterItem.ResultContent))
+        if (string.IsNullOrEmpty(SelectedConverterItem.ShowingContent))
         {
             return;
         }
 
-        var filePath = await _fileService.SaveFileAsync(SelectedConverterItem.ResultContent, SelectedConverterItem.SourcePath);
+        var filePath = await _fileService.SaveFileAsync(SelectedConverterItem.ShowingContent, SelectedConverterItem.SourcePath);
 
         if (filePath != string.Empty)
         {
