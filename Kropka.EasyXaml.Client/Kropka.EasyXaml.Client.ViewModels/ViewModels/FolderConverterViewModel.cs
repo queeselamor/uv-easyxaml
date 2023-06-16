@@ -7,6 +7,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
+using Kropka.EasyXaml.Client.Infrastructure.Events;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Models;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
@@ -14,6 +15,7 @@ using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model;
+using Prism.Events;
 using Prism.Regions;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
@@ -25,6 +27,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     private readonly IFileService _fileService;
     private readonly IImageTransformationManager _imageTransformationManager;
     private readonly IBusyService _busyService;
+    private readonly IEventAggregator _eventAggregator;
     private string _chosenFolderPath;
     private bool _showCopyNotification;
     private bool _showSaveNotification;
@@ -49,11 +52,15 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         CanUpdateStates = true;
     }
 
-    public FolderConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IBusyService busyService) : this()
+    public FolderConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, 
+        IBusyService busyService, IEventAggregator eventAggregator) : this()
     {
         _fileService = fileService;
         _imageTransformationManager = imageTransformationManager;
         _busyService = busyService;
+        _eventAggregator = eventAggregator;
+
+        RegisterEvents();
     }
     #endregion
 
@@ -119,6 +126,29 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     #endregion
 
     #region Methods
+    private void RegisterEvents()
+    {
+        _eventAggregator.GetEvent<FolderDroppedFolderModeEvent>().Subscribe(OnFolderDropped);
+    }
+
+    private async void OnFolderDropped(string folderPath)
+    {
+        if (string.IsNullOrEmpty(folderPath))
+        {
+            return;
+        }
+
+        var isFolder = await _fileService.CheckIsFolder(folderPath);
+
+        if (!isFolder) return;
+
+        _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
+
+        ChosenFolderPath = folderPath;
+
+        await ConvertFolderAsync(folderPath);
+    }
+
     private void ChangeShowingContent()
     {
         if (SelectedConverterItem is null)

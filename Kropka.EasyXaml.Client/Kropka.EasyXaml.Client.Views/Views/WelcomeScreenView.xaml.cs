@@ -8,15 +8,20 @@ namespace Kropka.EasyXaml.Client.Views.Views;
 
 public partial class WelcomeScreenView : IWelcomeScreenView
 {
+    #region Fields
     private readonly IEventAggregator _eventAggregator;
+    #endregion
 
+    #region Constructors
     public WelcomeScreenView(IEventAggregator eventAggregator)
     {
         _eventAggregator = eventAggregator;
 
         InitializeComponent();
     }
+    #endregion
 
+    #region Methods
     private void OnFileDrop(object sender, DragEventArgs e)
     {
         var files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -38,4 +43,5 @@ public partial class WelcomeScreenView : IWelcomeScreenView
 
         _eventAggregator.GetEvent<FolderDroppedEvent>().Publish(folderPath);
     }
+    #endregion
 }

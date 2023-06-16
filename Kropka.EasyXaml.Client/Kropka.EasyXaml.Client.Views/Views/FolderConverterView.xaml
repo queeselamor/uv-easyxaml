@@ -17,7 +17,9 @@
     <Grid>
         <Grid Margin="0,83,0,0"
               VerticalAlignment="Top"
-              Background="{StaticResource WhiteBrush}">
+              AllowDrop="True"
+              Background="{StaticResource WhiteBrush}"
+              Drop="OnFolderDrop">
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Setter Property="Visibility" Value="Hidden" />

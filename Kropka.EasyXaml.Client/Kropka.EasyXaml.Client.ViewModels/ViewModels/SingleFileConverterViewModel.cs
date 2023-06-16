@@ -4,6 +4,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
+using Kropka.EasyXaml.Client.Infrastructure.Events;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Models;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
@@ -11,6 +12,7 @@ using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model;
+using Prism.Events;
 using Prism.Regions;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
@@ -21,6 +23,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     private readonly IFileService _fileService;
     private readonly IImageTransformationManager _imageTransformationManager;
     private readonly IBusyService _busyService;
+    private readonly IEventAggregator _eventAggregator;
     private IConverterItemViewModel _currentConverterItem;
     private bool _showCopyNotification;
     private bool _showSaveNotification;
@@ -35,11 +38,15 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         ChangeShowingContentCommand = new RelayCommand(ChangeShowingContent);
     }
 
-    public SingleFileConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IBusyService busyService) : this()
+    public SingleFileConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, 
+        IBusyService busyService, IEventAggregator eventAggregator) : this()
     {
         _fileService = fileService;
         _imageTransformationManager = imageTransformationManager;
         _busyService = busyService;
+        _eventAggregator = eventAggregator;
+
+        RegisterEvents();
     }
     #endregion
 
@@ -73,6 +80,27 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
     #endregion
 
     #region Methods
+    private void RegisterEvents()
+    {
+        _eventAggregator.GetEvent<FileDroppedSingleModeEvent>().Subscribe(OnFileDropped);
+    }
+
+    private async void OnFileDropped(string filePath)
+    {
+        if (string.IsNullOrEmpty(filePath))
+        {
+            return;
+        }
+
+        var isSvg = await _fileService.CheckFileExtension(filePath, ExtensionFilterConstants.SvgExtensionFilter);
+
+        if (!isSvg) return;
+
+        CreateConverterItem(filePath);
+
+        await ConvertAsync();
+    }
+
     private void ChangeShowingContent()
     {
         if (CurrentConverterItem is null)
