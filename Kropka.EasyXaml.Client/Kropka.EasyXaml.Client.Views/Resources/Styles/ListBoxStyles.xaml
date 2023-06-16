@@ -148,7 +148,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Background="{StaticResource SecondaryBrush}"
-                                    BorderBrush="Black"
+                                    BorderBrush="{StaticResource BlackBrush}"
                                     BorderThickness="0,0,0,3">
                                 <StackPanel Orientation="Horizontal">
                                     <CheckBox Width="18"

@@ -95,7 +95,9 @@
                     <ColumnDefinition Width="111" />
                     <ColumnDefinition Width="623" />
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0">
+                <Border Grid.Column="0"
+                        AllowDrop="True"
+                        Drop="OnFolderDrop">
                     <ListBox Width="170"
                              Height="280"
                              HorizontalAlignment="Left"
