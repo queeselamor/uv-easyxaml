@@ -25,12 +25,15 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Style>
-            <Button Width="282"
-                    Height="50"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Command="{Binding PickFileCommand}"
-                    Content="Choose file" />
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ContentControl Margin="0,0,0,71" Style="{StaticResource ScreenIconFileModeStyle}" />
+                <Button Width="282"
+                        Height="50"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Command="{Binding PickFileCommand}"
+                        Content="Choose file" />
+            </StackPanel>
         </Grid>
         <Grid Width="1024" HorizontalAlignment="Center">
             <Grid.Style>

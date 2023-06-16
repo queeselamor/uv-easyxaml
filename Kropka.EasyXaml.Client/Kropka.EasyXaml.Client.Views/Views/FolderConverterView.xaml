@@ -26,12 +26,15 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Style>
-            <Button Width="282"
-                    Height="50"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Command="{Binding PickFolderCommand}"
-                    Content="Choose folder" />
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ContentControl Margin="0,0,0,71" Style="{StaticResource ScreenIconFolderModeStyle}" />
+                <Button Width="282"
+                        Height="50"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Command="{Binding PickFolderCommand}"
+                        Content="Choose folder" />
+            </StackPanel>
         </Grid>
         <Grid Width="1024" HorizontalAlignment="Center">
             <Grid.Style>
