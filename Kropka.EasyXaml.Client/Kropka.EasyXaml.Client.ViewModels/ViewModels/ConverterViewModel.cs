@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Kropka.EasyXaml.Client.Infrastructure.Constants;
+﻿using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Extensions;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Views;

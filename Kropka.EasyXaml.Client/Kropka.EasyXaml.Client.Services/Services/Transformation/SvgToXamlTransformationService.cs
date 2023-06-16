@@ -98,6 +98,8 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
             var obj = ConvertSvgFileToWpfObject(sourceFile, converter);
             var xamlContent = ConvertWpfObjectToXaml(obj);
 
+            File.Delete(converter.XamlFile);
+
             return await Task.Run(() => xamlContent);
         }
         catch
