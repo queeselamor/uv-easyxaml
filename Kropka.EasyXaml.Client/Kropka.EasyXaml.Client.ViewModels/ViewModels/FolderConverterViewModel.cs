@@ -420,6 +420,8 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
         _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
 
+        ChosenFolderPath = folderPath;
+
         await ConvertFolderAsync(folderPath);
     }
 

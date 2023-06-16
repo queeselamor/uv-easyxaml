@@ -13,6 +13,6 @@ public class ContentConstants
     public const string ConvertingTitle = "Converting...";
     public const string SavingTitle = "Saving...";
     public const string CanvasConvertWarning = "The file couldn't be converted to Canvas format. DrawingGroup accessible only.";
-    public const string FolderIsEmptyError = "No *.svg files found in the selected folder..";
+    public const string FolderIsEmptyError = "No *.svg files found in the selected folder.";
     #endregion
 }

@@ -60,8 +60,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Command="{Binding PickFolderCommand}"
-                        Content="Choose folder"
-                        IsEnabled="False" />
+                        Content="Choose folder"/>
             </TabItem>
         </TabControl>
     </Grid>
