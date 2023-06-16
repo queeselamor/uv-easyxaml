@@ -291,17 +291,34 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
             return;
         }
 
-        await GetFilePathsAsync(folderPath);
+        var filesCount = await GetFilePathsAsync(folderPath);
+
+        if (filesCount == 0)
+        {
+            _busyService.ChangeBusyState(false, string.Empty);
+
+            throw new Exception("No *.svg files found in the selected folder.");
+        }
+
         await ConvertItemsAsync();
 
         SelectConverterItem();
     }
 
-    private async Task GetFilePathsAsync(string folderPath)
+    private async Task<int> GetFilePathsAsync(string folderPath)
     {
         var filePaths = await _fileService.GetFilePathsAsync(folderPath);
 
-        CreateConverterItems(filePaths);
+        var paths = filePaths.ToList();
+
+        if (!paths.Any())
+        {
+            return 0;
+        }
+
+        CreateConverterItems(paths);
+
+        return paths.Count;
     }
 
     private async void CreateConverterItems(IEnumerable<string> filePaths)

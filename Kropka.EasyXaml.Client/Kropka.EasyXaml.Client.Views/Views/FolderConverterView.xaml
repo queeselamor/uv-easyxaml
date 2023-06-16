@@ -14,7 +14,9 @@
     <UserControl.Resources>
         <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
     </UserControl.Resources>
-    <Grid Width="1024" HorizontalAlignment="Center">
+    <Grid Width="1024"
+          HorizontalAlignment="Center"
+          Visibility="Hidden">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="308" />
