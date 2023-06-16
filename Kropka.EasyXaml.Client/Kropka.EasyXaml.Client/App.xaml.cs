@@ -11,6 +11,8 @@ using Kropka.EasyXaml.Client.Abstracts;
 using Kropka.EasyXaml.Client.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Views;
 using Prism.Services.Dialogs;
 
 namespace Kropka.EasyXaml.Client;

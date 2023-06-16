@@ -1,7 +1,8 @@
 ﻿using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
-using Kropka.EasyXaml.Client.Views;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Views;
 using Prism.Ioc;
 
 namespace Kropka.EasyXaml.Client.ViewModels;
