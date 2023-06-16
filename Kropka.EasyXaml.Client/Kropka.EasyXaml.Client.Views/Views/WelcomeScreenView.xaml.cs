@@ -27,4 +27,15 @@ public partial class WelcomeScreenView : IWelcomeScreenView
 
         _eventAggregator.GetEvent<FileDroppedEvent>().Publish(filePath);
     }
+
+    private void OnFolderDrop(object sender, DragEventArgs e)
+    {
+        var folders = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+        if (folders == null) return;
+
+        var folderPath = Path.GetFullPath(folders[0]);
+
+        _eventAggregator.GetEvent<FolderDroppedEvent>().Publish(folderPath);
+    }
 }

@@ -92,5 +92,10 @@ public class FileService : IFileService
 
         return Task.FromResult(extension.ToLower() == fileExtension);
     }
+
+    public Task<bool> CheckIsFolder(string folderPath)
+    {
+        return Task.FromResult(Directory.Exists(folderPath));
+    }
     #endregion
 }

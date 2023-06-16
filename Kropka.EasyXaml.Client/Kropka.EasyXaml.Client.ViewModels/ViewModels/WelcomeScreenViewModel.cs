@@ -58,6 +58,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
     private void RegisterEvents()
     {
         _eventAggregator.GetEvent<FileDroppedEvent>().Subscribe(OnFileDropped);
+        _eventAggregator.GetEvent<FolderDroppedEvent>().Subscribe(OnFolderDropped);
     }
 
     private async void OnFileDropped(string filePath)
@@ -72,6 +73,21 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
         if (isSvg)
         {
             NavigateToFileMode(filePath);
+        }
+    }
+
+    private async void OnFolderDropped(string folderPath)
+    {
+        if (string.IsNullOrEmpty(folderPath))
+        {
+            return;
+        }
+
+        var isFolder = await _fileService.CheckIsFolder(folderPath);
+
+        if (isFolder)
+        {
+            NavigateToFolderMode(folderPath);
         }
     }
 

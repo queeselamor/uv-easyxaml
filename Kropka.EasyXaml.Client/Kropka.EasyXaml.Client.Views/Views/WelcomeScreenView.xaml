@@ -48,7 +48,7 @@
                      Drop="OnFileDrop"
                      Header="Single file"
                      TabIndex="0">
-                <Button Width="282"
+                <Button Width="300"
                         Height="50"
                         Margin="0,46,0,40"
                         HorizontalAlignment="Center"
@@ -56,14 +56,17 @@
                         Command="{Binding PickFileCommand}"
                         Content="Choose file or drag it here" />
             </TabItem>
-            <TabItem Header="Folder" TabIndex="1">
-                <Button Width="282"
+            <TabItem AllowDrop="True"
+                     Drop="OnFolderDrop"
+                     Header="Folder"
+                     TabIndex="1">
+                <Button Width="300"
                         Height="50"
                         Margin="0,46,0,40"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Command="{Binding PickFolderCommand}"
-                        Content="Choose folder" />
+                        Content="Choose folder or drag it here" />
             </TabItem>
         </TabControl>
     </Grid>
