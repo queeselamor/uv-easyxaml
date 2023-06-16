@@ -34,6 +34,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     private bool _showSaveAllNotification;
     private IConverterItemViewModel _selectedConverterItem;
     private bool _isSelectedAll;
+    private string _previousFolderPath = string.Empty;
     #endregion
 
     #region Constructors
@@ -133,6 +134,8 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
     private async void OnFolderDropped(string folderPath)
     {
+        _previousFolderPath = ChosenFolderPath;
+
         if (string.IsNullOrEmpty(folderPath))
         {
             return;
@@ -142,11 +145,26 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
         if (!isFolder) return;
 
+        if (CheckCurrentFolderPath(folderPath))
+        {
+            return;
+        }
+
         _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
 
         ChosenFolderPath = folderPath;
 
         await ConvertFolderAsync(folderPath);
+    }
+
+    private bool CheckCurrentFolderPath(string folderPath)
+    {
+        if (ChosenFolderPath is null)
+        {
+            return false;
+        }
+
+        return ChosenFolderPath == folderPath;
     }
 
     private void ChangeShowingContent()
@@ -197,7 +215,14 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
     private async Task PickFolderAsync()
     {
+        _previousFolderPath = ChosenFolderPath;
+
         var folderPath = await _fileService.PickFolderAsync();
+
+        if (CheckCurrentFolderPath(folderPath))
+        {
+            return;
+        }
 
         ChosenFolderPath = folderPath;
 
@@ -327,6 +352,8 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         {
             _busyService.ChangeBusyState(false, string.Empty);
 
+            ChosenFolderPath = _previousFolderPath;
+
             throw new Exception(ContentConstants.FolderIsEmptyError);
         }
 
@@ -449,6 +476,13 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         }
 
         _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
+
+        _previousFolderPath = ChosenFolderPath;
+
+        if (CheckCurrentFolderPath(folderPath))
+        {
+            return;
+        }
 
         ChosenFolderPath = folderPath;
 

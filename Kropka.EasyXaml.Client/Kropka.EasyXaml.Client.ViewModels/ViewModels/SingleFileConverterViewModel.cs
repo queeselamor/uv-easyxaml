@@ -96,9 +96,24 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
         if (!isSvg) return;
 
+        if (CheckCurrentFilePath(filePath))
+        {
+            return;
+        }
+
         CreateConverterItem(filePath);
 
         await ConvertAsync();
+    }
+
+    private bool CheckCurrentFilePath(string filePath)
+    {
+        if (CurrentConverterItem is null)
+        {
+            return false;
+        }
+
+        return CurrentConverterItem.SourcePath == filePath;
     }
 
     private void ChangeShowingContent()
@@ -128,6 +143,11 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
         if (filePath != string.Empty)
         {
+            if (CheckCurrentFilePath(filePath))
+            {
+                return;
+            }
+
             CreateConverterItem(filePath);
 
             _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
@@ -273,6 +293,11 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         _busyService.ChangeBusyState(true, ContentConstants.ConvertingTitle);
 
         var filePath = navigationContext.Parameters[NavigationParameterConstants.FilePath] as string;
+
+        if (CheckCurrentFilePath(filePath))
+        {
+            return;
+        }
 
         CreateConverterItem(filePath);
 
