@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System.IO;
+using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Base;
@@ -11,6 +12,8 @@ using Kropka.EasyXaml.Client.Infrastructure.Managers;
 using Prism.Services.Dialogs;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Helpers;
+using Prism.Events;
+using Kropka.EasyXaml.Client.Infrastructure.Events;
 
 namespace Kropka.EasyXaml.Client.ViewModels.ViewModels;
 
@@ -21,6 +24,7 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
     private readonly IRegionManager _regionManager;
     private readonly IDialogService _dialogService;
     private readonly IImageTransformationManager _imageTransformationManager;
+    private readonly IEventAggregator _eventAggregator;
     #endregion
 
     #region Constructors
@@ -30,12 +34,16 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
         PickFolderCommand = new AsyncRelayCommand(PickFolderAsync);
     }
 
-    public WelcomeScreenViewModel(IFileService fileService, IRegionManager regionManager, IDialogService dialogService, IImageTransformationManager imageTransformationManager) : this()
+    public WelcomeScreenViewModel(IFileService fileService, IRegionManager regionManager, IDialogService dialogService, 
+        IImageTransformationManager imageTransformationManager, IEventAggregator eventAggregator) : this()
     {
         _fileService = fileService;
         _regionManager = regionManager;
         _dialogService = dialogService;
         _imageTransformationManager = imageTransformationManager;
+        _eventAggregator = eventAggregator;
+
+        RegisterEvents();
 
         Task.Run(CheckConvertersTransformationFiles);
     }
@@ -47,6 +55,25 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
     #endregion
 
     #region Methods
+    private void RegisterEvents()
+    {
+        _eventAggregator.GetEvent<FileDroppedEvent>().Subscribe(OnFileDropped);
+    }
+
+    private async void OnFileDropped(string filePath)
+    {
+        if (string.IsNullOrEmpty(filePath))
+        {
+            return;
+        }
+
+        var isSvg = await _fileService.CheckFileExtension(filePath, ExtensionFilterConstants.SvgExtensionFilter);
+
+        if (isSvg)
+        {
+            NavigateToFileMode(filePath);
+        }
+    }
 
     private async Task CheckConvertersTransformationFiles()
     {
@@ -83,17 +110,22 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
 
         if (filePath != string.Empty)
         {
-            _regionManager.RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IConverterView));
-
-            var parameters = new NavigationParameters
-            {
-                {
-                    NavigationParameterConstants.FilePath, filePath
-                }
-            };
-
-            RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.ConverterView, parameters);
+            NavigateToFileMode(filePath);
         }
+    }
+
+    private void NavigateToFileMode(string filePath)
+    {
+        _regionManager.RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IConverterView));
+
+        var parameters = new NavigationParameters
+        {
+            {
+                NavigationParameterConstants.FilePath, filePath
+            }
+        };
+
+        RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.ConverterView, parameters);
     }
 
     private async Task PickFolderAsync()
@@ -102,17 +134,22 @@ public class WelcomeScreenViewModel : BaseViewModel, IWelcomeScreenViewModel
 
         if (folderPath != string.Empty)
         {
-            _regionManager.RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IConverterView));
-
-            var parameters = new NavigationParameters
-            {
-                {
-                    NavigationParameterConstants.FolderPath, folderPath
-                }
-            };
-
-            RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.ConverterView, parameters);
+            NavigateToFolderMode(folderPath);
         }
+    }
+
+    private void NavigateToFolderMode(string folderPath)
+    {
+        _regionManager.RegisterViewWithRegion(RegionNameConstants.MainRegion, typeof(IConverterView));
+
+        var parameters = new NavigationParameters
+        {
+            {
+                NavigationParameterConstants.FolderPath, folderPath
+            }
+        };
+
+        RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.ConverterView, parameters);
     }
     #endregion
 }

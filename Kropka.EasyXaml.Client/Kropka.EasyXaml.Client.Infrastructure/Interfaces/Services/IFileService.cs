@@ -9,5 +9,6 @@ public interface IFileService : IService
     Task<string> PickFolderAsync();
     Task<IEnumerable<string>> GetFilePathsAsync(string folderPath);
     Task<string> GetFileNameAsync(string folderPath);
+    Task<bool> CheckFileExtension(string filePath, string fileExtension);
     #endregion
 }

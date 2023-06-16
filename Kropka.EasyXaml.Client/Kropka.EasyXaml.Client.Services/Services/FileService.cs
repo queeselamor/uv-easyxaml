@@ -85,5 +85,12 @@ public class FileService : IFileService
     {
         return await Task.FromResult(!string.IsNullOrEmpty(folderPath) ? Path.GetFileNameWithoutExtension(folderPath) : string.Empty);
     }
+
+    public Task<bool> CheckFileExtension(string filePath, string fileExtension)
+    {
+        var extension = Path.GetExtension(filePath);
+
+        return Task.FromResult(extension.ToLower() == fileExtension);
+    }
     #endregion
 }

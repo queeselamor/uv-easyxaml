@@ -16,7 +16,6 @@
     <Folder Include="Interfaces\Views\Dialog\" />
     <Folder Include="Managers\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Events\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
 
