@@ -11,6 +11,7 @@ public class ContentConstants
     public const string NoButtonTitle = "No";
     public const string LoadingDefaultTitle = "Loading...";
     public const string ConvertingTitle = "Converting...";
+    public const string SavingTitle = "Saving...";
     public const string CanvasConvertWarning = "The file couldn't be converted to Canvas format. DrawingGroup accessible only.";
     #endregion
 }

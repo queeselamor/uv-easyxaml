@@ -28,6 +28,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     private string _chosenFolderPath;
     private bool _showCopyNotification;
     private bool _showSaveNotification;
+    private bool _showSaveAllNotification;
     private IConverterItemViewModel _selectedConverterItem;
     private bool _isSelectedAll;
     #endregion
@@ -37,7 +38,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
     {
         ConverterItems = new ObservableCollection<IConverterItemViewModel>();
 
-        SaveFilesCommand = new AsyncRelayCommand(SaveFilesAsync);
+        SaveFilesCommand = new AsyncRelayCommand(SaveFilesAsync, CanSaveFiles);
         PickFolderCommand = new AsyncRelayCommand(PickFolderAsync);
 
         SelectAllCommand = new RelayCommand(SelectAll);
@@ -93,6 +94,12 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         set => SetProperty(ref _showSaveNotification, value);
     }
 
+    public bool ShowSaveAllNotification
+    {
+        get => _showSaveAllNotification;
+        set => SetProperty(ref _showSaveAllNotification, value);
+    }
+
     public bool IsSelectedAll
     {
         get => _isSelectedAll;
@@ -139,11 +146,15 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         }
 
         CanUpdateStates = true;
+
+        SaveFilesCommand.NotifyCanExecuteChanged();
     }
 
     public void UpdateStates()
     {
         IsSelectedAll = ConverterItems.All(x => x.IsSelectedForSave);
+
+        SaveFilesCommand.NotifyCanExecuteChanged();
     }
 
     private void SelectConverterItem()
@@ -238,12 +249,37 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
             return;
         }
 
-        foreach (var converterItemViewModel in ConverterItems.Where(x => x.IsSelectedForSave))
+        try
         {
-            var filePath = await _fileService.SaveFileAsync(converterItemViewModel.ResultContent, converterItemViewModel.SourcePath, folderPath);
+            _busyService.ChangeBusyState(true, ContentConstants.SavingTitle);
 
-            converterItemViewModel.ResultPath = filePath;
+            foreach (var converterItemViewModel in ConverterItems.Where(x => x.IsSelectedForSave))
+            {
+                var filePath = await _fileService.SaveFileAsync(converterItemViewModel.ShowingContent, converterItemViewModel.SourcePath, folderPath);
+
+                converterItemViewModel.ResultPath = filePath;
+            }
+
+            Task.Run(DisplaySaveAllNotification);
         }
+        finally
+        {
+            _busyService.ChangeBusyState(false, string.Empty);
+        }
+    }
+
+    private bool CanSaveFiles()
+    {
+        return ConverterItems.Any(x => x.IsSelectedForSave);
+    }
+
+    private async Task DisplaySaveAllNotification()
+    {
+        ShowSaveAllNotification = true;
+
+        await Task.Delay(2000);
+
+        ShowSaveAllNotification = false;
     }
 
     private async Task ConvertFolderAsync(string folderPath)
