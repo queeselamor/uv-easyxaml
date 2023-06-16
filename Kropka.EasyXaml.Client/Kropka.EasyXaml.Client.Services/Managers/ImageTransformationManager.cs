@@ -22,6 +22,15 @@ public class ImageTransformationManager : IImageTransformationManager
     #endregion
 
     #region Methods
+    public async Task<bool> CheckTransformationFileExistsAsync(ConverterType converterType)
+    {
+        return converterType switch
+        {
+            ConverterType.SvgToXaml => await _svgToXamlTransformationService.CheckTransformationFileExistsAsync(),
+            _ => throw new ArgumentOutOfRangeException(nameof(converterType), converterType, MessageConstants.ConverterNotFoundErrorMessage)
+        };
+    }
+
     public async Task<IConverterResponse> TransformAsync(ConverterType converterType, string filePath)
     {
         return converterType switch

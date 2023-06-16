@@ -24,6 +24,19 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
     #endregion
 
     #region Methods
+    public async Task<bool> CheckTransformationFileExistsAsync()
+    {
+        var isXsltExist = File.Exists(TransformationFilePathConstants.SvgToXamlTransformationFilePath);
+        var isColorsExist = File.Exists(TransformationFilePathConstants.SvgToXamlColorsFilePath);
+
+        if (isXsltExist && isColorsExist)
+        {
+            return await Task.Run(() => true);
+        }
+
+        return await Task.Run(() => false);
+    }
+
     public async Task<IConverterResponse> TransformSvgToXamlAsync(string sourceFile)
     {
         var response = new XamlConverterResponse();
