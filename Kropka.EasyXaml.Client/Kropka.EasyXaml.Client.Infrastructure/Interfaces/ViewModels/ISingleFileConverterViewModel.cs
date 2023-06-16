@@ -3,6 +3,6 @@ using Prism.Regions;
 
 namespace Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 
-public interface ISingleFileConverterViewModel : IViewModel, INavigationAware
+public interface ISingleFileConverterViewModel : IViewModel, INavigationAware, IConverterItemOwner
 {
 }

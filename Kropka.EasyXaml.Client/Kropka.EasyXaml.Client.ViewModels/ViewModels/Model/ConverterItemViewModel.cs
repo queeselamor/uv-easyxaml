@@ -1,4 +1,5 @@
 ﻿using Kropka.EasyXaml.Client.Infrastructure.Enums;
+using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model.Base;
 
@@ -21,18 +22,21 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     #endregion
 
     #region Constructors
-    public ConverterItemViewModel(ConverterType converterType, string sourcePath)
+    public ConverterItemViewModel(IConverterItemOwner owner, ConverterType converterType, string sourcePath)
     {
+        Owner = owner;
         ConverterType = converterType;
         SourcePath = sourcePath;
 
         SourceContent = string.Empty;
         ResultContent = string.Empty;
         AlternativeResultContent = string.Empty;
-    } 
+    }
     #endregion
 
     #region Properties
+    public IConverterItemOwner Owner { get; }
+
     public ConverterType ConverterType
     {
         get => _converterType;
@@ -78,7 +82,15 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     public bool IsSelectedForSave
     {
         get => _isSelectedForSave;
-        set => SetProperty(ref _isSelectedForSave, value);
+        set
+        {
+            if (!SetProperty(ref _isSelectedForSave, value)) return;
+
+            if (Owner.CanUpdateStates)
+            {
+                Owner.UpdateStates();
+            }
+        }
     }
 
     public bool HasTwoContentVariants

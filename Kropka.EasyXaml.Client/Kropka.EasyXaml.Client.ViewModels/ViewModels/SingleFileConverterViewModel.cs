@@ -61,6 +61,8 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         get => _showSaveNotification;
         set => SetProperty(ref _showSaveNotification, value);
     }
+
+    public bool CanUpdateStates { get; set; }
     #endregion
 
     #region Commands
@@ -88,6 +90,10 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
         CurrentConverterItem.ShowingContent = CurrentConverterItem.ResultContent;
     }
 
+    public void UpdateStates()
+    {
+    }
+
     private async Task PickFileAsync()
     {
         var filePath = await _fileService.PickFilePathAsync();
@@ -104,7 +110,7 @@ public class SingleFileConverterViewModel : BaseViewModel, ISingleFileConverterV
 
     private async void CreateConverterItem(string filePath)
     {
-        var converterItem = new ConverterItemViewModel(ConverterType.SvgToXaml, filePath)
+        var converterItem = new ConverterItemViewModel(this, ConverterType.SvgToXaml, filePath)
         {
             SourceFileName = await _fileService.GetFileNameAsync(filePath)
         };

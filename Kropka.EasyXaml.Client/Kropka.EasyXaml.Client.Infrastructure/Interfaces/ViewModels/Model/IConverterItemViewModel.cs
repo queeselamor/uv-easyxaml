@@ -6,6 +6,7 @@ namespace Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 public interface IConverterItemViewModel : IViewModel
 {
     #region Properties
+    public IConverterItemOwner Owner { get; }
     public ConverterType ConverterType { get; set; }
     public string SourceFileName { get; set; }
     public string SourcePath { get; set; }

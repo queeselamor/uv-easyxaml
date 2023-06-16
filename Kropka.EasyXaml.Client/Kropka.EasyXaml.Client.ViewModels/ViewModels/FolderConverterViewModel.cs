@@ -44,6 +44,8 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         CopySelectedContentCommand = new RelayCommand(CopySelectedContent);
         SaveSelectedFileCommand = new AsyncRelayCommand(SaveSelectedFile);
         ChangeShowingContentCommand = new RelayCommand(ChangeShowingContent);
+
+        CanUpdateStates = true;
     }
 
     public FolderConverterViewModel(IFileService fileService, IImageTransformationManager imageTransformationManager, IBusyService busyService) : this()
@@ -96,6 +98,8 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         get => _isSelectedAll;
         set => SetProperty(ref _isSelectedAll, value);
     }
+
+    public bool CanUpdateStates { get; set; }
     #endregion
 
     #region Commands
@@ -127,10 +131,19 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
     private void SelectAll()
     {
+        CanUpdateStates = false;
+
         foreach (var converterItemViewModel in ConverterItems)
         {
             converterItemViewModel.IsSelectedForSave = IsSelectedAll;
         }
+
+        CanUpdateStates = true;
+    }
+
+    public void UpdateStates()
+    {
+        IsSelectedAll = ConverterItems.All(x => x.IsSelectedForSave);
     }
 
     private void SelectConverterItem()
@@ -261,7 +274,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
 
         foreach (var filePath in filePaths)
         {
-            var converterItem = new ConverterItemViewModel(ConverterType.SvgToXaml, filePath)
+            var converterItem = new ConverterItemViewModel(this, ConverterType.SvgToXaml, filePath)
             {
                 SourceFileName = await _fileService.GetFileNameAsync(filePath)
             };
