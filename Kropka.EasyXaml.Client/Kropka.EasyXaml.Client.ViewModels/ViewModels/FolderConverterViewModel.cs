@@ -297,7 +297,7 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
         {
             _busyService.ChangeBusyState(false, string.Empty);
 
-            throw new Exception("No *.svg files found in the selected folder.");
+            throw new Exception(ContentConstants.FolderIsEmptyError);
         }
 
         await ConvertItemsAsync();
