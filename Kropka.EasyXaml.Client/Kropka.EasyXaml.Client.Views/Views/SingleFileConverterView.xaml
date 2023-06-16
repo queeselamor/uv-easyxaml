@@ -14,7 +14,9 @@
         <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
-        <Grid HorizontalAlignment="Center">
+        <Grid Margin="0,83,0,0"
+              VerticalAlignment="Top"
+              Background="{StaticResource WhiteBrush}">
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Setter Property="Visibility" Value="Hidden" />
@@ -26,14 +28,29 @@
                 </Style>
             </Grid.Style>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ContentControl Margin="0,0,0,71" Style="{StaticResource ScreenIconFileModeStyle}" />
-                <Button Width="282"
+                <Button Width="176"
                         Height="50"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         Command="{Binding PickFileCommand}"
                         Content="Choose file" />
+                <TextBlock Margin="0,21,0,21"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="or" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="drag it here" />
             </StackPanel>
+            <Rectangle Width="592"
+                       Height="300"
+                       Margin="-4,0,0,0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       SnapsToDevicePixels="True"
+                       Stroke="{StaticResource BlackBrush}"
+                       StrokeDashArray="4 4"
+                       StrokeThickness="3" />
         </Grid>
         <Grid Width="1024" HorizontalAlignment="Center">
             <Grid.Style>
