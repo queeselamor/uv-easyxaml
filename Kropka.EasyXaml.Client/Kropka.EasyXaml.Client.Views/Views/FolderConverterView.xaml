@@ -14,124 +14,152 @@
     <UserControl.Resources>
         <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
     </UserControl.Resources>
-    <Grid Width="1024"
-          HorizontalAlignment="Center"
-          Visibility="Hidden">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="308" />
-            <RowDefinition Height="28" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0"
-                    Margin="0,21,0,0"
-                    HorizontalAlignment="Center"
-                    Orientation="Horizontal">
-            <TextBox Width="593"
-                     Height="50"
-                     Margin="0,0,30,0"
-                     Style="{StaticResource FilePathTextBoxStyle}"
-                     Text="{Binding ChosenFolderPath, UpdateSourceTrigger=PropertyChanged}" />
+    <Grid>
+        <Grid HorizontalAlignment="Center">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ConverterItems.Count, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
             <Button Width="282"
                     Height="50"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     Command="{Binding PickFolderCommand}"
-                    Content="Choose another folder" />
-        </StackPanel>
-        <Grid Grid.Row="1"
-              Margin="0,28,60,0"
-              HorizontalAlignment="Right"
-              VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="170" />
-                <ColumnDefinition Width="111" />
-                <ColumnDefinition Width="623" />
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0">
-                <ListBox Width="170"
-                         Height="280"
-                         HorizontalAlignment="Left"
-                         ItemsSource="{Binding ConverterItems}"
-                         SelectedItem="{Binding SelectedConverterItem, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource FolderListBoxStyle}" />
-            </Border>
-            <Border Grid.Column="1">
-                <ContentControl Margin="17,0,17,0"
-                                HorizontalAlignment="Left"
-                                Style="{StaticResource ConverterArrowFolderIconStyle}" />
-            </Border>
-            <Border Grid.Column="2">
-                <controls:ScriptEditor Width="623"
-                                       Height="280"
-                                       Padding="0,8,8,8"
-                                       BorderBrush="{StaticResource BlackBrush}"
-                                       BorderThickness="3"
-                                       FontFamily="{StaticResource MontserratRegular}"
-                                       FontSize="12"
-                                       HorizontalScrollBarVisibility="Auto"
-                                       IsReadOnly="True"
-                                       Script="{Binding SelectedConverterItem.ShowingContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                       ShowLineNumbers="True"
-                                       SyntaxHighlighting="XML"
-                                       VerticalScrollBarVisibility="Auto"
-                                       WordWrap="True">
-                    <controls:ScriptEditor.Resources>
-                        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
-                            <Setter Property="BorderBrush" Value="{StaticResource WhiteBrush}" />
-                        </Style>
-                    </controls:ScriptEditor.Resources>
-                </controls:ScriptEditor>
-            </Border>
+                    Content="Choose folder" />
         </Grid>
-        <Grid Grid.Row="2">
-            <TextBlock Margin="0,4,60,0"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       FontFamily="{StaticResource MontserratLight}"
-                       FontSize="12"
-                       Foreground="{StaticResource DangerousBrush}"
-                       Text="{x:Static constants:ContentConstants.CanvasConvertWarning}"
-                       Visibility="{Binding SelectedConverterItem.HasTwoContentVariants, Converter={StaticResource InverseBooleanToVisibilityConverter}, ConverterParameter=Inverse, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-        </Grid>
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <controls:NotificationButton Grid.Column="0"
-                                         Width="170"
-                                         Height="30"
-                                         Margin="60,0,0,0"
-                                         Command="{Binding SaveFilesCommand}"
-                                         Content="Save selected"
-                                         ShowNotification="{Binding ShowSaveAllNotification, UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource SaveButtonStyle}" />
-            <controls:CustomToggleButton Grid.Column="1"
-                                         Margin="110,0,0,0"
-                                         Command="{Binding ChangeShowingContentCommand}"
-                                         IsChecked="{Binding SelectedConverterItem.IsShowingDrawingContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                         IsEnabled="{Binding SelectedConverterItem.HasTwoContentVariants, UpdateSourceTrigger=PropertyChanged}"
-                                         LeftText="Canvas"
-                                         RightText="Drawing" />
-            <StackPanel Grid.Column="2"
-                        Margin="0,0,60,0"
-                        HorizontalAlignment="Right"
+        <Grid Width="1024" HorizontalAlignment="Center">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ConverterItems.Count, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="308" />
+                <RowDefinition Height="28" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"
+                        Margin="0,21,0,0"
+                        HorizontalAlignment="Center"
                         Orientation="Horizontal">
-                <controls:NotificationButton Width="126"
-                                             Height="30"
-                                             Command="{Binding SaveSelectedFileCommand}"
-                                             Content="Save"
-                                             ShowNotification="{Binding ShowSaveNotification, UpdateSourceTrigger=PropertyChanged}"
-                                             Style="{StaticResource SaveButtonStyle}" />
-                <controls:NotificationButton Width="126"
-                                             Height="30"
-                                             Margin="30,0,0,0"
-                                             Command="{Binding CopySelectedContentCommand}"
-                                             Content="Copy"
-                                             ShowNotification="{Binding ShowCopyNotification, UpdateSourceTrigger=PropertyChanged}"
-                                             Style="{StaticResource CopyButtonStyle}" />
+                <TextBox Width="593"
+                         Height="50"
+                         Margin="0,0,30,0"
+                         Style="{StaticResource FilePathTextBoxStyle}"
+                         Text="{Binding ChosenFolderPath, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Width="282"
+                        Height="50"
+                        Command="{Binding PickFolderCommand}"
+                        Content="Choose another folder" />
             </StackPanel>
+            <Grid Grid.Row="1"
+                  Margin="0,28,60,0"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="111" />
+                    <ColumnDefinition Width="623" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0">
+                    <ListBox Width="170"
+                             Height="280"
+                             HorizontalAlignment="Left"
+                             ItemsSource="{Binding ConverterItems}"
+                             SelectedItem="{Binding SelectedConverterItem, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource FolderListBoxStyle}" />
+                </Border>
+                <Border Grid.Column="1">
+                    <ContentControl Margin="17,0,17,0"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource ConverterArrowFolderIconStyle}" />
+                </Border>
+                <Border Grid.Column="2">
+                    <controls:ScriptEditor Width="623"
+                                           Height="280"
+                                           Padding="0,8,8,8"
+                                           BorderBrush="{StaticResource BlackBrush}"
+                                           BorderThickness="3"
+                                           FontFamily="{StaticResource MontserratRegular}"
+                                           FontSize="12"
+                                           HorizontalScrollBarVisibility="Auto"
+                                           IsReadOnly="True"
+                                           Script="{Binding SelectedConverterItem.ShowingContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                           ShowLineNumbers="True"
+                                           SyntaxHighlighting="XML"
+                                           VerticalScrollBarVisibility="Auto"
+                                           WordWrap="True">
+                        <controls:ScriptEditor.Resources>
+                            <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="{StaticResource WhiteBrush}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource WhiteBrush}" />
+                            </Style>
+                        </controls:ScriptEditor.Resources>
+                    </controls:ScriptEditor>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="2">
+                <TextBlock Margin="0,4,60,0"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Top"
+                           FontFamily="{StaticResource MontserratLight}"
+                           FontSize="12"
+                           Foreground="{StaticResource DangerousBrush}"
+                           Text="{x:Static constants:ContentConstants.CanvasConvertWarning}"
+                           Visibility="{Binding SelectedConverterItem.HasTwoContentVariants, Converter={StaticResource InverseBooleanToVisibilityConverter}, ConverterParameter=Inverse, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:NotificationButton Grid.Column="0"
+                                             Width="170"
+                                             Height="30"
+                                             Margin="60,0,0,0"
+                                             Command="{Binding SaveFilesCommand}"
+                                             Content="Save selected"
+                                             ShowNotification="{Binding ShowSaveAllNotification, UpdateSourceTrigger=PropertyChanged}"
+                                             Style="{StaticResource SaveButtonStyle}" />
+                <controls:CustomToggleButton Grid.Column="1"
+                                             Margin="110,0,0,0"
+                                             Command="{Binding ChangeShowingContentCommand}"
+                                             IsChecked="{Binding SelectedConverterItem.IsShowingDrawingContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             IsEnabled="{Binding SelectedConverterItem.HasTwoContentVariants, UpdateSourceTrigger=PropertyChanged}"
+                                             LeftText="Canvas"
+                                             RightText="Drawing" />
+                <StackPanel Grid.Column="2"
+                            Margin="0,0,60,0"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <controls:NotificationButton Width="126"
+                                                 Height="30"
+                                                 Command="{Binding SaveSelectedFileCommand}"
+                                                 Content="Save"
+                                                 ShowNotification="{Binding ShowSaveNotification, UpdateSourceTrigger=PropertyChanged}"
+                                                 Style="{StaticResource SaveButtonStyle}" />
+                    <controls:NotificationButton Width="126"
+                                                 Height="30"
+                                                 Margin="30,0,0,0"
+                                                 Command="{Binding CopySelectedContentCommand}"
+                                                 Content="Copy"
+                                                 ShowNotification="{Binding ShowCopyNotification, UpdateSourceTrigger=PropertyChanged}"
+                                                 Style="{StaticResource CopyButtonStyle}" />
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
