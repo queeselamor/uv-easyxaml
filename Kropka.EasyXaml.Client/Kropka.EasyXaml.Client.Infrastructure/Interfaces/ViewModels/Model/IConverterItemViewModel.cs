@@ -1,4 +1,5 @@
-﻿using Kropka.EasyXaml.Client.Infrastructure.Enums;
+﻿using System.Windows.Media;
+using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Base;
 
 namespace Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
@@ -18,5 +19,6 @@ public interface IConverterItemViewModel : IViewModel
     public bool HasTwoContentVariants { get; set; }
     public string ShowingContent { get; set; }
     public bool IsShowingDrawingContent { get; set; }
+    public Brush PreviewBackground { get; set; }
     #endregion
 }

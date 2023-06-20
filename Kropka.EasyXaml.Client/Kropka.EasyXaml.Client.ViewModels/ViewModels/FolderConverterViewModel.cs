@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Events;
+using Kropka.EasyXaml.Client.Infrastructure.Helpers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Models;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Services;
@@ -430,6 +431,13 @@ public class FolderConverterViewModel : BaseViewModel, IFolderConverterViewModel
                     var drawingGroupContent = await _imageTransformationManager.PrepareContentAsync(ConverterType.SvgToXaml, response.DrawingGroupContent);
 
                     converterItemViewModel.AlternativeResultContent = drawingGroupContent;
+
+                    AppDispatcherHelper.Invoke(() =>
+                    {
+                        var brush = _imageTransformationManager.DetermineBackground(ConverterType.SvgToXaml, drawingGroupContent);
+
+                        converterItemViewModel.PreviewBackground = brush;
+                    });
                 }
                 else
                 {

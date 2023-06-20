@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using Kropka.EasyXaml.Client.Infrastructure.Constants;
 using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Managers;
@@ -45,6 +46,15 @@ public class ImageTransformationManager : IImageTransformationManager
         return converterType switch
         {
             ConverterType.SvgToXaml => await _svgToXamlTransformationService.PrepareContentAsync(content),
+            _ => throw new ArgumentOutOfRangeException(nameof(converterType), converterType, MessageConstants.ConverterNotFoundErrorMessage)
+        };
+    }
+
+    public Brush DetermineBackground(ConverterType converterType, string drawingGroupXaml)
+    {
+        return converterType switch
+        {
+            ConverterType.SvgToXaml => _svgToXamlTransformationService.DetermineBackground(drawingGroupXaml),
             _ => throw new ArgumentOutOfRangeException(nameof(converterType), converterType, MessageConstants.ConverterNotFoundErrorMessage)
         };
     }

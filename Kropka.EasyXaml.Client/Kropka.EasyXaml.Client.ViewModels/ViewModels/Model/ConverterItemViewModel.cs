@@ -1,4 +1,5 @@
-﻿using Kropka.EasyXaml.Client.Infrastructure.Enums;
+﻿using System.Windows.Media;
+using Kropka.EasyXaml.Client.Infrastructure.Enums;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.ViewModels.Model;
 using Kropka.EasyXaml.Client.ViewModels.ViewModels.Model.Base;
@@ -19,6 +20,7 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     private bool _hasTwoContentVariants;
     private string _showingContent;
     private bool _isShowingDrawingContent;
+    private Brush _previewBackground;
     #endregion
 
     #region Constructors
@@ -109,6 +111,12 @@ public class ConverterItemViewModel : BaseItemViewModel, IConverterItemViewModel
     {
         get => _isShowingDrawingContent;
         set => SetProperty(ref _isShowingDrawingContent, value);
+    }
+
+    public Brush PreviewBackground
+    {
+        get => _previewBackground;
+        set => SetProperty(ref _previewBackground, value);
     }
     #endregion
 

@@ -96,7 +96,7 @@
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0"
                         AllowDrop="True"
-                        Background="{StaticResource DarkGrayBrush}"
+                        Background="{Binding CurrentConverterItem.PreviewBackground, UpdateSourceTrigger=PropertyChanged}"
                         BorderBrush="{StaticResource BlackBrush}"
                         BorderThickness="3"
                         Drop="OnFileDrop">

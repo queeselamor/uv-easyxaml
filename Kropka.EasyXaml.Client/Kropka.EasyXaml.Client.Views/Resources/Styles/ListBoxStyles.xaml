@@ -90,7 +90,7 @@
                                     Height="26"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
-                                    Background="{StaticResource DarkGrayBrush}"
+                                    Background="{Binding PreviewBackground, UpdateSourceTrigger=PropertyChanged}"
                                     BorderBrush="{StaticResource BlackBrush}"
                                     BorderThickness="1">
                                 <svgc:SvgViewbox Width="20"

@@ -11,6 +11,9 @@ using Kropka.EasyXaml.Client.Abstracts.Models;
 using SharpVectors.Converters;
 using SharpVectors.Renderers.Wpf;
 using Kropka.EasyXaml.Client.Infrastructure.Interfaces.Models;
+using System.Collections.Generic;
+using System.Windows.Media;
+using System.Xml.Linq;
 
 namespace Kropka.EasyXaml.Client.Services.Services.Transformation;
 
@@ -35,6 +38,52 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
         }
 
         return await Task.Run(() => false);
+    }
+
+    public Brush DetermineBackground(string drawingGroupXaml)
+    {
+        var brushValues = new List<string>();
+
+        var xmlDoc = XDocument.Parse(drawingGroupXaml);
+
+        foreach (var element in xmlDoc.Descendants())
+        {
+            var brushAttribute = element.Attribute("Brush");
+            if (brushAttribute != null)
+            {
+                brushValues.Add(brushAttribute.Value);
+            }
+
+            var colorAttribute = element.Attribute("Color");
+            if (colorAttribute != null)
+            {
+                brushValues.Add(colorAttribute.Value);
+            }
+
+            var fillAttribute = element.Attribute("Fill");
+            if (fillAttribute != null)
+            {
+                brushValues.Add(fillAttribute.Value);
+            }
+        }
+
+        var hasWhite = brushValues.Any(x => x.Contains("#FFFFFFFF") || x.Contains("#FFFFFF") || x.ToLower().Contains("white"));
+
+        if (!hasWhite)
+        {
+            return Brushes.White;
+        }
+
+        var hasBlack = brushValues.Any(x => x.Contains("#FF000000") || x.Contains("#000000") || x.ToLower().Contains("black"));
+
+        if (!hasBlack)
+        {
+            return Brushes.Black;
+        }
+
+        var brushConverter = new BrushConverter();
+
+        return brushConverter.ConvertFromString("#D9D9D9") as Brush;
     }
 
     public async Task<IConverterResponse> TransformSvgToXamlAsync(string sourceFile)
