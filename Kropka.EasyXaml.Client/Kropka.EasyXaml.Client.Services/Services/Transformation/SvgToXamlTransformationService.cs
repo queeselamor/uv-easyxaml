@@ -48,33 +48,37 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
 
         foreach (var element in xmlDoc.Descendants())
         {
-            var brushAttribute = element.Attribute("Brush");
+            var brushAttribute = element.Attribute(DetermineBackgroundConstants.BrushProp);
             if (brushAttribute != null)
             {
                 brushValues.Add(brushAttribute.Value);
             }
 
-            var colorAttribute = element.Attribute("Color");
+            var colorAttribute = element.Attribute(DetermineBackgroundConstants.ColorProp);
             if (colorAttribute != null)
             {
                 brushValues.Add(colorAttribute.Value);
             }
 
-            var fillAttribute = element.Attribute("Fill");
+            var fillAttribute = element.Attribute(DetermineBackgroundConstants.FillProp);
             if (fillAttribute != null)
             {
                 brushValues.Add(fillAttribute.Value);
             }
         }
 
-        var hasWhite = brushValues.Any(x => x.Contains("#FFFFFFFF") || x.Contains("#FFFFFF") || x.ToLower().Contains("white"));
+        var hasWhite = brushValues.Any(x => x.Contains(DetermineBackgroundConstants.WhiteLong) || 
+                                            x.Contains(DetermineBackgroundConstants.WhiteShort) || 
+                                            x.ToLower().Contains(DetermineBackgroundConstants.WhiteText));
 
         if (!hasWhite)
         {
             return Brushes.White;
         }
 
-        var hasBlack = brushValues.Any(x => x.Contains("#FF000000") || x.Contains("#000000") || x.ToLower().Contains("black"));
+        var hasBlack = brushValues.Any(x => x.Contains(DetermineBackgroundConstants.BlackLong) || 
+                                            x.Contains(DetermineBackgroundConstants.BlackShort) || 
+                                            x.ToLower().Contains(DetermineBackgroundConstants.BlackText));
 
         if (!hasBlack)
         {
@@ -83,7 +87,7 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
 
         var brushConverter = new BrushConverter();
 
-        return brushConverter.ConvertFromString("#D9D9D9") as Brush;
+        return brushConverter.ConvertFromString(DetermineBackgroundConstants.Gray) as Brush;
     }
 
     public async Task<IConverterResponse> TransformSvgToXamlAsync(string sourceFile)
