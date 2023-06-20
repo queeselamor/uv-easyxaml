@@ -52,12 +52,16 @@ public class SvgToXamlTransformationService : ISvgToXamlTransformationService
             if (brushAttribute != null)
             {
                 brushValues.Add(brushAttribute.Value);
+
+                continue;
             }
 
             var colorAttribute = element.Attribute(DetermineBackgroundConstants.ColorProp);
             if (colorAttribute != null)
             {
                 brushValues.Add(colorAttribute.Value);
+
+                continue;
             }
 
             var fillAttribute = element.Attribute(DetermineBackgroundConstants.FillProp);
