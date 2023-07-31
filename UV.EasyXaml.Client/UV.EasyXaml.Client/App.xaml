@@ -1,0 +1,17 @@
+﻿<prism:PrismApplication x:Class="UV.EasyXaml.Client.App"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:prism="http://prismlibrary.com/"
+                        DispatcherUnhandledException="OnDispatcherUnhandledException">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UV.EasyXaml.Client.Views;component/Resources/StylesDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UV.EasyXaml.Client.Views;component/Resources/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UV.EasyXaml.Client.Views;component/Resources/Brushes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UV.EasyXaml.Client.Views;component/Resources/Fonts.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Transformations\colors.xml" />
+    <None Remove="Transformations\svg_to_xaml.xsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UV.EasyXaml.Client.Abstracts\UV.EasyXaml.Client.Abstracts.csproj" />
+    <ProjectReference Include="..\UV.EasyXaml.Client.Infrastructure\UV.EasyXaml.Client.Infrastructure.csproj" />
+    <ProjectReference Include="..\UV.EasyXaml.Client.Services\UV.EasyXaml.Client.Services.csproj" />
+    <ProjectReference Include="..\UV.EasyXaml.Client.ViewModels\UV.EasyXaml.Client.ViewModels.csproj" />
+    <ProjectReference Include="..\UV.EasyXaml.Client.Views\UV.EasyXaml.Client.Views.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logo.ico" />
+    <Content Include="Transformations\colors.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Transformations\svg_to_xaml.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

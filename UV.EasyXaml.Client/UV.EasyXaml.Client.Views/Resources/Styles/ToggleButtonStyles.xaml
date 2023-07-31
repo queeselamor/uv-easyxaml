@@ -1,0 +1,114 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:UV.EasyXaml.Client.Views.Resources.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Brushes.xaml" />
+        <ResourceDictionary Source="../Fonts.xaml" />
+        <ResourceDictionary Source="IconStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="{x:Type controls:CustomToggleButton}" TargetType="{x:Type controls:CustomToggleButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FontFamily" Value="{StaticResource DelaGothicOneRegular}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{StaticResource BlackBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:CustomToggleButton">
+                    <Grid>
+                        <Border x:Name="ShadowBorder"
+                                Width="200"
+                                Height="30"
+                                Margin="0,0,-5,-5"
+                                Background="{StaticResource BlackBrush}"
+                                Visibility="Collapsed" />
+                        <Border x:Name="MainBorder"
+                                Width="200"
+                                Height="30"
+                                BorderBrush="{StaticResource BlackBrush}"
+                                BorderThickness="3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="LeftValue"
+                                        Grid.Column="0"
+                                        Background="{StaticResource PrimaryBrush}"
+                                        BorderBrush="{StaticResource BlackBrush}"
+                                        BorderThickness="0,0,3,0">
+                                    <TextBlock x:Name="LeftTextBlock"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontSize="{TemplateBinding FontFamily}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Text="{TemplateBinding LeftText}"
+                                               TextAlignment="Center" />
+                                </Border>
+                                <Border x:Name="RightValue"
+                                        Grid.Column="1"
+                                        Background="{StaticResource WhiteBrush}">
+                                    <TextBlock x:Name="RightTextBlock"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontSize="{TemplateBinding FontFamily}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Text="{TemplateBinding RightText}"
+                                               TextAlignment="Center" />
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="LeftValue" Property="Background" Value="{StaticResource WhiteBrush}" />
+                            <Setter TargetName="RightValue" Property="Background" Value="{StaticResource PrimaryBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ShadowBorder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource DisabledLightGrayBrush}" />
+                            <Setter TargetName="LeftValue" Property="Background" Value="{StaticResource WhiteBrush}" />
+                            <Setter TargetName="RightValue" Property="Background" Value="{StaticResource WhiteBrush}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False" />
+                                <Condition Property="IsChecked" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="MainBorder" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="LeftValue" Property="Background" Value="{StaticResource PrimaryBrush}" />
+                                <Setter TargetName="LeftValue" Property="BorderThickness" Value="3" />
+                                <Setter TargetName="RightValue" Property="BorderThickness" Value="0,3,3,3" />
+                                <Setter TargetName="RightValue" Property="BorderBrush" Value="{StaticResource DisabledLightGrayBrush}" />
+                                <Setter TargetName="LeftValue" Property="BorderBrush" Value="{StaticResource BlackBrush}" />
+                                <Setter TargetName="LeftTextBlock" Property="Foreground" Value="{StaticResource BlackBrush}" />
+                                <Setter TargetName="RightTextBlock" Property="Foreground" Value="{StaticResource DisabledDarkGrayBrush}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False" />
+                                <Condition Property="IsChecked" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="MainBorder" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="RightValue" Property="Background" Value="{StaticResource PrimaryBrush}" />
+                                <Setter TargetName="RightValue" Property="BorderThickness" Value="3" />
+                                <Setter TargetName="LeftValue" Property="BorderThickness" Value="3,3,0,3" />
+                                <Setter TargetName="LeftValue" Property="BorderBrush" Value="{StaticResource DisabledLightGrayBrush}" />
+                                <Setter TargetName="RightValue" Property="BorderBrush" Value="{StaticResource BlackBrush}" />
+                                <Setter TargetName="RightTextBlock" Property="Foreground" Value="{StaticResource BlackBrush}" />
+                                <Setter TargetName="LeftTextBlock" Property="Foreground" Value="{StaticResource DisabledDarkGrayBrush}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
