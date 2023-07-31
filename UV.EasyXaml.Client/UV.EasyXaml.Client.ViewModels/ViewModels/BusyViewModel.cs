@@ -14,6 +14,7 @@ public class BusyViewModel : BaseViewModel, IBusyViewModel
     private string _message;
     #endregion
 
+    #region Constructors
     public BusyViewModel(IEventAggregator eventAggregator)
     {
         _eventAggregator = eventAggregator;
@@ -22,6 +23,7 @@ public class BusyViewModel : BaseViewModel, IBusyViewModel
 
         SubscribeOnEvents();
     }
+    #endregion
 
     #region Properties
     public string Message

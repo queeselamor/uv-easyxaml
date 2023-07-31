@@ -4,6 +4,7 @@ namespace UV.EasyXaml.Client.Infrastructure.Managers;
 
 public static class RegionNavigationManager
 {
+    #region Methods
     public static void Navigate(IRegionManager regionManager, string regionName, string viewName)
     {
         regionManager?.RequestNavigate(regionName, viewName);
@@ -13,4 +14,5 @@ public static class RegionNavigationManager
     {
         regionManager?.RequestNavigate(regionName, viewName, navigationParameters);
     }
+    #endregion
 }

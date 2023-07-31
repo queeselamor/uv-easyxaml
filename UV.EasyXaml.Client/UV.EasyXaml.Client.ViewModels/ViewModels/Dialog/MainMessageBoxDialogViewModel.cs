@@ -18,7 +18,7 @@ public class MainMessageBoxDialogViewModel : BaseViewModel, IMainMessageBoxDialo
     private string _declineButtonTitle;
     #endregion
 
-    #region ctor
+    #region Constructors
     public MainMessageBoxDialogViewModel()
     {
         OkCommand = new RelayCommand(Ok);

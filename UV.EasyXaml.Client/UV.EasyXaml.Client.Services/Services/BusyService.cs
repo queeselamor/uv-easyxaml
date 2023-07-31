@@ -11,7 +11,6 @@ public class BusyService : IBusyService
     private readonly IEventAggregator _eventAggregator;
     #endregion
 
-
     #region Constructors
     public BusyService(IEventAggregator eventAggregator)
     {

@@ -6,7 +6,7 @@ namespace UV.EasyXaml.Client.Infrastructure.Interfaces.Managers;
 
 public interface IImageTransformationManager
 {
-    #region MyRegion
+    #region Methods
     Task<bool> CheckTransformationFileExistsAsync(ConverterType converterType);
     Task<IConverterResponse> TransformAsync(ConverterType converterType, string filePath);
     Task<string> PrepareContentAsync(ConverterType converterType, string content);

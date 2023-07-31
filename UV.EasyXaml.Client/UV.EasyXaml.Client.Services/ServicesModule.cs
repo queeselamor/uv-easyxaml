@@ -11,6 +11,7 @@ namespace UV.EasyXaml.Client.Services;
 
 public class ServicesModule : IModule
 {
+    #region Methods
     public void OnInitialized(IContainerProvider containerProvider)
     {
     }
@@ -22,4 +23,5 @@ public class ServicesModule : IModule
         containerRegistry.RegisterSingleton<IImageTransformationManager, ImageTransformationManager>();
         containerRegistry.RegisterSingleton<IBusyService, BusyService>();
     }
+    #endregion
 }
