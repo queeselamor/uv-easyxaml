@@ -6,6 +6,11 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
     <StartupObject>UV.EasyXaml.Client.App</StartupObject>
     <Title>UV EasyXAML</Title>
+    <Authors>Uladzislau Vyskvarka</Authors>
+    <Company>UV</Company>
+    <Product>UV EasyXAML</Product>
+    <Copyright>Uladzislau Vyskvarka</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Transformations\colors.xml" />
