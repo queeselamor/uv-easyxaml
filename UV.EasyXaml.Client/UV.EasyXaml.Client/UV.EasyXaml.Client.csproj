@@ -4,6 +4,8 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <StartupObject>UV.EasyXaml.Client.App</StartupObject>
+    <Title>UV EasyXAML</Title>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Transformations\colors.xml" />
