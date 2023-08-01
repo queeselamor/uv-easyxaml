@@ -71,6 +71,8 @@ public partial class App
     {
         SplashScreenWindow = Container.Resolve<ISplashScreenWindow>();
         SplashScreenWindow.Show();
+
+        Thread.Sleep(1000);
     }
 
     private void CloseSplashScreen()
