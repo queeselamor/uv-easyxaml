@@ -9,9 +9,11 @@ using Prism.Services.Dialogs;
 using UV.EasyXaml.Client.Abstracts;
 using UV.EasyXaml.Client.Infrastructure.Constants;
 using UV.EasyXaml.Client.Infrastructure.Enums;
+using UV.EasyXaml.Client.Infrastructure.Interfaces.Utilities;
 using UV.EasyXaml.Client.Infrastructure.Interfaces.ViewModels;
 using UV.EasyXaml.Client.Infrastructure.Interfaces.Views;
 using UV.EasyXaml.Client.Services;
+using UV.EasyXaml.Client.Utilities;
 using UV.EasyXaml.Client.ViewModels;
 using UV.EasyXaml.Client.Views;
 
@@ -19,9 +21,15 @@ namespace UV.EasyXaml.Client;
 
 public partial class App
 {
+    #region Properties
+    public ISplashScreenUtility SplashScreenUtility { get; private set; }
+    #endregion
+
     #region Methods
     protected override Window CreateShell()
     {
+        SplashScreenUtility.CloseSplashScreen();
+
         return (Window)Container.Resolve<IShellView>();
     }
 
@@ -29,6 +37,9 @@ public partial class App
     {
         containerRegistry.RegisterSingleton<IShellView, ShellView>();
         containerRegistry.RegisterSingleton<IShellViewModel, ShellViewModel>();
+        containerRegistry.RegisterSingleton<ISplashScreenUtility, SplashScreenUtility>();
+
+        CreateSplashScreenUtility();
     }
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -50,6 +61,13 @@ public partial class App
             var viewModelName = $"{viewName}Model, {viewAssemblyName}".Replace(".Views.", ".ViewModels.");
             return Type.GetType(viewModelName);
         });
+    }
+
+    private void CreateSplashScreenUtility()
+    {
+        SplashScreenUtility = Container.Resolve<ISplashScreenUtility>();
+        SplashScreenUtility.InitializeSplashScreen();
+        SplashScreenUtility.ShowSplashScreen();
     }
 
     private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
