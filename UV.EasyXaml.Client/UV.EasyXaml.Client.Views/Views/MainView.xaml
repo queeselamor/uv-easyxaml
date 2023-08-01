@@ -27,7 +27,8 @@
         <ContentControl Grid.Row="1"
                         Margin="0,0,0,12"
                         IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}"
-                        Style="{StaticResource UvFooterIconStyle}" />
+                        Style="{StaticResource UvFooterIconStyle}"
+                        Visibility="Collapsed" />
         <ContentControl Grid.Row="0"
                         Grid.RowSpan="2"
                         HorizontalAlignment="Center"
