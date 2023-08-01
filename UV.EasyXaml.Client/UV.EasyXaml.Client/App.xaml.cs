@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using Prism.Ioc;
@@ -19,7 +20,18 @@ namespace UV.EasyXaml.Client;
 
 public partial class App
 {
+    #region Properties
+    private ISplashScreenWindow SplashScreenWindow { get; set; }
+    #endregion
+
     #region Methods
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        CloseSplashScreen();
+    }
+
     protected override Window CreateShell()
     {
         return (Window)Container.Resolve<IShellView>();
@@ -29,6 +41,9 @@ public partial class App
     {
         containerRegistry.RegisterSingleton<IShellView, ShellView>();
         containerRegistry.RegisterSingleton<IShellViewModel, ShellViewModel>();
+        containerRegistry.RegisterSingleton<ISplashScreenWindow, SplashScreenWindow>();
+
+        ShowSplashScreen();
     }
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -50,6 +65,17 @@ public partial class App
             var viewModelName = $"{viewName}Model, {viewAssemblyName}".Replace(".Views.", ".ViewModels.");
             return Type.GetType(viewModelName);
         });
+    }
+
+    private void ShowSplashScreen()
+    {
+        SplashScreenWindow = Container.Resolve<ISplashScreenWindow>();
+        SplashScreenWindow.Show();
+    }
+
+    private void CloseSplashScreen()
+    {
+        SplashScreenWindow.Close();
     }
 
     private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
