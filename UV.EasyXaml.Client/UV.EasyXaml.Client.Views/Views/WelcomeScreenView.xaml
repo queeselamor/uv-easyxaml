@@ -17,13 +17,13 @@
                       Background="{StaticResource WhiteBrush}"
                       Drop="OnFileDrop">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Width="176"
+                        <Button Width="282"
                                 Height="50"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Command="{Binding PickFileCommand}"
                                 Content="Choose file" />
-                        <TextBlock Margin="0,21,0,21"
+                        <TextBlock Margin="0,35,0,35"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Text="or" />
@@ -47,13 +47,13 @@
                       Background="{StaticResource WhiteBrush}"
                       Drop="OnFolderDrop">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Width="176"
+                        <Button Width="282"
                                 Height="50"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Top"
                                 Command="{Binding PickFolderCommand}"
                                 Content="Choose folder" />
-                        <TextBlock Margin="0,21,0,21"
+                        <TextBlock Margin="0,35,0,35"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Text="or" />
