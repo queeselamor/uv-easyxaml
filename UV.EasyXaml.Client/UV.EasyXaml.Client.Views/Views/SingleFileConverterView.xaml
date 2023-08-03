@@ -75,9 +75,9 @@
                         Margin="0,21,0,0"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
-                <TextBox Width="593"
+                <TextBox Width="618"
                          Height="50"
-                         Margin="0,0,30,0"
+                         Margin="0,0,5,0"
                          Style="{StaticResource FilePathTextBoxStyle}"
                          Text="{Binding CurrentConverterItem.SourcePath, UpdateSourceTrigger=PropertyChanged}" />
                 <Button Width="282"
@@ -193,7 +193,7 @@
                                                  Style="{StaticResource SaveButtonStyle}" />
                     <controls:NotificationButton Width="126"
                                                  Height="30"
-                                                 Margin="30,0,0,0"
+                                                 Margin="5,0,0,0"
                                                  Command="{Binding CopyContentCommand}"
                                                  Content="Copy"
                                                  ShowNotification="{Binding ShowCopyNotification, UpdateSourceTrigger=PropertyChanged}"
