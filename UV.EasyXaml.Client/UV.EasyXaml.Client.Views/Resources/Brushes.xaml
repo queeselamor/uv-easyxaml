@@ -19,4 +19,5 @@
     <SolidColorBrush x:Key="DisabledLightGrayBrush" Color="{StaticResource DisabledLightGrayColor}" />
     <SolidColorBrush x:Key="DisabledDarkGrayBrush" Color="{StaticResource DisabledDarkGrayColor}" />
     <SolidColorBrush x:Key="DarkGrayBrush" Color="{StaticResource DarkGrayColor}" />
+    <SolidColorBrush x:Key="ToolTipBrush" Color="{StaticResource ToolTipColor}" />
 </ResourceDictionary>

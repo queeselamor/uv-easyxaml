@@ -13,22 +13,41 @@
                         <Border x:Name="ShadowBorder"
                                 Width="{TemplateBinding Width}"
                                 Height="{TemplateBinding Height}"
+                                Margin="0,8,0,0"
                                 Background="White"
                                 BorderThickness="0" />
                         <Border Name="Border"
                                 Width="{TemplateBinding Width}"
                                 Height="{TemplateBinding Height}"
-                                Background="{StaticResource BlackBrush50}"
+                                Margin="0,8,0,0"
+                                Background="{StaticResource ToolTipBrush}"
                                 BorderThickness="0">
-                            <TextBlock Margin="18,9,18,9"
+                            <TextBlock Margin="10,7,10,7"
                                        Padding="0"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource MontserratBold}"
                                        FontSize="14"
                                        Foreground="{StaticResource WhiteBrush}"
-                                       Text="{TemplateBinding Content}" />
+                                       Text="{TemplateBinding Content}"
+                                       TextAlignment="Center" />
                         </Border>
+                        <Border Height="8"
+                                VerticalAlignment="Top"
+                                Background="Transparent" />
+                        <Grid Margin="10,0,0,0"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top">
+                            <Path Fill="{StaticResource ToolTipBrush}" Stroke="{StaticResource ToolTipBrush}">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathFigure StartPoint="0,8">
+                                            <PolyLineSegment Points="8,0 14,8" />
+                                        </PathFigure>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

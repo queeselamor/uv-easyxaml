@@ -11,4 +11,5 @@
     <Color x:Key="DisabledLightGrayColor">#D4D4D4</Color>
     <Color x:Key="DisabledDarkGrayColor">#676767</Color>
     <Color x:Key="DarkGrayColor">#D9D9D9</Color>
+    <Color x:Key="ToolTipColor">#898989</Color>
 </ResourceDictionary>
