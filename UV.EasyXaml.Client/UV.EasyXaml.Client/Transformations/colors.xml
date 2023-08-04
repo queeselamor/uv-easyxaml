@@ -141,4 +141,4 @@
   <color name="WhiteSmoke">WhiteSmoke</color>
   <color name="Yellow">Yellow</color>
   <color name="YellowGreen">YellowGreen</color>
-</colors>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>HE5HtHdhU67L4lBVxSgGhOSX3lykh7CKfklfNf3eUII=</DigestValue></Reference></SignedInfo><SignatureValue>kHuDet1jOF6AZEdVxW8jJhul1WaHgG576LJiMYAT5+vij4BOIUv+qeSuLcWm4KMedwH3CMv+fl/Xk8oXdcKeTEjehulXoHzoLUy7SWWYnRsSXR9zOlb93EzbYT4yjaVukhcfX3rK50Vh4T6EgJlMvavNBvuTeIN1JxmzO0Woz84=</SignatureValue></Signature></colors>

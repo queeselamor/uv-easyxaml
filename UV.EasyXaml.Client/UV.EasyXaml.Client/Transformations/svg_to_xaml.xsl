@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 Copyright (c) 2005-2015 authors:
@@ -25,20 +25,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 -->
 
-<xsl:stylesheet version="1.0"
-xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-xmlns:xlink="http://www.w3.org/1999/xlink"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-xmlns:exsl="http://exslt.org/common"
-xmlns:libxslt="http://xmlsoft.org/XSLT/namespace"
-xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:exsl="http://exslt.org/common" xmlns:libxslt="http://xmlsoft.org/XSLT/namespace" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
 
 <xsl:strip-space elements="*" />
-<xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+<xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
 <xsl:param name="silverlight" />
 <xsl:param name="silverlight_compatible" select="$silverlight" />
@@ -428,7 +418,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
 <!--    <xsl:attribute name="RenderTransformOrigin">
       <xsl:value-of select="concat(@inkscape:transform-center-x, ',', @inkscape:transform-center-y)" />
     </xsl:attribute>
--->>
+-->&gt;
   </xsl:if>
 </xsl:template>
 
@@ -544,7 +534,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
 <xsl:template mode="absolute_gradient" match="*">
   <xsl:param name="position" />
   <xsl:if test="@id">
-    <xsl:variable name="id" select="concat('#', @id)"/>
+    <xsl:variable name="id" select="concat('#', @id)" />
     <xsl:variable name="value">
       <xsl:for-each select="//*[contains(@style,$id) or contains(@fill,$id) or contains(@stroke,$id)]">
         <xsl:choose>
@@ -563,7 +553,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$value != ''">
-        <xsl:value-of select="$value"/>
+        <xsl:value-of select="$value" />
       </xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
@@ -1218,7 +1208,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
         </xsl:choose>
       </xsl:when>
       <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-        <xsl:apply-templates mode="fill" select="parent::*"/>
+        <xsl:apply-templates mode="fill" select="parent::*" />
       </xsl:when>
     </xsl:choose>
   </xsl:variable>
@@ -1293,7 +1283,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:choose>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="fill_rule" select="parent::*"/>
+      <xsl:apply-templates mode="fill_rule" select="parent::*" />
     </xsl:when>
     <xsl:otherwise>
       <xsl:attribute name="FillRule">NonZero</xsl:attribute>
@@ -1357,7 +1347,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:choose>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="stroke" select="parent::*"/>
+      <xsl:apply-templates mode="stroke" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -1457,7 +1447,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:call-template> 
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="stroke_width" select="parent::*"/>
+      <xsl:apply-templates mode="stroke_width" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -1486,7 +1476,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="stroke_miterlimit" select="parent::*"/>
+      <xsl:apply-templates mode="stroke_miterlimit" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -1520,7 +1510,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:choose>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="stroke_dasharray" select="parent::*"/>
+      <xsl:apply-templates mode="stroke_dasharray" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -1564,7 +1554,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:if>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="stroke_dashoffset" select="parent::*"/>
+      <xsl:apply-templates mode="stroke_dashoffset" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -1617,7 +1607,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="stroke_linejoin" select="parent::*"/>
+      <xsl:apply-templates mode="stroke_linejoin" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -1696,7 +1686,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="stroke_linecap" select="parent::*"/>
+      <xsl:apply-templates mode="stroke_linecap" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -1769,7 +1759,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
         </xsl:choose>
       </xsl:when>
       <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-        <xsl:apply-templates mode="stop_color" select="parent::*"/>
+        <xsl:apply-templates mode="stop_color" select="parent::*" />
       </xsl:when>
       <xsl:otherwise>#000000</xsl:otherwise>
     </xsl:choose>
@@ -1810,7 +1800,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="stop_opacity" select="parent::*"/>
+      <xsl:apply-templates mode="stop_opacity" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -1849,7 +1839,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg'">
-      <xsl:apply-templates mode="stop_offset" select="parent::*"/>
+      <xsl:apply-templates mode="stop_offset" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -1957,10 +1947,10 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
     <xsl:otherwise>
       <xsl:choose>
         <xsl:when test="@xml:space='preserve'">
-          <xsl:copy-of select="translate(text(), '&#x9;&#xA;&#xD;', ' ')" />
+          <xsl:copy-of select="translate(text(), '	&#xA;&#xD;', ' ')" />
         </xsl:when>
         <xsl:otherwise>
-          <xsl:copy-of select="normalize-space(translate(text(), '&#x9;&#xA;&#xD;', ' '))" />
+          <xsl:copy-of select="normalize-space(translate(text(), '	&#xA;&#xD;', ' '))" />
         </xsl:otherwise>
       </xsl:choose>  
     </xsl:otherwise>
@@ -1996,7 +1986,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:choose>
     </xsl:when>
     <xsl:when test="name(..) = 'g' or name(..) = 'svg' or name(..) = 'text' or name(..) = 'flowPara' or name(..) = 'flowRoot'">
-      <xsl:apply-templates mode="get_font_size" select="parent::*"/>
+      <xsl:apply-templates mode="get_font_size" select="parent::*" />
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -2386,7 +2376,7 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
         </xsl:choose>
       </xsl:variable>
       <xsl:if test="$top_val != '' and $size_val != ''">
-        <xsl:value-of select='format-number($top_val - $size_val, "#.#")' />
+        <xsl:value-of select="format-number($top_val - $size_val, &quot;#.#&quot;)" />
       </xsl:if>
     </xsl:attribute>
   </xsl:if>
@@ -2457,10 +2447,10 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="@xml:space='preserve'">
-            <xsl:copy-of select="translate(text(), '&#x9;&#xA;&#xD;', ' ')" />
+            <xsl:copy-of select="translate(text(), '	&#xA;&#xD;', ' ')" />
           </xsl:when>
           <xsl:otherwise>
-            <xsl:copy-of select="normalize-space(translate(text(), '&#x9;&#xA;&#xD;', ' '))" />
+            <xsl:copy-of select="normalize-space(translate(text(), '	&#xA;&#xD;', ' '))" />
           </xsl:otherwise>
         </xsl:choose>  
       </xsl:otherwise>
@@ -2718,12 +2708,12 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:choose>
     </xsl:variable>
     <xsl:if test="@rx">
-      <xsl:attribute name="Canvas.Left"><xsl:value-of select='format-number($cx - @rx, "#.#")' /></xsl:attribute>
-      <xsl:attribute name="Width"><xsl:value-of select='format-number(2 * @rx, "#.#")' /></xsl:attribute>
+      <xsl:attribute name="Canvas.Left"><xsl:value-of select="format-number($cx - @rx, &quot;#.#&quot;)" /></xsl:attribute>
+      <xsl:attribute name="Width"><xsl:value-of select="format-number(2 * @rx, &quot;#.#&quot;)" /></xsl:attribute>
     </xsl:if>
     <xsl:if test="@ry">
-      <xsl:attribute name="Canvas.Top"><xsl:value-of select='format-number($cy - @ry, "#.#")' /></xsl:attribute>
-      <xsl:attribute name="Height"><xsl:value-of select='format-number(2 * @ry, "#.#")' /></xsl:attribute>
+      <xsl:attribute name="Canvas.Top"><xsl:value-of select="format-number($cy - @ry, &quot;#.#&quot;)" /></xsl:attribute>
+      <xsl:attribute name="Height"><xsl:value-of select="format-number(2 * @ry, &quot;#.#&quot;)" /></xsl:attribute>
     </xsl:if>
     <xsl:apply-templates mode="id" select="." />
     <xsl:apply-templates mode="template_fill" select="." />
@@ -2766,10 +2756,10 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
       </xsl:choose>
     </xsl:variable>
     <xsl:if test="@r">
-       <xsl:attribute name="Canvas.Left"><xsl:value-of select='format-number($cx - @r, "#.#")' /></xsl:attribute>
-       <xsl:attribute name="Canvas.Top"><xsl:value-of select='format-number($cy - @r, "#.#")' /></xsl:attribute>
-       <xsl:attribute name="Width"><xsl:value-of select='format-number(2 * @r, "#.#")' /></xsl:attribute>
-       <xsl:attribute name="Height"><xsl:value-of select='format-number(2 * @r, "#.#")' /></xsl:attribute>
+       <xsl:attribute name="Canvas.Left"><xsl:value-of select="format-number($cx - @r, &quot;#.#&quot;)" /></xsl:attribute>
+       <xsl:attribute name="Canvas.Top"><xsl:value-of select="format-number($cy - @r, &quot;#.#&quot;)" /></xsl:attribute>
+       <xsl:attribute name="Width"><xsl:value-of select="format-number(2 * @r, &quot;#.#&quot;)" /></xsl:attribute>
+       <xsl:attribute name="Height"><xsl:value-of select="format-number(2 * @r, &quot;#.#&quot;)" /></xsl:attribute>
     </xsl:if>
     <xsl:apply-templates mode="id" select="." />
     <xsl:apply-templates mode="template_fill" select="." />
@@ -2985,4 +2975,4 @@ exclude-result-prefixes="rdf xlink xs exsl libxslt inkscape">
   </RectangleGeometry>
 </xsl:template>
 
-</xsl:stylesheet>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>KVVLsSJk15uboTLk8DnCzHgeu9r0TREhw9HAmTm4RDA=</DigestValue></Reference></SignedInfo><SignatureValue>QqmJSVJU115/VPvLdSEoVx+6SuM4elBWCL6m45piS0lnJ1yOyOzrGMoHoKZ977/gu23RUzatMnv+B3Rhhd2Tpdt6dwn9K/lXnPXbZZIFC7+X2rpNznhV1YiOFmUELCcL3/wtxtygATq4qXv3zRoBYSS5sa1zHrz5JHgEaI8F+48=</SignatureValue></Signature></xsl:stylesheet>
