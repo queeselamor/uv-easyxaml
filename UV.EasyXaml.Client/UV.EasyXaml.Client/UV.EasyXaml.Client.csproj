@@ -3,7 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
     <StartupObject>UV.EasyXaml.Client.App</StartupObject>
     <Title>UV EasyXAML</Title>
     <Authors>Uladzislau Vyskvarka</Authors>
@@ -27,7 +27,7 @@
     <ProjectReference Include="..\UV.EasyXaml.Client.Views\UV.EasyXaml.Client.Views.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Logo.ico" />
+    <Content Include="Icon.ico" />
     <Content Include="Transformations\colors.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
