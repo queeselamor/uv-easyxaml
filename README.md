@@ -9,13 +9,13 @@ EasyXAML is a convenient and user-friendly application that allows you to conver
 - Intuitive user interface for smooth user experience
 - Two XAML output types: Canvas and DrawingGroup
 
-## Single File Mode
+## File Mode
 
-In the single file mode, you can select an SVG image and convert it to XAML format with just a few clicks. This feature is perfect for quick conversions when you only need to process one file.
+In the File mode, you can select an SVG image and convert it to XAML format with just a few clicks. This feature is perfect for quick conversions when you only need to process one file.
 
 ## Folder Mode
 
-The folder mode allows you to choose an entire folder containing multiple SVG images and convert all of them to XAML format in one go. This mode is perfect for batch processing and will save you valuable time when working with numerous files.
+The Folder mode allows you to choose an entire folder containing multiple SVG images and convert all of them to XAML format in one go. This mode is perfect for batch processing and will save you valuable time when working with numerous files.
 
 ## Getting Started
 
@@ -26,4 +26,4 @@ Join the growing community of developers who trust EasyXAML for their SVG to XAM
 ##
 If you liked our app, please consider making a * to support its development. 😊
 
-<a href="https://bmc.link/6fkccpyxt8y" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Beer" style="height: 60px !important;width: 217px !important;" ></a>
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F3PWCH7)
