@@ -12,7 +12,7 @@
                     HorizontalAlignment="Center"
                     BorderThickness="0"
                     TabStripPlacement="Top">
-            <TabItem Header="Single file" TabIndex="0">
+            <TabItem Header="File" TabIndex="0">
                 <Grid AllowDrop="True"
                       Background="{StaticResource WhiteBrush}"
                       Drop="OnFileDrop">

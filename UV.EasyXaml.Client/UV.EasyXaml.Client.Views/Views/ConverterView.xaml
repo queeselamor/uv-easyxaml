@@ -16,7 +16,7 @@
                 Style="{StaticResource ConverterTabControlStyle}"
                 TabStripPlacement="Top">
         <TabItem regions:RegionManager.RegionName="{x:Static constants:RegionNameConstants.SingleFileConverterRegion}"
-                 Header="Single file"
+                 Header="File"
                  TabIndex="0" />
         <TabItem regions:RegionManager.RegionName="{x:Static constants:RegionNameConstants.FolderConverterRegion}"
                  Header="Folder"
