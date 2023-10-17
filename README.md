@@ -23,6 +23,16 @@ To get started with EasyXAML, you can either clone this repository and follow th
 
 Join the growing community of developers who trust EasyXAML for their SVG to XAML conversion needs. Give it a try, and enjoy a smoother, more efficient workflow!
 
+## Notification
+
+Thank you for choosing our application! We would like to inform you that our application is completely free of charge and does not have a certificate. As a result, Windows Smart Screen may block its installation. Please note that this might occur due to the presence of a .xsl transformation script within the application.
+
+To proceed with the installation, please follow these steps:
+
+Click on "More info" when prompted by Windows Smart Screen.
+Select the option to proceed with the installation by clicking on "Install".
+We assure you that our application has undergone extensive testing and is safe to use. However, the inclusion of the .xsl transformation script may trigger a warning from Windows Smart Screen. We want to emphasize that this is a standard precautionary measure and does not indicate any security risks associated with our application.
+
 ## Donate
 If you liked our app, please consider making a * to support its development. 😊
 
