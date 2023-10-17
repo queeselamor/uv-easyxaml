@@ -32,7 +32,7 @@ To proceed with the installation, please follow these steps:
 - Click on "More info" when prompted by Windows Smart Screen.
 - Select the option to proceed with the installation by clicking on "Install".
 
-We assure you that our application has undergone extensive testing and is safe to use. However, the inclusion of the .xsl transformation script may trigger a warning from Windows Smart Screen. We want to emphasize that this is a standard precautionary measure and does not indicate any security risks associated with our application.
+  We assure you that our application has undergone extensive testing and is safe to use. However, the inclusion of the .xsl transformation script may trigger a warning from Windows Smart Screen. We want to emphasize that this is a standard precautionary measure and does not indicate any security risks associated with our application.
 
 ## Donate
 If you liked our app, please consider making a * to support its development. 😊
