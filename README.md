@@ -23,7 +23,7 @@ To get started with EasyXAML, you can either clone this repository and follow th
 
 Join the growing community of developers who trust EasyXAML for their SVG to XAML conversion needs. Give it a try, and enjoy a smoother, more efficient workflow!
 
-##
+## Donate
 If you liked our app, please consider making a * to support its development. 😊
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F3PWCH7)
