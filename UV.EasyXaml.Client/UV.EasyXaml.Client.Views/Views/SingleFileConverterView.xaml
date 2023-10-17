@@ -83,7 +83,7 @@
                 <Button Width="282"
                         Height="50"
                         Command="{Binding PickFileCommand}"
-                        Content="Choose another file" />
+                        Content="Choose file" />
             </StackPanel>
             <Grid Grid.Row="1"
                   Margin="0,28,60,0"
