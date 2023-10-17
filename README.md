@@ -28,26 +28,26 @@ If you liked our app, please consider making a * to support its development. ðŸ˜
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F3PWCH7)
 
-# Third Party Libraries
+## Third Party Libraries
 
 I would like to express my sincere gratitude to the developers of these libraries.
 
-## Prism
+### Prism
 - GitHub Repository: [Prism](https://github.com/PrismLibrary/Prism)
 
 Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Xamarin Forms, and Uno / Win UI Applications. It provides a set of tools, patterns, and guidance to help developers create modular and flexible applications.
 
-## AvalonEdit
+### AvalonEdit
 - GitHub Repository: [AvalonEdit](https://github.com/icsharpcode/AvalonEdit)
 
 AvalonEdit is a WPF-based text editor component used in SharpDevelop. It provides powerful text editing capabilities, including syntax highlighting, code folding, and code completion. Developers can integrate AvalonEdit into their applications to enable advanced text editing functionality.
 
-## BusyIndicator
+### BusyIndicator
 - GitHub Repository: [BusyIndicator](https://github.com/Moh3nGolshani/BusyIndicator)
 
 BusyIndicator is a library for WPF that provides a visual indicator to show the progress or busy state of an operation. It offers customizable options to display loading animations, allowing developers to enhance the user experience by providing feedback during long-running tasks.
 
-## SharpVectors
+### SharpVectors
 - GitHub Repository: [SharpVectors](https://github.com/ElinamLLC/SharpVectors)
 
 SharpVectors is a library for SVG (Scalable Vector Graphics) DOM and rendering in C# for .NET applications. It allows developers to parse, convert, and render SVG files in WPF applications. This library enables the use of SVG graphics format on the web and provides various features for working with SVG files.
