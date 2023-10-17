@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UV.EasyXaml.Client.Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UV.EasyXaml.Client.Abstracts", "UV.EasyXaml.Client.Abstracts\UV.EasyXaml.Client.Abstracts.csproj", "{DF4DE376-D850-4C37-8831-2A2F12C7F1B7}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EasyXamlSetup", "EasyXamlSetup\EasyXamlSetup.vdproj", "{4A7591E6-127B-4F99-A984-C76EDB1DB982}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,8 @@ Global
 		{DF4DE376-D850-4C37-8831-2A2F12C7F1B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF4DE376-D850-4C37-8831-2A2F12C7F1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF4DE376-D850-4C37-8831-2A2F12C7F1B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A7591E6-127B-4F99-A984-C76EDB1DB982}.Debug|Any CPU.ActiveCfg = Debug
+		{4A7591E6-127B-4F99-A984-C76EDB1DB982}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
