@@ -29,6 +29,7 @@ public class ViewsModule : IModule
     private static void RegisterViews(IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterSingleton<IMainView, MainView>();
+        containerRegistry.RegisterSingleton<IAboutView, AboutView>();
         containerRegistry.RegisterSingleton<ISingleFileConverterView, SingleFileConverterView>();
         containerRegistry.RegisterSingleton<IFolderConverterView, FolderConverterView>();
         containerRegistry.RegisterSingleton<IConverterView, ConverterView>();

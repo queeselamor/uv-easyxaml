@@ -17,6 +17,7 @@ public class ViewModelsModule : IModule
     public void RegisterTypes(IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterSingleton<IMainViewModel, MainViewModel>();
+        containerRegistry.RegisterSingleton<IAboutViewModel, AboutViewModel>();
         containerRegistry.RegisterSingleton<ISingleFileConverterViewModel, SingleFileConverterViewModel>();
         containerRegistry.RegisterSingleton<IFolderConverterViewModel, FolderConverterViewModel>();
         containerRegistry.RegisterSingleton<IConverterViewModel, ConverterViewModel>();
