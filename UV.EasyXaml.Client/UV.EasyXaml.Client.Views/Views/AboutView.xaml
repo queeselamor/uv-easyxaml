@@ -8,11 +8,59 @@
              d:DesignWidth="800"
              mc:Ignorable="d">
     <Grid>
-        <StackPanel>
-            <TextBlock HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Text="{Binding Test}" />
-            <Button Command="{Binding ReturnBackCommand}" Content="Back" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0"
+                Margin="24,12,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Command="{Binding ReturnBackCommand}"
+                Content="Back"
+                Style="{StaticResource BackButtonStyle}" />
+        <StackPanel Grid.Row="1"
+                    Margin="0,48,0,20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+            <TextBlock FontSize="18"
+                       Foreground="{StaticResource PrimaryBrush}"
+                       Text="EasyXAML: " />
+            <TextBlock FontSize="18" Text="SVG to XAML Converter" />
         </StackPanel>
+        <TextBlock Grid.Row="2"
+                   Margin="25,0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   FontSize="16"
+                   Text="EasyXAML is a convenient and user-friendly application that allows you to convert SVG images to XAML format with ease. This powerful tool is designed to help developers seamlessly integrate vector images into their XAML-based projects. It supports two types of XAML output: Canvas and DrawingGroup."
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
+        <TextBlock Grid.Row="3"
+                   Margin="25,21,25,20"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   FontSize="16"
+                   Text="If you want to support us, you can list the donations here:"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
+        <Image Grid.Row="4"
+               Width="374"
+               Height="374"
+               Margin="-420,0,0,-32"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Source="pack://application:,,,/Images/donate_image.png" />
+        <Button Grid.Row="4"
+                Width="282"
+                Height="50"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Command="{Binding GoToDonateCommand}"
+                Content="Donate now" />
     </Grid>
 </UserControl>

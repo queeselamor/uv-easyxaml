@@ -24,12 +24,13 @@
                         VerticalAlignment="Stretch"
                         prism:RegionManager.RegionName="{x:Static inf:RegionNameConstants.MainRegion}"
                         IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}" />
-        <Button Grid.Row="1"
-                Margin="0,0,12,12"
-                HorizontalAlignment="Right"
-                Command="{Binding OpenAboutCommand}"
-                IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource CompanyButtonStyle}" />
+        <Grid Grid.Row="1" IsEnabled="{Binding IsAboutOpened, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}">
+            <Button Margin="0,0,12,12"
+                    HorizontalAlignment="Right"
+                    Command="{Binding OpenAboutCommand}"
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource CompanyButtonStyle}" />
+        </Grid>
         <ContentControl Grid.Row="0"
                         Grid.RowSpan="2"
                         HorizontalAlignment="Center"

@@ -13,6 +13,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Images\donate_image.png" />
     <None Remove="Transformations\colors.xml" />
     <None Remove="Transformations\svg_to_xaml.xsl" />
   </ItemGroup>
@@ -34,5 +35,10 @@
     <Content Include="Transformations\svg_to_xaml.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\donate_image.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 </Project>

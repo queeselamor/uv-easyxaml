@@ -18,6 +18,8 @@ public class MainViewModel : BaseViewModel, IMainViewModel
     private readonly IEventAggregator _eventAggregator;
     private readonly IRegionManager _regionManager;
     private bool _isBusy;
+    private bool _isAboutOpened;
+
     #endregion
 
     #region Constructors
@@ -36,7 +38,6 @@ public class MainViewModel : BaseViewModel, IMainViewModel
     #endregion
 
     #region Commands
-
     public IRelayCommand OpenAboutCommand { get; }
     #endregion
 
@@ -46,17 +47,32 @@ public class MainViewModel : BaseViewModel, IMainViewModel
         get => _isBusy;
         set => SetProperty(ref _isBusy, value);
     }
+
+    public bool IsAboutOpened
+    {
+        get => _isAboutOpened;
+        set => SetProperty(ref _isAboutOpened, value);
+    }
     #endregion
 
     #region Methods
     private void SubscribeOnEvents()
     {
         _eventAggregator.GetEvent<IsBusyChangedEvent>().Subscribe(IsBusyChanged);
+        _eventAggregator.GetEvent<AboutClosedEvent>().Subscribe(AboutClosed);
     }
 
     private void IsBusyChanged(IBusyMessage message)
     {
         IsBusy = message.IsBusy;
+    }
+
+    private void AboutClosed(bool isClosed)
+    {
+        if (isClosed)
+        {
+            IsAboutOpened = false;
+        }
     }
 
     private void OpenAbout()
@@ -69,6 +85,8 @@ public class MainViewModel : BaseViewModel, IMainViewModel
         }
 
         RegionNavigationManager.Navigate(_regionManager, RegionNameConstants.MainRegion, ViewNameConstants.AboutView);
+
+        IsAboutOpened = true;
     }
     #endregion
 }
