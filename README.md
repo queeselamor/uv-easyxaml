@@ -29,8 +29,8 @@ Thank you for choosing our application! We would like to inform you that our app
 
 To proceed with the installation, please follow these steps:
 
-Click on "More info" when prompted by Windows Smart Screen.
-Select the option to proceed with the installation by clicking on "Install".
+- Click on "More info" when prompted by Windows Smart Screen.
+- Select the option to proceed with the installation by clicking on "Install".
 We assure you that our application has undergone extensive testing and is safe to use. However, the inclusion of the .xsl transformation script may trigger a warning from Windows Smart Screen. We want to emphasize that this is a standard precautionary measure and does not indicate any security risks associated with our application.
 
 ## Donate
