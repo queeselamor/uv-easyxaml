@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:EasyXamlSetup"
+"ProjectName" = "8:UV.EasyXaml.Setup"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -21,7 +21,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B2DAC4B2793D4DC783044B626476C7A3"
+        "MsmKey" = "8:_5508EF5E46424CD48428C03CFC2B1D5A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,7 +33,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\EasyXamlSetup.msi"
+        "OutputFilename" = "8:Debug\\easy_xaml_setup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -43,13 +43,21 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\EasyXamlSetup.msi"
+        "OutputFilename" = "8:Release\\easy_xaml_setup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -59,6 +67,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -80,7 +96,7 @@
                 {
                 "Name" = "8:.NET Core"
                 "Message" = "8:[VSDNETCOREMSG]"
-                "FrameworkVersion" = "8:7.0.12"
+                "FrameworkVersion" = "8:7.0.12 "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet-core/[NetCoreVerMajorDotMinor]"
                 "IsNETCore" = "11:TRUE"
@@ -91,9 +107,9 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2DAC4B2793D4DC783044B626476C7A3"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5508EF5E46424CD48428C03CFC2B1D5A"
             {
-            "SourcePath" = "8:C:\\Users\\uladz\\OneDrive\\Desktop\\Icon.ico"
+            "SourcePath" = "8:..\\UV.EasyXaml.Client\\Icon.ico"
             "TargetName" = "8:Icon.ico"
             "Tag" = "8:"
             "Folder" = "8:_111469EA22CC4C6F8F28702AFCE73043"
@@ -168,7 +184,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:EasyXaml"
         "ProductCode" = "8:{88916056-1FE0-492D-B521-98394BB250C8}"
-        "PackageCode" = "8:{E29D20F4-ED47-4CA2-94B2-CF73AE03753E}"
+        "PackageCode" = "8:{BDB6DAF8-C503-4558-97B5-4B7AC45FFF29}"
         "UpgradeCode" = "8:{8B1D268C-1F02-44FA-A297-B23FA0DAD128}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -185,7 +201,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_B2DAC4B2793D4DC783044B626476C7A3"
+        "ARPPRODUCTICON" = "8:_5508EF5E46424CD48428C03CFC2B1D5A"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -288,7 +304,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_56CDFD6AF87B48DDBE921A7DB51C49DB"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_21B5482621D84A07940C639D5C48D757"
             {
             "Name" = "8:EasyXAML"
             "Arguments" = "8:"
@@ -299,7 +315,7 @@
             "Target" = "8:_0105BFB51CCC4129957FF69A6C352F58"
             "Folder" = "8:_38174BE92D0F4D5A888A5CE0A62C1DC6"
             "WorkingFolder" = "8:_111469EA22CC4C6F8F28702AFCE73043"
-            "Icon" = "8:_B2DAC4B2793D4DC783044B626476C7A3"
+            "Icon" = "8:_5508EF5E46424CD48428C03CFC2B1D5A"
             "Feature" = "8:"
             }
         }

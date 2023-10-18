@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UV.EasyXaml.Client.Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UV.EasyXaml.Client.Abstracts", "UV.EasyXaml.Client.Abstracts\UV.EasyXaml.Client.Abstracts.csproj", "{DF4DE376-D850-4C37-8831-2A2F12C7F1B7}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EasyXamlSetup", "EasyXamlSetup\EasyXamlSetup.vdproj", "{4A7591E6-127B-4F99-A984-C76EDB1DB982}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UV.EasyXaml.Setup", "UV.EasyXaml.Setup\UV.EasyXaml.Setup.vdproj", "{4A7591E6-127B-4F99-A984-C76EDB1DB982}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
